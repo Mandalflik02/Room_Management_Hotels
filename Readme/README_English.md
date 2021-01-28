@@ -14,6 +14,19 @@ A system that helps hotel employees monitor the condition of the rooms in severa
 5. Type of holiday: The system will show the relevant users (dining room staff, pool buffet staff, etc.) the type of holiday of the guests in order to know if they have to pay for the service they are requesting or are entitled to it by virtue of their type of holiday.
 
 
+Screen types:
+1. Rooms:
+A list of rooms arranged by type and next to each is listed if available
+2. Calendar:
+A calendar will be displayed where future invitations can be viewed, as well as add invitations
+3. Check out:
+You can register a room name / customer name and it will be possible to "remove it from the system"
+4. Check-in:
+If there is a reservation in advance then there will be a screen only of confirmation of arrival, if there is no reservation then it will be possible to check the availability of rooms for the dates the customer requests and then add it to the system
+5. Settings:
+Information about the user who is currently logged in, and settings of the system itself such as language (in the future), text size and the like.
+
+
 important points:
 • Build a system in English (below add an option for additional languages)
 • Create an easy-to-use system
