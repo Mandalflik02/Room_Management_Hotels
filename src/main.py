@@ -1,7 +1,34 @@
-from models import room, order
+from models import room, order,logs
 
 ORDERS = [ ]
 ROOMS = [ ]
+LOGS=[]
+
+def show_logs():
+	global LOGS
+	print("-------------------LOGS-------------------")
+	for l in LOGS:
+		print(l)
+def create_log(type,data):
+	global LOGS
+	log=logs.Log(type,data)
+	LOGS.append(log)
+
+def show_rooms_status():
+	global ROOMS
+	print("------------------Rooms status------------------")
+	for r in ROOMS:
+		print(r)
+
+
+
+
+
+
+
+
+
+##### search order #####
 
 order_typy = {
 	"id": 0,
@@ -13,15 +40,16 @@ order_typy = {
 }
 
 
-def search_order():
-	def look_for_order_by_value(type, value):
-		orders_filtered = [ ]
-		for o in ORDERS:
-			if value == o.look_in_the_order() [ type ]:
-				orders_filtered.append(o)
-		
-		return orders_filtered
+def look_for_order_by_value(type, value):
+	orders_filtered = [ ]
+	for o in ORDERS:
+		if value == o.look_in_the_order() [ type ]:
+			orders_filtered.append(o)
 	
+	return orders_filtered
+
+
+def search_order():
 	try:
 		print("Data types")
 		for i in order_typy.keys():
@@ -43,18 +71,20 @@ def search_order():
 
 # search_order()
 
-
+##### add new order #####
 def search_available_room(number_of_guests):
 	global ROOMS
 	
 	for r in ROOMS:
-		if r.get_room_status() == False and r.get_room_capacity() >= number_of_guests:
+		print(r.get_room_faults())
+		if r.get_room_status() == False and r.get_room_capacity() >= number_of_guests and len(r.get_room_faults()) == 0:
 			return r
 
 
 def add_new_order():
 	global ROOMS
-	
+	print("------------------Add order------------------")
+
 	try:
 		order_id = 0
 		customer_name = input("Enter customer name: ")
@@ -90,32 +120,24 @@ def add_new_order():
 		new_order = order.Order(order_id, customer_name, number_of_guests, arrivel, leaving, food,
 		                        room_num)  # create the order
 		ORDERS.append(new_order)  # add orser to the orders list
+		create_log("NEW ORDER","New order create, order ID: %s"%(order_id))
 		print(new_order, ROOMS [ ROOMS.index(room) ])
 	except KeyboardInterrupt:
 		exit()
 
 
 def menu():
-	global ROOMS
-	r1 = room.Room(1, 2)
-	r2 = room.Room(2, 4)
-	r3 = room.Room(3, 6)
-	# print(f"{'-'*10}\nRooms list\n{'-'*10}")
-	# o3 = order.Order(25, "Mosh Ban Hari", 2, "2/2/2020", "7/2/2020", True)
-	# print(f"{'-'*10}\nOrders list\n{'-'*10}")
-	ROOMS.append(r1)
-	ROOMS.append(r2)
-	ROOMS.append(r3)
 	choose = -1
-	while choose != 9:
-		print("Menu\n"
+	while choose != 10:
+		print("\n\nMenu\n"
 		      "1) add order\n"
 		      "2) view order\n"
 		      "3) update order\n"
 		      "4) rooms status\n"
 		      "5) chack-in\n"
 		      "6) chack-out\n"
-		      "9)EXIT\n")
+		      "9) LOGS\n"
+		      "10) EXIT\n")
 		try:
 			choose = int(input("Choose opstion: "))
 		except ValueError:
@@ -127,19 +149,37 @@ def menu():
 			case 1:
 				add_new_order()
 			case 2:
-				pass
+				search_order()
 			case 3:
 				pass
 			case 4:
-				pass
+				show_rooms_status()
 			case 5:
 				pass
 			case 6:
 				pass
 			case 9:
+				show_logs()
+			case 10:
 				continue
 			case _:
 				print("[ ERROR ] - not in the range of the opstions")
 
 
-menu()
+def main():
+	global ROOMS
+	r1 = room.Room(1, 2)
+	r2 = room.Room(2, 4)
+	r3 = room.Room(3, 6)
+	# print(f"{'-'*10}\nRooms list\n{'-'*10}")
+	# o3 = order.Order(25, "Mosh Ban Hari", 2, "2/2/2020", "7/2/2020", True)
+	# print(f"{'-'*10}\nOrders list\n{'-'*10}")
+	ROOMS.append(r1)
+	ROOMS.append(r2)
+	ROOMS.append(r3)
+	
+	menu()
+
+
+if __name__ == '__main__':
+	main()
