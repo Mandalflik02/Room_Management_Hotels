@@ -10,9 +10,18 @@ class Room():
 	
 	def set_room_status(self, room_status):
 		self.room_is_catch = room_status
+	def get_room_status(self):
+		return self.room_is_catch
 	
 	def set_clean_status(self, clean_status):
 		self.room_is_clean = clean_status
+	def get_clean_status(self):
+		return self.room_is_clean
+	
+	def get_room_capacity(self):
+		return self.room_capacity
+	def get_room_number(self):
+		return self.room_number
 	
 	def __str__(self):
 		
