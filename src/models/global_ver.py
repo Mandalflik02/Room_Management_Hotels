@@ -1,0 +1,3 @@
+ORDERS = [ ]
+ROOMS = [ ]
+LOGS = [ ]

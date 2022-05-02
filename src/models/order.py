@@ -1,3 +1,6 @@
+
+
+
 class Order():
 	def __init__(self, order_num=-1, cusromer_name="", num_of_guests=0, arrivel="1/1/1900", leaving="1/1/1900",
 	             with_food=False, room_num=-1):
