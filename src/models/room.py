@@ -1,3 +1,6 @@
+from range_of_dates import Dates_Range
+from datetime import datetime
+
 class Room():
 	def __init__(self, room_num=0, room_cap=2):
 		self.room_number = room_num
@@ -5,6 +8,21 @@ class Room():
 		self.room_is_catch = False
 		self.room_is_clean = True
 		self.room_faults = [ ]
+		self.dates_catch = [ ]
+	def check_available_date_range(self,date_range):
+		for r in self.dates_catch:
+			if datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_arrivel_date(),"%d/%m/%Y") and datetime.strptime(date_range.get_arrivel_date(),"%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%Y-%m-%d"):
+				return False
+			elif datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_leaving_date(),"%d/%m/%Y") and datetime.strptime(date_range.get_leaving_date(),"%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%Y-%m-%d"):
+				return False
+		return True
+		
+	def add_date_catch(self, start, end):
+		date_catch = Dates_Range(start, end)
+		self.dates_catch.append(date_catch)
+	
+	def get_dates_catch(self):
+		return self.dates_catch
 	
 	def set_room_status(self, room_status):
 		self.room_is_catch = room_status
@@ -54,3 +72,9 @@ class Room():
 
 # test ="===========================\nRoom number: %s.\nRoom capacity: %s.\nRoom clean status: %r.\nRoom occupancy status: %r.\n===========================\n"%(0,2,False,False)
 # print(test)
+
+
+print(datetime.strptime("1/12/2020", "%d/%m/%Y") <= datetime.strptime("10/12/2020", "%d/%m/%Y") and
+      datetime.strptime("10/12/2020", "%d/%m/%Y") <= datetime.strptime("3/1/2021", "%d/%m/%Y"))
+
+# print(datetime.strptime("1/1/2020", "%d/%m/%Y"))

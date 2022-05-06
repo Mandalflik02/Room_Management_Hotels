@@ -1,26 +1,23 @@
 import models
-# from models import room, order, logs
-
-
-
+# from src.models import global_ver, menu_opstions
 
 
 def show_logs():
 	print("-------------------LOGS-------------------")
-	for l in models.global_ver.LOGS:
+	for l in models.LOGS:
 		print(l)
 
 
 def create_log(type, data):
 	log = models.Log(type, data)
-	models.global_ver.LOGS.append(log)
+	models.LOGS.append(log)
 
 
 
 def menu():
 	choose = -1
 	while choose != 10:
-		print("\n\nMenu\n"
+		print("\n\n-------------------Menu-------------------\n"
 		      "1) add order\n"
 		      "2) view order\n"
 		      "3) update order\n"
@@ -39,19 +36,19 @@ def menu():
 			break
 		match choose:
 			case 1:
-				models.menu_opstions.add_new_order()
+				models.add_new_order()
 			case 2:
-				models.menu_opstions.view_order()
+				models.view_order()
 			case 3:
-				models.menu_opstions.update_order()
+				models.update_order()
 			case 4:
-				models.menu_opstions.show_orders()
+				models.show_orders()
 			case 5:
-				models.menu_opstions.show_rooms_status()
+				models.show_rooms_status()
 			case 6:
-				models.menu_opstions.check_in()
+				models.check_in()
 			case 7:
-				models.menu_opstions.check_out()
+				models.check_out()
 			case 9:
 				show_logs()
 			case 10:
@@ -67,9 +64,9 @@ def main():
 	# print(f"{'-'*10}\nRooms list\n{'-'*10}")
 	# o3 = order.Order(25, "Mosh Ban Hari", 2, "2/2/2020", "7/2/2020", True)
 	# print(f"{'-'*10}\nOrders list\n{'-'*10}")
-	models.global_ver.ROOMS.append(r1)
-	models.global_ver.ROOMS.append(r2)
-	models.global_ver.ROOMS.append(r3)
+	models.ROOMS.append(r1)
+	models.ROOMS.append(r2)
+	models.ROOMS.append(r3)
 	
 	menu()
 

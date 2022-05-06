@@ -1,24 +1,22 @@
-from .room import Room
+from .global_ver import *
 from .order import Order
-import global_ver
-
-
+from .range_of_dates import Dates_Range
 
 def show_rooms_status():
 	print("------------------Rooms status------------------")
-	for r in global_ver.ROOMS:
+	for r in ROOMS:
 		print(r)
 
 
 def show_orders():
 	print("------------------Orders status------------------")
-	for o in global_ver.ORDERS:
+	for o in ORDERS:
 		print(o)
 
 
 def look_order_by_name(name):
 	orders_filtered = [ ]
-	for o in global_ver.ORDERS:
+	for o in ORDERS:
 		if name == o.get_customer_name():
 			orders_filtered.append(o)
 	if len(orders_filtered) == 1:
@@ -96,10 +94,11 @@ def check_out():
 
 
 ##### add new order #####
-def search_available_room(number_of_guests):
-	
-	for r in global_ver.ROOMS:
-		if r.get_room_status() == False and r.get_room_capacity() >= number_of_guests and len(r.get_room_faults()) == 0:
+def search_available_room(number_of_guests,date_range):
+	for r in ROOMS:
+		if 	r.get_room_capacity() >= number_of_guests and \
+				len(r.get_room_faults()) == 0 and \
+				r.check_available_date_range(date_range) == True:
 			return r
 
 
@@ -107,7 +106,7 @@ def add_new_order():
 	print("------------------Add order------------------")
 	
 	try:
-		order_id = str(len(global_ver.ORDERS) + 1).zfill(7)
+		order_id = str(len(ORDERS) + 1).zfill(7)
 		customer_name = input("Enter customer name: ")
 		while True:
 			# cheack if the user enter number
@@ -117,8 +116,9 @@ def add_new_order():
 				break
 			except:
 				print("Enter a number!!")
-		arrivel = ""
-		leaving = ""
+		arrivel = "1/12/2020"
+		leaving = "3/1/2021"
+		date_range=Dates_Range(arrivel,leaving)
 		while True:
 			# chack for yes/no answer
 			# food = input("The customer want food? ")
@@ -132,24 +132,23 @@ def add_new_order():
 			else:
 				print("Not an answer!!")
 		
-		room = search_available_room(number_of_guests)  # look for empty room
+		room = search_available_room(number_of_guests,date_range)  # look for empty room
 		if room == None:
 			print("--------------No room available--------------")
 			return
 		room_num = room.get_room_number()  # get room number
-		global_ver.ROOMS [ global_ver.ROOMS.index(room) ].set_room_status(True)  # upstae the room status
-		
+		# ROOMS [ ROOMS.index(room) ].set_room_status(True)  # upstae the room status
+		ROOMS [ ROOMS.index(room) ].add_date_catch(arrivel,leaving)
 		new_order = Order(order_id, customer_name, number_of_guests, arrivel, leaving, food,
-		                         room_num)  # create the order
-		global_ver.ORDERS.append(new_order)  # add orser to the orders list
+		                  room_num)  # create the order
+		ORDERS.append(new_order)  # add orser to the orders list
 		# create_log("NEW ORDER", "New order create, order ID: %s" % (order_id))
-		print("Order create", new_order)  # , ROOMS [ ROOMS.index(room) ])
+		print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
 	except KeyboardInterrupt:
 		exit()
 
 
-
-
-
 def update_order():
 	return None
+
+
