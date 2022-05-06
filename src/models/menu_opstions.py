@@ -116,8 +116,8 @@ def add_new_order():
 				break
 			except:
 				print("Enter a number!!")
-		arrivel = "1/12/2020"
-		leaving = "3/1/2021"
+		arrivel = input("Enter arrivel date(format- day/month/yaer): ")
+		leaving = input("Enter leaving date(format- day/month/yaer): ")
 		date_range=Dates_Range(arrivel,leaving)
 		while True:
 			# chack for yes/no answer

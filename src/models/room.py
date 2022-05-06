@@ -1,5 +1,7 @@
-from range_of_dates import Dates_Range
 from datetime import datetime
+
+from .range_of_dates import Dates_Range
+
 
 class Room():
 	def __init__(self, room_num=0, room_cap=2):
@@ -9,14 +11,19 @@ class Room():
 		self.room_is_clean = True
 		self.room_faults = [ ]
 		self.dates_catch = [ ]
-	def check_available_date_range(self,date_range):
+	
+	def check_available_date_range(self, date_range):
 		for r in self.dates_catch:
-			if datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_arrivel_date(),"%d/%m/%Y") and datetime.strptime(date_range.get_arrivel_date(),"%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%Y-%m-%d"):
+			if datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_arrivel_date(),
+			                                                                            "%d/%m/%Y") and datetime.strptime(
+				date_range.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
 				return False
-			elif datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_leaving_date(),"%d/%m/%Y") and datetime.strptime(date_range.get_leaving_date(),"%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%Y-%m-%d"):
+			elif datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_leaving_date(),
+			                                                                              "%d/%m/%Y") and datetime.strptime(
+				date_range.get_leaving_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
 				return False
 		return True
-		
+	
 	def add_date_catch(self, start, end):
 		date_catch = Dates_Range(start, end)
 		self.dates_catch.append(date_catch)
@@ -56,7 +63,11 @@ class Room():
 	
 	def get_room_number(self):
 		return self.room_number
-	
+	def date_range_to_string(self):
+		date_range_str=""
+		for r in self.dates_catch:
+			date_range_str+=r.get_arrivel_date()+"||"+r.get_leaving_date()+"\n"
+		return date_range_str
 	def __str__(self):
 		
 		room_num = str(str(str("Room number: %s." % (self.room_number))).ljust(25)) + "||"
@@ -64,11 +75,19 @@ class Room():
 		room_clean = str(str(str("Room clean status: %r." % (self.room_is_clean))).ljust(25)) + "||"
 		room_catch = str(str(str("Room is catch: %r." % (self.room_is_catch))).ljust(25)) + "||"
 		room_faults = str(str(str("Room have fault: %r." % (len(self.room_faults) != 0))).ljust(25)) + "||"
-		
+		date_range_str=self.date_range_to_string()
 		return (
-				"\n===========================\n%s\n%s\n%s\n%s\n%s\n===========================\n" % (
-			room_num, room_cap, room_catch, room_clean, room_faults)
+			f"\n===========================\n"
+			f"{room_num}\n"
+			f"{room_cap}\n"
+			f"{room_catch}\n"
+			f"{room_clean}\n"
+			f"{room_faults}\n"
+			f"-----Room dates catch-----\n"
+			f"{date_range_str}"
+			f"===========================\n"
 		)
+
 
 # test ="===========================\nRoom number: %s.\nRoom capacity: %s.\nRoom clean status: %r.\nRoom occupancy status: %r.\n===========================\n"%(0,2,False,False)
 # print(test)
