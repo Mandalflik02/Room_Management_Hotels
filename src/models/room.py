@@ -17,16 +17,18 @@ class Room():
 			if datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_arrivel_date(),
 			                                                                            "%d/%m/%Y") and datetime.strptime(
 				date_range.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
+				# if the start date of the received date range is between one of the date ranges that the room is not available, then it is not possible to book the room
 				return False
 			elif datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_leaving_date(),
 			                                                                              "%d/%m/%Y") and datetime.strptime(
 				date_range.get_leaving_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
+				# if the end date of the received date range is between one of the date ranges that the room is not available, then it is not possible to book the room
 				return False
 		return True
 	
-	def add_date_catch(self, start, end):
-		date_catch = Dates_Range(start, end)
-		self.dates_catch.append(date_catch)
+	def add_date_catch(self, start, end,order_id):
+		date_catch = Dates_Range(start, end,order_id)  # create new range
+		self.dates_catch.append(date_catch)  # add the new range to the ranges list
 	
 	def get_dates_catch(self):
 		return self.dates_catch
@@ -63,11 +65,13 @@ class Room():
 	
 	def get_room_number(self):
 		return self.room_number
+	
 	def date_range_to_string(self):
-		date_range_str=""
+		date_range_str = ""
 		for r in self.dates_catch:
-			date_range_str+=r.get_arrivel_date()+"||"+r.get_leaving_date()+"\n"
+			date_range_str += r.get_arrivel_date() + "||" + r.get_leaving_date() + "\n"
 		return date_range_str
+	
 	def __str__(self):
 		
 		room_num = str(str(str("Room number: %s." % (self.room_number))).ljust(25)) + "||"
@@ -75,7 +79,7 @@ class Room():
 		room_clean = str(str(str("Room clean status: %r." % (self.room_is_clean))).ljust(25)) + "||"
 		room_catch = str(str(str("Room is catch: %r." % (self.room_is_catch))).ljust(25)) + "||"
 		room_faults = str(str(str("Room have fault: %r." % (len(self.room_faults) != 0))).ljust(25)) + "||"
-		date_range_str=self.date_range_to_string()
+		date_range_str = self.date_range_to_string()
 		return (
 			f"\n===========================\n"
 			f"{room_num}\n"
@@ -87,13 +91,3 @@ class Room():
 			f"{date_range_str}"
 			f"===========================\n"
 		)
-
-
-# test ="===========================\nRoom number: %s.\nRoom capacity: %s.\nRoom clean status: %r.\nRoom occupancy status: %r.\n===========================\n"%(0,2,False,False)
-# print(test)
-
-
-print(datetime.strptime("1/12/2020", "%d/%m/%Y") <= datetime.strptime("10/12/2020", "%d/%m/%Y") and
-      datetime.strptime("10/12/2020", "%d/%m/%Y") <= datetime.strptime("3/1/2021", "%d/%m/%Y"))
-
-# print(datetime.strptime("1/1/2020", "%d/%m/%Y"))

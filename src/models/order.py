@@ -2,9 +2,9 @@ from .range_of_dates import Dates_Range
 
 
 class Order():
-	def __init__(self, order_num=-1, cusromer_name="", num_of_guests=0, arrivel="1/1/1900", leaving="1/1/1900",
+	def __init__(self, order_num=-1, cusromer_name="", num_of_guests=0, arrivel="", leaving="",
 	             with_food=False, room_num=-1):
-		self.order_ID = str(order_num).zfill(7)
+		self.order_ID = str(order_num).zfill(7)  # set order id format as 8 digit, the space fill with 0
 		self.customer_name = cusromer_name
 		self.number_of_guests = num_of_guests
 		self.dates_range = Dates_Range(arrivel, leaving)
@@ -45,6 +45,9 @@ class Order():
 	
 	def get_customer_name(self):
 		return self.customer_name
+	
+	def get_room_number(self):
+		return self.room_number
 	
 	def get_order_id(self):
 		return self.order_ID

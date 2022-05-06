@@ -1,5 +1,6 @@
+import random
+
 import models
-# from src.models import global_ver, menu_opstions
 
 
 def show_logs():
@@ -11,7 +12,6 @@ def show_logs():
 def create_log(type, data):
 	log = models.Log(type, data)
 	models.LOGS.append(log)
-
 
 
 def menu():
@@ -58,16 +58,12 @@ def menu():
 
 
 def main():
-	r1 = models.Room(1, 2)
-	r2 = models.Room(2, 4)
-	r3 = models.Room(3, 6)
+	for r in range(10):
+		room = models.Room(r + 1, random.choice([ 2, 4, 6, 8 ]))#create room with random capacity and room number beetwen 1 to 10
+		models.ROOMS.append(room)#add the room to the rooms list
 	# print(f"{'-'*10}\nRooms list\n{'-'*10}")
 	# o3 = order.Order(25, "Mosh Ban Hari", 2, "2/2/2020", "7/2/2020", True)
 	# print(f"{'-'*10}\nOrders list\n{'-'*10}")
-	models.ROOMS.append(r1)
-	models.ROOMS.append(r2)
-	models.ROOMS.append(r3)
-	
 	menu()
 
 
