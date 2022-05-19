@@ -3,21 +3,13 @@ import random
 import models
 
 
-def show_logs():
-	print("-------------------LOGS-------------------")
-	for l in models.LOGS:
-		print(l)
 
 
-def create_log(type, data):
-	log = models.Log(type, data)
-	models.LOGS.append(log)
-
-
+#self.time = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 def menu():
 	choose = -1
 	while choose != 10:
-		print("\n\n-------------------Menu-------------------\n"
+		print("\n-------------------Menu-------------------\n"
 		      "1) add order\n"
 		      "2) view order\n"
 		      "3) update order\n"
@@ -50,7 +42,8 @@ def menu():
 			case 7:
 				models.check_out()
 			case 9:
-				show_logs()
+				pass
+				# show_logs()
 			case 10:
 				continue
 			case _:

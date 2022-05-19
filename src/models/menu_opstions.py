@@ -1,3 +1,4 @@
+from .Logs import *
 from .global_ver import *
 from .order import Order
 from .range_of_dates import Dates_Range
@@ -38,6 +39,10 @@ def search_order():
 		if type(orders_filtered) == type([ ]) and len(orders_filtered) == 0:
 			# if the is no orders with the customer name print a msg
 			print(f"\nNot found orders with the name you search: {customer_to_search}")
+		elif type(orders_filtered) == type([ ]):
+			# if the is no orders with the customer name print a msg
+			print(f"\nWe found orders with the name you search: {customer_to_search}")
+			return orders_filtered
 		else:
 			# if the is orders with the customer name print a msg and return the order
 			print(f"\nWe found a order with the name you search: {customer_to_search}")
@@ -55,30 +60,41 @@ def check_out():
 	if type(order) == type([ ]):
 		# when there is more then one order on the customer name
 		try:
+			order_copy = order
+			order = [ ]
+			for i in order_copy:
+				if i.get_check_out_status() == False:
+					order.append(i)
 			print_one_or_more_order(order)
 			# ask the user which order to check out
 			choose_order = int(input("Enter the id of the order you want to check-out: "))
-		except:
+		except ValueError:
 			print("not a number")
+			return
 		for o in order:
 			# look for the order the user choose
 			if int(o.get_order_id()) == choose_order and o.get_check_in_status() == True:
 				# when find the order, change chack-out in the order and change room catch status
 				o.check_out_customers()
+				create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
+				                      ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "msg" ] % o.get_order_id())
 				search_room_by_number(o.get_room_number()).set_room_status(False)
-				# create_log("CHECK OUT", "order-id: %s" % (o.get_order_id()))
 				return
 		print("The customer not check-in yet!!")
-	else:
+	elif type(order) == "<class 'models.order.Order'>":
 		# when there is one order on the customer name
 		if order.get_check_in_status() == True:
 			# change chack-out in the order and change room catch status
 			order.check_out_customers()
+			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
+			                      ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "msg" ] % order.get_order_id())
 			search_room_by_number(order.get_room_number()).set_room_status(False)
-			# create_log("CHECK OUT", "order-id: %s" % (order.get_order_id()))
 			return
 		else:
 			print("The customer not check-in yet!!")
+	else:
+		print("Error !!!!!!!!!!!!!!!!!!!!!!!!!!")
+		print(type(order))
 
 
 # 6) chack-in
@@ -87,6 +103,11 @@ def check_in():
 	if type(order) == type([ ]):
 		# when there is more then one order on the customer name
 		try:
+			order_copy = order
+			order = [ ]
+			for i in order_copy:
+				if i.get_check_in_status() == False:
+					order.append(i)
 			print_one_or_more_order(order)
 			# ask the user which order to check in
 			choose_order = int(input("Enter the id of the order you want to check-in: "))
@@ -97,16 +118,22 @@ def check_in():
 			if int(o.get_order_id()) == choose_order:
 				# when find the order, change chack-in in the order and change room catch status
 				o.check_in_customers()
+				create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
+				                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % o.get_order_id())
 				search_room_by_number(o.get_room_number()).set_room_status(True)
-				# create_log("CHECK IN", "order-id: %s" % (o.get_order_id()))
 				return
-	else:
+	elif type(order) == "<class 'models.order.Order'>":
 		# when there is one order on the customer name
 		# change chack-out in the order and change room catch status
 		order.check_in_customers()
+		create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
+		                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % order.get_order_id())
 		search_room_by_number(order.get_room_number()).set_room_status(True)
-		# create_log("CHECK IN", "order-id: %s" % (o.get_order_id()))
+		# create_log("CHECK IN", "order
 		return
+	else:
+		print("Error !!!!!!!!!!!!!!!!!!!!!!!!!!")
+		print(type(order))
 
 
 # 5) room status
@@ -187,13 +214,16 @@ def add_new_order():
 			return
 		room_num = room.get_room_number()  # get room number
 		ROOMS [ ROOMS.index(room) ].add_date_catch(arrivel,
-		                                           leaving,order_id)  # add date_range to the room -> range when the room is catch
+		                                           leaving,
+		                                           order_id)  # add date_range to the room -> range when the room is catch
 		
 		new_order = Order(order_id, customer_name, number_of_guests,
 		                  arrivel, leaving, food, room_num)  # create the order
 		
 		ORDERS.append(new_order)  # add order to the orders list
 		# create_log("NEW ORDER", "New order create, order ID: %s" % (order_id))
-		print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
+		# print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
+		create_log_order_room(ORDERS_LOGGER_LEVELS [ "new-order" ] [ "value" ],
+		                      ORDERS_LOGGER_LEVELS [ "new-order" ] [ "msg" ] % order_id)
 	except KeyboardInterrupt:
 		exit()

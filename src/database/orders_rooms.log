@@ -1,0 +1,41 @@
+[2022-05-19 17:18:55,647] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:18:58,961] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:19:14,128] || ORDER-CHECK-IN || The customer of Order |0000001| has checked-in
+[2022-05-19 17:20:38,142] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:20:41,195] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:23:47,893] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:26:57,222] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:27:20,352] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:28:40,334] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:29:20,564] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:29:22,570] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:30:01,409] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:30:04,161] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:30:09,102] || NEW-ORDER || New order created, order-id: 0000003
+[2022-05-19 17:31:42,538] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:31:45,441] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:32:14,504] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:32:17,106] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:34:00,885] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:34:03,319] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:34:36,464] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:34:38,226] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:34:42,088] || ORDER-CHECK-IN || The customer of Order |0000001| has checked-in
+[2022-05-19 17:34:47,758] || ORDER-CHECK-IN || The customer of Order |0000002| has checked-in
+[2022-05-19 17:35:32,684] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:35:35,803] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:37:02,503] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:37:05,321] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:37:10,033] || ORDER-CHECK-IN || The customer of Order |0000001| has checked-in
+[2022-05-19 17:37:17,009] || ORDER-CHECK-IN || The customer of Order |0000002| has checked-in
+[2022-05-19 17:37:21,733] || ORDER-CHECK-OUT || The customer of Order |0000002| has checked-out
+[2022-05-19 17:38:40,634] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:38:42,276] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:38:46,784] || ORDER-CHECK-IN || The customer of Order |0000002| has checked-in
+[2022-05-19 17:38:49,873] || ORDER-CHECK-IN || The customer of Order |0000001| has checked-in
+[2022-05-19 17:39:36,708] || NEW-ORDER || New order created, order-id: 0000001
+[2022-05-19 17:39:45,562] || NEW-ORDER || New order created, order-id: 0000002
+[2022-05-19 17:39:49,394] || ORDER-CHECK-IN || The customer of Order |0000002| has checked-in
+[2022-05-19 17:39:56,264] || ORDER-CHECK-IN || The customer of Order |0000001| has checked-in
+[2022-05-19 17:40:09,133] || ORDER-CHECK-OUT || The customer of Order |0000001| has checked-out
+[2022-05-19 17:40:15,299] || ORDER-CHECK-OUT || The customer of Order |0000002| has checked-out
