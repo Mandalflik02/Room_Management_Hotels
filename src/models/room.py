@@ -46,13 +46,13 @@ class Room():
 		return self.room_is_clean
 	
 	def add_fault(self, fault):
-		if fault == "" or type(fault) is not type(""):  # if the verable is not string or is empty string dont add it
+		if fault == "" or type(fault) is not type(""):  # if the variable is not string or is empty string don't add it
 			return False
 		self.room_faults.append(fault)
 		return True
 	
 	def remove_fault(self, fault):
-		if fault not in self.room_faults:  # if not in the faults list dont try to remove it
+		if fault not in self.room_faults:  # if not in the faults list don't try to remove it
 			return False
 		self.room_faults.remove(fault)
 		return True

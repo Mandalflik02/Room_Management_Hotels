@@ -1,5 +1,5 @@
 import random
-
+from datetime import datetime
 import models
 
 
@@ -42,8 +42,7 @@ def menu():
 			case 7:
 				models.check_out()
 			case 9:
-				pass
-				# show_logs()
+				models.show_logs_by_date()
 			case 10:
 				continue
 			case _:
