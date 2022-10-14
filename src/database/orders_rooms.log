@@ -14,3 +14,8 @@
 [2022-05-31 18:42:10,435] || ORDER-CHECK-IN || The customer of Order |0000002| has checked-in
 [2022-05-31 18:42:26,111] || ORDER-CHECK-IN || The customer of Order |0000001| has checked-in
 [2022-05-31 18:43:24,212] || ORDER-CHECK-OUT || The customer of Order |0000001| has checked-out
+[2022-10-14 15:35:35,940] || NEW-ORDER || New order created, order-id: 0000001
+[2022-10-14 15:38:21,646] || NEW-ORDER || New order created, order-id: 0000001
+[2022-10-14 15:39:19,275] || NEW-ORDER || New order created, order-id: 0000001
+[2022-10-14 15:39:40,278] || NEW-ORDER || New order created, order-id: 0000002
+[2022-10-14 15:39:51,000] || NEW-ORDER || New order created, order-id: 0000003

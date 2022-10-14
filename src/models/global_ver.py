@@ -1,3 +1,18 @@
 ORDERS=[]  # list of orders
 ROOMS=[]  # list of room
 LOGS=[]  # list of logs
+
+
+windows_indexes = {
+	"main-page": 0,
+	"new-order": 1,
+	"rooms-view": 2,
+	"view-order": 3,
+	"view-room": 4,
+	"settings": 5,
+	"manager-page": 6,
+	"login-create":7,
+	"msg-box": 33,
+}  # A list of all the indexes of each page
+
+
