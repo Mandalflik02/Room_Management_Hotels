@@ -22,7 +22,7 @@ class Main_Page(QDialog):
 		print("rooms")
 
 	def search_order_function(self):
-		print("search-order")
+		print("search-order",self.search_order_line_edit.text())
 
 	def settings_function(self):
 		print("settings")
