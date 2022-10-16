@@ -1,6 +1,7 @@
 import random,sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import Qt
 
 from models import *
 from UI.UI_CODE_FILES import Main_Page
@@ -11,9 +12,11 @@ from UI.UI_CODE_FILES import Main_Page
 def create_app():
 	app=QApplication(sys.argv)  # create the app
 	widget=QtWidgets.QStackedWidget()  # create list of all views
+	widget.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
 
-	main_page=Main_Page(widget)  # home page
-	widget.insertWidget(windows_indexes["main-page"], main_page)
+
+	main_page=Main_Page(widget)  # create main page
+	widget.insertWidget(windows_indexes["main-page"], main_page)# set the main page as widget in the widgets stack
 
 
 
