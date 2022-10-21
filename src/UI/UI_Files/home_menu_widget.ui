@@ -61,7 +61,7 @@ font-size:15px;
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:25px;
-background-color: rgb(141, 193, 231);</string>
+background-color: rgba(13, 153, 255,0.4);</string>
     </property>
     <property name="maxLength">
      <number>8</number>

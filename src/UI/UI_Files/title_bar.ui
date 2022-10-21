@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">*{
-background:none;
+background-color: rgba(189, 227, 255, 0.4);
 }
 
 QLabel{

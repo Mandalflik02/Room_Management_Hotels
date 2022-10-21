@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QDesktopWidget, QWidget,QFrame
 from PyQt5.uic import loadUi
 
+from models import *
 
 class Title_Bar(QFrame):
 	def __init__(self, widget):
@@ -17,6 +18,7 @@ class Title_Bar(QFrame):
 
 	def close_app(self):
 		print("close")
+		stop_time_thread=True
 		self.widget.close()
 	def minimize_app(self):
 		print("minimize")

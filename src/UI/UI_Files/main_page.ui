@@ -17,8 +17,10 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgba(13, 153, 255,0.4);
-font: 8pt &quot;Calibri&quot;;</string>
+   <string notr="true">font: 8pt &quot;Calibri&quot;;
+background-color: rgb(141, 193, 231)
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="time_label">
@@ -103,7 +105,7 @@ font-size:20px;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: transparent;</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>0</number>

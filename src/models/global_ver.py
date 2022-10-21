@@ -3,6 +3,9 @@ ROOMS=[]  # list of room
 LOGS=[]  # list of logs
 
 
+stop_time_thread=False
+
+
 windows_indexes = {
 	"home-menu": 0,
 	"new-order": 1,

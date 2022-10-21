@@ -1,6 +1,7 @@
-from PyQt5.QtWidgets import QApplication, QDialog, QDesktopWidget, QWidget,QFrame
+from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
 
+from models import *
 
 class Home_Menu_Widget(QWidget):
 	def __init__(self, widget):
@@ -19,6 +20,7 @@ class Home_Menu_Widget(QWidget):
 
 	def new_order_function(self):
 		#start when click on the new-order button
+		self.widget.setCurrentIndex(windows_indexes["new-order"])
 		print("new-order")
 
 	def rooms_function(self):
