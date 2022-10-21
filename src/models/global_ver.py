@@ -4,7 +4,7 @@ LOGS=[]  # list of logs
 
 
 windows_indexes = {
-	"main-page": 0,
+	"home-menu": 0,
 	"new-order": 1,
 	"rooms-view": 2,
 	"view-order": 3,

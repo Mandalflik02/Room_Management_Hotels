@@ -1,42 +1,43 @@
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.uic import loadUi
-from .title_frame import Title_Frame
+from PyQt5.QtCore import Qt
+
+
+from .title_bar import Title_Bar
+from .home_menu_widget import Home_Menu_Widget
+
 
 
 class Main_Page(QMainWindow):
-	def __init__(self, widget):
+	def __init__(self, windows_indexes):
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(Main_Page, self).__init__()
-		loadUi("UI/UI_Files/main_page_2.ui", self)  # load the UI of the page
-		self.widget=widget  # the widget-stack that has all widgets --> so I can move to any other widget
-
-		title_frame=Title_Frame(self.widget)
-		self.top_widget.addWidget(title_frame)
+		loadUi("UI/UI_Files/main_page.ui", self)  # load the UI of the page
+		self.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
 
 
+		######################## add title widget ########################
+		title_Bar=Title_Bar(self)
+		self.top_widget.addWidget(title_Bar)
+		##################################################################
 
 
+		######################## buttons section #########################
+		self.setting_button.clicked.connect(self.settings_function)  # click event to the settings button
+		##################################################################
 
 
+		####################### add widgets section ######################
+		main_menu=Home_Menu_Widget(self.widget_section)#create a home menu widget
+		self.widget_section.insertWidget(windows_indexes["home-menu"], main_menu)#add home menu widget to the stack
 
-	############### buttons section #############
-		self.new_order_button.clicked.connect(self.new_order_function)  # click event to the new order button
-		self.rooms_button.clicked.connect(self.rooms_function)  # click event to the rooms button
-		self.search_order_button.clicked.connect(self.search_order_function)  # click event to the search order button
-		self.setting_button.clicked.connect(self.settings_function)  # click event to the settins button
 
-	def new_order_function(self):
-		#start when click on the new-order button
-		print("new-order")
-
-	def rooms_function(self):
-		# start when click on the rooms button
-		print("rooms")
-
-	def search_order_function(self):
-		# start when click on the search-order button
-		print("search-order",self.search_order_line_edit.text())
+		##################################################################
+		self.widget_section.setCurrentIndex(windows_indexes["home-menu"])#start the program with the home menu widget
 
 	def settings_function(self):
 		# start when click on the settings button
 		print("settings")
+
+
+
