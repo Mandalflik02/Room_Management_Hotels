@@ -21,12 +21,6 @@ class Main_Page(QMainWindow):
 		loadUi("UI/UI_Files/main_page.ui", self)  # load the UI of the page
 		self.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
 
-
-
-
-
-
-
 		######################## add title widget ########################
 		title_Bar=Title_Bar(self)
 		self.top_widget.addWidget(title_Bar)
@@ -48,12 +42,12 @@ class Main_Page(QMainWindow):
 
 
 		##################################################################
-		self.widget_section.setCurrentIndex(windows_indexes["home-menu"])#start the program with the home menu widget
+		self.widget_section.setCurrentIndex(windows_indexes["new-order"])#start the program with the home menu widget
 		self.widget_section.setFixedWidth(1300)# set width
 		self.widget_section.setFixedHeight(780)#set height
 
-		self.time_date_thread=Thread(target=self.set_time_for_display)
-		self.time_date_thread.start()
+		# self.time_date_thread=Thread(target=self.set_time_for_display)
+		# self.time_date_thread.start()
 
 
 	def settings_function(self):
