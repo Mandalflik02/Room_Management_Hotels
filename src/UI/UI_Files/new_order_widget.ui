@@ -92,56 +92,54 @@ border-radius:10px;</string>
     <string>Enter the customer's name</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="create_btn">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>420</y>
+     <x>40</x>
+     <y>520</y>
      <width>151</width>
      <height>71</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:hover {
+ background:   rgb(48, 120, 200);
+}
+QPushButton{
+border-radius:15px;
+font: 25px &quot;Calibri&quot;;
+border:1px solid  rgb(255, 255, 255);
+background-color:rgba(13, 153, 255,0.4);
+
+}</string>
    </property>
    <property name="text">
     <string>create order</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="cencel_btn">
    <property name="geometry">
     <rect>
-     <x>1070</x>
-     <y>410</y>
+     <x>210</x>
+     <y>520</y>
      <width>151</width>
      <height>71</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:hover {
+ background:   rgb(48, 120, 200);
+}
+QPushButton{
+border-radius:15px;
+font: 25px &quot;Calibri&quot;;
+border:1px solid  rgb(255, 255, 255);
+background-color:rgba(13, 153, 255,0.4);
+
+}</string>
+   </property>
    <property name="text">
     <string>cencel</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_4">
-   <property name="geometry">
-    <rect>
-     <x>940</x>
-     <y>280</y>
-     <width>101</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>arrivel date</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>1110</x>
-     <y>260</y>
-     <width>101</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>leaving date</string>
    </property>
   </widget>
   <widget class="QFrame" name="guest_frame">
@@ -556,10 +554,18 @@ border-radius:5px;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(10, 123, 204);
+     <string notr="true">QPushButton:hover {
+background-color: rgb(10, 123, 204);
+}
+QPushButton{
+border-radius:15px;
+background: rgba(35, 130, 220,0.4);
+border-radius:10px;
 color: rgb(255, 255, 255);
 border:2px solid  rgb(255, 255, 255);
-border-radius:10px;</string>
+
+}
+</string>
     </property>
     <property name="text">
      <string/>
@@ -629,10 +635,18 @@ border-radius:5px;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(10, 123, 204);
+     <string notr="true">QPushButton:hover {
+background-color: rgb(10, 123, 204);
+}
+QPushButton{
+border-radius:15px;
+background: rgba(35, 130, 220,0.4);
+border-radius:10px;
 color: rgb(255, 255, 255);
 border:2px solid  rgb(255, 255, 255);
-border-radius:10px;</string>
+
+}
+</string>
     </property>
     <property name="text">
      <string/>
@@ -669,6 +683,95 @@ color: rgb(0, 0, 0);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+  </widget>
+  <widget class="QDateEdit" name="arrivel_date">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>350</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+color: rgb(255, 0, 0);
+border-color:rgb(0,0,0);</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="buttonSymbols">
+    <enum>QAbstractSpinBox::NoButtons</enum>
+   </property>
+   <property name="keyboardTracking">
+    <bool>true</bool>
+   </property>
+   <property name="minimumDateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2000</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="displayFormat">
+    <string>dd/MM/yyyy</string>
+   </property>
+   <property name="calendarPopup">
+    <bool>true</bool>
+   </property>
+   <property name="date">
+    <date>
+     <year>2020</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="leaveing_date">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>350</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="buttonSymbols">
+    <enum>QAbstractSpinBox::NoButtons</enum>
+   </property>
+   <property name="keyboardTracking">
+    <bool>true</bool>
+   </property>
+   <property name="minimumDateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2000</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="displayFormat">
+    <string notr="true">dd/MM/yyyy</string>
+   </property>
+   <property name="calendarPopup">
+    <bool>true</bool>
+   </property>
+   <property name="date">
+    <date>
+     <year>2020</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
+   </property>
   </widget>
  </widget>
  <resources/>
