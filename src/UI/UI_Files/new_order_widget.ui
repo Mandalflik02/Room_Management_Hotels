@@ -147,7 +147,7 @@ background-color:rgba(13, 153, 255,0.4);
     <rect>
      <x>390</x>
      <y>90</y>
-     <width>441</width>
+     <width>271</width>
      <height>71</height>
     </rect>
    </property>
@@ -184,7 +184,7 @@ border-radius:0;
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="adults_label">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -265,7 +265,7 @@ border-radius:0;
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="kids_label">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -287,84 +287,6 @@ color: rgb(0, 0, 0);</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>10</y>
-       <width>41</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: transparent;
-font-size:20px;
-background-color:rgba(13, 153, 255,0.4);
-color: rgb(255, 255, 255);
-border:2px solid  rgb(255, 255, 255);
-border-radius:10px;
-
-
-</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="buttonSymbols">
-      <enum>QAbstractSpinBox::NoButtons</enum>
-     </property>
-     <property name="minimum">
-      <number>0</number>
-     </property>
-     <property name="maximum">
-      <number>10</number>
-     </property>
-     <property name="value">
-      <number>0</number>
-     </property>
-     <property name="displayIntegerBase">
-      <number>10</number>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QFrame" name="pensione_frame">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>5</y>
-      <width>171</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border:noen;
-border-radius:0;
-</string>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>101</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: transparent;
-font-size:23px;
-color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string>Pensioner</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="pensioner_input">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
        <y>10</y>
        <width>41</width>
        <height>41</height>
@@ -456,8 +378,11 @@ border:1px solid  rgb(255, 255, 255);
       <height>20</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="breakfast_btn_3">
+   <widget class="QPushButton" name="lunch_btn">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -488,8 +413,11 @@ border:1px solid  rgb(255, 255, 255);
       <height>20</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="breakfast_btn_2">
+   <widget class="QPushButton" name="dinner_btn">
     <property name="geometry">
      <rect>
       <x>240</x>
@@ -519,6 +447,9 @@ border:1px solid  rgb(255, 255, 255);
       <width>20</width>
       <height>20</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -554,12 +485,12 @@ border-radius:5px;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton:hover {
+     <string notr="true">
+QPushButton:hover {
 background-color: rgb(10, 123, 204);
 }
 QPushButton{
 border-radius:15px;
-background: rgba(35, 130, 220,0.4);
 border-radius:10px;
 color: rgb(255, 255, 255);
 border:2px solid  rgb(255, 255, 255);
@@ -572,13 +503,19 @@ border:2px solid  rgb(255, 255, 255);
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../ICONS/checked.png</normaloff>../ICONS/checked.png</iconset>
+      <activeoff>../ICONS/unchecked.png</activeoff>
+      <activeon>../ICONS/checked.png</activeon>
+      <selectedon>../ICONS/checked.png</selectedon>
+     </iconset>
     </property>
     <property name="iconSize">
      <size>
       <width>25</width>
       <height>25</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
@@ -625,7 +562,7 @@ border-radius:5px;
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QPushButton" name="ceack_pet_btn">
+   <widget class="QPushButton" name="check_pet_btn">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -640,7 +577,6 @@ background-color: rgb(10, 123, 204);
 }
 QPushButton{
 border-radius:15px;
-background: rgba(35, 130, 220,0.4);
 border-radius:10px;
 color: rgb(255, 255, 255);
 border:2px solid  rgb(255, 255, 255);
@@ -653,13 +589,19 @@ border:2px solid  rgb(255, 255, 255);
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../ICONS/checked.png</normaloff>../ICONS/checked.png</iconset>
+      <activeoff>../ICONS/unchecked.png</activeoff>
+      <activeon>../ICONS/checked.png</activeon>
+      <selectedon>../ICONS/checked.png</selectedon>
+     </iconset>
     </property>
     <property name="iconSize">
      <size>
       <width>25</width>
       <height>25</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_9">
@@ -687,16 +629,17 @@ color: rgb(0, 0, 0);</string>
   <widget class="QDateEdit" name="arrivel_date">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>350</y>
+     <x>30</x>
+     <y>330</y>
      <width>131</width>
-     <height>41</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
 color: rgb(255, 0, 0);
-border-color:rgb(0,0,0);</string>
+border-color:rgb(0,0,0);
+font: 16pt &quot;Calibri&quot;;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -712,7 +655,7 @@ border-color:rgb(0,0,0);</string>
      <hour>0</hour>
      <minute>0</minute>
      <second>0</second>
-     <year>2000</year>
+     <year>2023</year>
      <month>1</month>
      <day>1</day>
     </datetime>
@@ -725,20 +668,25 @@ border-color:rgb(0,0,0);</string>
    </property>
    <property name="date">
     <date>
-     <year>2020</year>
+     <year>2023</year>
      <month>1</month>
      <day>1</day>
     </date>
    </property>
   </widget>
-  <widget class="QDateEdit" name="leaveing_date">
+  <widget class="QDateEdit" name="leaving_date">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>350</y>
+     <x>200</x>
+     <y>330</y>
      <width>131</width>
-     <height>41</height>
+     <height>71</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);
+border-color:rgb(0,0,0);
+font: 16pt &quot;Calibri&quot;;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -754,7 +702,7 @@ border-color:rgb(0,0,0);</string>
      <hour>0</hour>
      <minute>0</minute>
      <second>0</second>
-     <year>2000</year>
+     <year>2023</year>
      <month>1</month>
      <day>1</day>
     </datetime>
@@ -767,10 +715,50 @@ border-color:rgb(0,0,0);</string>
    </property>
    <property name="date">
     <date>
-     <year>2020</year>
+     <year>2023</year>
      <month>1</month>
      <day>1</day>
     </date>
+   </property>
+  </widget>
+  <widget class="QLabel" name="arrivel_label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>300</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Calibri&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>Arrivel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="leaving_label">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>300</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;Calibri&quot;;
+</string>
+   </property>
+   <property name="text">
+    <string>leaving</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

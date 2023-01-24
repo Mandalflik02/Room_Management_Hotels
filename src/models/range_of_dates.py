@@ -14,7 +14,8 @@ class Dates_Range():
 			self.error_text="One of the dates is not good"
 			return
 		self.range_ok, self.error_text=self.check_range(start, end)
-
+		if not self.range_ok:
+			return self.error_text
 	def is_date(self, string):
 		date=string
 		regex=r'[\d]{1,2}/[\d]{1,2}/[\d]{4}'  # date format

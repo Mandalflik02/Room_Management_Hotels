@@ -38,16 +38,16 @@ class Main_Page(QMainWindow):
 		#--------------------------------------------------------------------------------------------------------------#
 		new_order=New_Order_Widget(self.widget_section)  # create a new order widget
 		self.widget_section.insertWidget(windows_indexes["new-order"], new_order)  # add new order widget to the stack
-		# --------------------------------------------------------------------------------------------------------------#
+		# -------------------------------------------------------------------------------------------------------------#
 
 
 		##################################################################
-		self.widget_section.setCurrentIndex(windows_indexes["new-order"])#start the program with the home menu widget
+		self.widget_section.setCurrentIndex(windows_indexes["new-order"])##start the program with the home menu widget##
 		self.widget_section.setFixedWidth(1300)# set width
 		self.widget_section.setFixedHeight(780)#set height
 
-		# self.time_date_thread=Thread(target=self.set_time_for_display)
-		# self.time_date_thread.start()
+		# self.time_date_thread=Thread(target=self.set_time_for_display)#create thread for time
+		# self.time_date_thread.start()#strat the thread time
 
 
 	def settings_function(self):

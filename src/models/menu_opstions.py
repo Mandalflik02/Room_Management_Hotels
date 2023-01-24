@@ -223,15 +223,15 @@ def search_available_room(number_of_guests, date_range):
 			return r
 
 
-def add_new_order():
+def add_new_order(current_time,customer_name,guests,food,):
 	print("------------------Add order------------------")
 
 	try:
 		order_id=str(len(ORDERS)+1).zfill(7)  # order number
-		customer_name=input("Enter customer name: ")  # the name of the customer who orders
+		customer_name=input("Enter customer name: ")  # the name of the customer who orders --------------------------
 		while True:
 			# check if the user enter number
-			number_of_guests=input("Enter the number of guests: ")
+			number_of_guests=input("Enter the number of guests: ") #------------------------
 			try:
 				number_of_guests=int(number_of_guests)
 				if number_of_guests < 1:
@@ -239,13 +239,13 @@ def add_new_order():
 				break
 			except:
 				print("Enter a number!! (more then 0)")
-		arrivel="1/1/1000"  # input("Enter arrivel date(format- day/month/year): ")
-		leaving="1/2/1000"  # input("Enter leaving date(format- day/month/year): ")
+		arrivel="1/1/1000"  # input("Enter arrivel date(format- day/month/year): ")  -------------------------------
+		leaving="1/2/1000"  # input("Enter leaving date(format- day/month/year): ")  --------------------------------
 		date_range=Dates_Range(arrivel, leaving)  # create date range for the order
 		while True:
 			# check for yes/no answer
 			# food = input("The customer want food? ")
-			food="y"
+			food="y"#----------------------
 			if food in ["yes", "YES", "Yes", "y", "Y"]:
 				food=True
 				break

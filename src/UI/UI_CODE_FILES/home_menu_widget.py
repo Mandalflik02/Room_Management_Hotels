@@ -13,6 +13,7 @@ class Home_Menu_Widget(QWidget):
 		############### buttons section #############
 		self.new_order_button.clicked.connect(self.new_order_function)  # click event to the new order button
 		self.rooms_button.clicked.connect(self.rooms_function)  # click event to the rooms button
+
 		self.search_order_button.clicked.connect(self.search_order_function)  # click event to the search order button
 		#############################################
 
