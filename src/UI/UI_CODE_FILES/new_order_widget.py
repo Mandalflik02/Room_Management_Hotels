@@ -37,7 +37,7 @@ class New_Order_Widget(QWidget):
 		current_time=datetime.now().strftime("%H:%M:%S , %d/%m/%Y")
 		customer_name =self.customer_name_input.text()
 		guests=int(self.adults_input.text()) + int(self.kids_input.text())
-		meal_options={self.breakfast_status , self.lunch_status , self.dinner_status}
+		meal_options=[self.breakfast_status , self.lunch_status , self.dinner_status]
 		electric_car=self.electric_car_status
 		pet=self.pet_status
 		arrivel=str(self.arrivel_date.date().toPyDate().strftime("%d/%m/%Y"))
