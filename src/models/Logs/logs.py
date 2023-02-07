@@ -61,12 +61,20 @@ def find_logger_by_number(logger):
 
 
 def logs_by_exact_date(logger, date):
+	"""
+	Find log in specific logger in specific date
+
+	:return: List of logs
+	"""
 	global orders_rooms_logger, errors_logger
 	logs=find_logger_by_number(logger)
-	if logs == None: print("not find logs/logger")
+	if logs == None: 
+		# if there is not logger found need to raise exption
+		print("not find logs/logger") 
+		return
 	dates=[]
 	for l in logs:
-		if l[1:11] == date:
+		if l[1:11] == date:# if the date on the log is the date that was givin, add to list.
 			dates.append(l)
 	return dates
 
