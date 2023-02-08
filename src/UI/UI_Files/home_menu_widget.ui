@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhPreferNumbers</set>
+  </property>
   <widget class="QFrame" name="center_frame">
    <property name="geometry">
     <rect>
@@ -59,9 +62,21 @@ font-size:15px;
       <height>41</height>
      </rect>
     </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
+    <property name="accessibleDescription">
+     <string/>
+    </property>
     <property name="styleSheet">
      <string notr="true">font-size:25px;
 background-color: rgba(13, 153, 255,0.4);</string>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="inputMask">
+     <string/>
     </property>
     <property name="maxLength">
      <number>8</number>
@@ -69,8 +84,14 @@ background-color: rgba(13, 153, 255,0.4);</string>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
+    <property name="dragEnabled">
+     <bool>false</bool>
+    </property>
     <property name="placeholderText">
      <string>Enter Order ID</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="rooms_button">

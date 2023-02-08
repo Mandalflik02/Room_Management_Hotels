@@ -42,7 +42,7 @@ class Main_Page(QMainWindow):
 
 
 		##################################################################
-		self.widget_section.setCurrentIndex(windows_indexes["new-order"])##start the program with the home menu widget##
+		self.widget_section.setCurrentIndex(windows_indexes["home-menu"])##start the program with the home menu widget##
 		self.widget_section.setFixedWidth(1300)# set width
 		self.widget_section.setFixedHeight(780)#set height
 

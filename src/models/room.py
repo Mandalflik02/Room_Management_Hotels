@@ -14,12 +14,12 @@ class Room():
 
 	def check_available_date_range(self, date_range):
 		for r in self.dates_catch:
-			if datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_arrivel_date(),
+			if datetime.strptime(r.get_arrival_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_arrival_date(),
 			                                                                            "%d/%m/%Y") and datetime.strptime(
-				date_range.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
+				date_range.get_arrival_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
 				# if the start date of the received date range is between one of the date ranges that the room is not available, then it is not possible to book the room
 				return False
-			elif datetime.strptime(r.get_arrivel_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_leaving_date(),
+			elif datetime.strptime(r.get_arrival_date(), "%d/%m/%Y") <= datetime.strptime(date_range.get_leaving_date(),
 			                                                                              "%d/%m/%Y") and datetime.strptime(
 				date_range.get_leaving_date(), "%d/%m/%Y") <= datetime.strptime(r.get_leaving_date(), "%d/%m/%Y"):
 				# if the end date of the received date range is between one of the date ranges that the room is not available, then it is not possible to book the room
@@ -69,7 +69,7 @@ class Room():
 	def date_range_to_string(self):
 		date_range_str=""
 		for r in self.dates_catch:
-			date_range_str+=r.get_arrivel_date()+"||"+r.get_leaving_date()+"\n"
+			date_range_str+=r.get_arrival_date()+"||"+r.get_leaving_date()+"\n"
 		return date_range_str
 
 	def __str__(self):

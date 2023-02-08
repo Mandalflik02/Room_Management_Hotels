@@ -10,12 +10,12 @@ class Dates_Range():
 		self.order_id=order_id
 		if self.start == "" or self.end == "":
 			# if the function that check the date return empty string it means that one of the dates is not a date
-			self.range_ok=None
+			self.range_ok=False
 			self.error_text="One of the dates is not good"
 			return
 		self.range_ok, self.error_text=self.check_range(start, end)
 		if not self.range_ok:
-			return self.error_text
+			return
 	def is_date(self, string):
 		date=string
 		regex=r'[\d]{1,2}/[\d]{1,2}/[\d]{4}'  # date format
@@ -38,43 +38,43 @@ class Dates_Range():
 		return new_list
 
 	def check_range(self, start, end):
-		arrivel=self.convert_to_int(start.split("/"))  # convert to list with number not strings
+		arrival=self.convert_to_int(start.split("/"))  # convert to list with number not strings
 		leaving=self.convert_to_int(end.split("/"))  # convert to list with number not strings
 		# 30/10/2020
 		# 1/11/2020
-		if arrivel[2] == leaving[2]:
+		if arrival[2] == leaving[2]:
 			# check range in the same year
-			count=leaving[1]-arrivel[1]
+			count=leaving[1]-arrival[1]
 			if count > 2:
 				# the range can be more than 2 month
 				return False, "More then 2 month"
-			if arrivel[1] == leaving[1]:
-				if arrivel[0] == leaving[0]:
-					# the arrivel and leaving date are the same
+			if arrival[1] == leaving[1]:
+				if arrival[0] == leaving[0]:
+					# the arrival and leaving date are the same
 					return False, "The same date"
-				elif arrivel[0] < leaving[0]:
+				elif arrival[0] < leaving[0]:
 					return True, ""
-				elif arrivel[0] > leaving[0]:
+				elif arrival[0] > leaving[0]:
 					# the days are inconsistent
-					return False, "Day of arrivel is after day of leaving"
-			elif arrivel[1] < leaving[1]:
+					return False, "Day of arrival is after day of leaving"
+			elif arrival[1] < leaving[1]:
 				return True, ""
-			elif arrivel[1] > leaving[1]:
+			elif arrival[1] > leaving[1]:
 				# the months are inconsistent
-				return False, "Month of arrivel is after month of leaving"
-		elif arrivel[2] < leaving[2]:
+				return False, "Month of arrival is after month of leaving"
+		elif arrival[2] < leaving[2]:
 			# check range when the year is different
-			year_count=leaving[2]-arrivel[2]
-			month_count=(12-arrivel[1])+leaving[1]
+			year_count=leaving[2]-arrival[2]
+			month_count=(12-arrival[1])+leaving[1]
 			# the range can be more than 2 month and certainly not more than two years
 			if year_count > 1:
 				return False, "More then a year"
 			elif month_count > 2:
 				return False, "More then 2 month"
 			return True, ""
-		elif arrivel[2] > leaving[2]:
+		elif arrival[2] > leaving[2]:
 			# the years are inconsistent
-			return False, "Year of arrivel is after year of leaving"
+			return False, "Year of arrival is after year of leaving"
 
 	def set_order_id(self, order_id):
 		self.order_id=order_id
@@ -82,14 +82,16 @@ class Dates_Range():
 	def get_order_id(self):
 		return self.order_id
 
-	def set_arrivel_date(self, arrivel_date):
-		self.start=arrivel_date
+	def set_arrival_date(self, arrival_date):
+		self.start=arrival_date
+		return self.check_range(self.start,self.end)
 
-	def get_arrivel_date(self):
+	def get_arrival_date(self):
 		return self.start
 
 	def set_leaving_date(self, leaving_date):
 		self.end=leaving_date
+		return self.check_range(self.start, self.end)
 
 	def get_leaving_date(self):
 		return self.end

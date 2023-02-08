@@ -21,24 +21,24 @@ def print_one_or_more_order(order):
 
 
 def look_order_by_name(name):
-	orders_filtered=[]
+	orders_filtered = [ ]
 	for o in ORDERS:
 		# if the customer in the order is the one I look for add to list
 		if name == o.get_customer_name(): orders_filtered.append(o)
-	if len(orders_filtered) == 1: return orders_filtered[0]
+	if len(orders_filtered) == 1: return orders_filtered [ 0 ]
 	# if there is one order on the name the function get return the order as order object
 	return orders_filtered  # if there is more than one order on the name the function get return list with all the orders
 
 
-def search_order():
+def search_order_by_name():
 	try:
-		customer_to_search=input("Enter customer name to search is order: ")
-
-		orders_filtered=look_order_by_name(customer_to_search)  # search order by the name the user enter
-		if type(orders_filtered) == type([]) and len(orders_filtered) == 0:
+		customer_to_search = input("Enter customer name to search is order: ")
+		
+		orders_filtered = look_order_by_name(customer_to_search)  # search order by the name the user enter
+		if type(orders_filtered) == type([ ]) and len(orders_filtered) == 0:
 			# if the is no orders with the customer name print a msg
 			print(f"\nNot found orders with the name you search: {customer_to_search}")
-		elif type(orders_filtered) == type([]):
+		elif type(orders_filtered) == type([ ]):
 			# if the is no orders with the customer name print a msg
 			print(f"\nWe found orders with the name you search: {customer_to_search}")
 			return orders_filtered
@@ -55,33 +55,33 @@ def search_order():
 # 9) LOGS
 
 def show_logs_by_date():
-	date="2022-02-12"  # input("Enter date to see logs")
-	regex=r'[\d]{4}-[\d]{2}-[\d]{1,2}'  # date format
+	date = "2023-02-07"  # input("Enter date to see logs")
+	regex = r'[\d]{4}-[\d]{2}-[\d]{1,2}'  # date format
 	if re.fullmatch(regex, date) != None:  # check the string is in date format
-
+		
 		print(f"from what logger:\n"
 		      f"room and order - 1\n"
 		      f"error - 2\n")
-		logger=input("Enter you logger number: ")
-		if logger not in ["1", "2"]: print("The number you enter is not 1 or 2.");return
-
+		logger = input("Enter you logger number: ")
+		if logger not in [ "1", "2" ]: print("The number you enter is not 1 or 2.");return
+		
 		print(f"choose option:\n"
 		      f"1) logs from exact day.\n"
 		      f"2) logs from starting date.\n")
-		logs_date_type=input("Enter you option: ")
-		if logs_date_type not in ["1", "2"]: print("The number you enter is not 1 or 2.");return
-
+		logs_date_type = input("Enter you option: ")
+		if logs_date_type not in [ "1", "2" ]: print("The number you enter is not 1 or 2.");return
+		
 		match logs_date_type:
 			case "1":
-				logs=logs_by_exact_date(logger, date)
+				logs = logs_by_exact_date(logger, date)
 			case "2":
-				logs=logs_starting_on_date(logger, date)
+				logs = logs_starting_on_date(logger, date)
 		match len(logs):
 			case 0:
 				print(f"No logs find from {date}")
 			case _:
 				print(f"LOGS from the date {date}")
-
+		
 		for l in logs: print(l)
 	else:
 		print("you not enter a date")
@@ -90,17 +90,17 @@ def show_logs_by_date():
 
 # 7) check-out
 def check_out():
-	order=search_order()  # get the order the user is search
-	if type(order) == type([]):
+	order = search_order()  # get the order the user is search
+	if type(order) == type([ ]):
 		# when there is more than one order on the customer name
 		try:
-			order_copy=order
-			order=[]
+			order_copy = order
+			order = [ ]
 			for i in order_copy:
 				if not i.get_check_out_status() and i.get_check_in_status(): order.append(i)
 			print_one_or_more_order(order)
-
-			choose_order=int(
+			
+			choose_order = int(
 				input("Enter the id of the order you want to check-out: "))  # ask the user which order to check out
 		except ValueError:
 			print("not a number")
@@ -110,8 +110,8 @@ def check_out():
 			if int(o.get_order_id()) == choose_order and o.get_check_in_status() and not o.get_check_out_status():
 				# when find the order, change check-out in the order and change room catch status
 				o.check_out_customers()
-				create_log_order_room(ORDERS_LOGGER_LEVELS["order-check-out"]["value"],
-				                      ORDERS_LOGGER_LEVELS["order-check-out"]["msg"] % o.get_order_id())
+				create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
+				                      ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "msg" ] % o.get_order_id())
 				search_room_by_number(o.get_room_number()).set_room_status(False)
 				return
 			else:
@@ -125,8 +125,8 @@ def check_out():
 		if order.get_check_out_status() == False and order.get_check_in_status() == True:
 			# change check-out in the order and change room catch status
 			order.check_out_customers()
-			create_log_order_room(ORDERS_LOGGER_LEVELS["order-check-out"]["value"],
-			                      ORDERS_LOGGER_LEVELS["order-check-out"]["msg"] % order.get_order_id())
+			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
+			                      ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "msg" ] % order.get_order_id())
 			search_room_by_number(order.get_room_number()).set_room_status(False)
 			return
 		else:
@@ -140,19 +140,19 @@ def check_out():
 
 # 6) check-in
 def check_in():
-	order=search_order()
-	if type(order) == type([]):
-		choose_order=None
+	order = search_order()
+	if type(order) == type([ ]):
+		choose_order = None
 		# when there is more than one order on the customer name
 		try:
-			order_copy=order
-			order=[]
+			order_copy = order
+			order = [ ]
 			for i in order_copy:
 				if not i.get_check_in_status():
 					order.append(i)
 			print_one_or_more_order(order)
 			# ask the user which order to check in
-			choose_order=int(input("Enter the id of the order you want to check-in: "))
+			choose_order = int(input("Enter the id of the order you want to check-in: "))
 		except:
 			print("not a number")
 		for o in order:
@@ -160,13 +160,13 @@ def check_in():
 			if int(o.get_order_id()) == choose_order and not o.get_check_in_status() and not o.get_check_out_status():
 				# when find the order it is not check in or out, change check-in in the order and change room catch status
 				o.check_in_customers()
-				create_log_order_room(ORDERS_LOGGER_LEVELS["order-check-in"]["value"],
-				                      ORDERS_LOGGER_LEVELS["order-check-in"]["msg"] % o.get_order_id())
+				create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
+				                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % o.get_order_id())
 				search_room_by_number(o.get_room_number()).set_room_status(True)
 				return
 			elif order.get_check_out_status():
 				print("The customer is already check out!!")
-
+	
 	elif type(order) == "<class 'models.order.Order'>":
 		# when there is one order on the customer name.
 		# change check-in status in the order and change room catch status.
@@ -174,8 +174,8 @@ def check_in():
 			print("You already check in")
 			return
 		order.check_in_customers()
-		create_log_order_room(ORDERS_LOGGER_LEVELS["order-check-in"]["value"],
-		                      ORDERS_LOGGER_LEVELS["order-check-in"]["msg"] % order.get_order_id())
+		create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
+		                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % order.get_order_id())
 		search_room_by_number(order.get_room_number()).set_room_status(True)
 		return
 	else:
@@ -206,7 +206,7 @@ def update_order():
 
 # 2) view order
 def view_order():
-	order=search_order()  # search order/s by name
+	order = search_order()  # search order/s by name
 	print_one_or_more_order(order)  # print order/s
 
 
@@ -223,54 +223,43 @@ def search_available_room(number_of_guests, date_range):
 			return r
 
 
-def add_new_order(current_time,customer_name,guests,food,):
+def add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving):
+	"""
+	Get data of the order and create new one and add to the ORDERS list
+
+	:return: Error if there is one
+	"""
 	print("------------------Add order------------------")
-
+	
 	try:
-		order_id=str(len(ORDERS)+1).zfill(7)  # order number
-		customer_name=input("Enter customer name: ")  # the name of the customer who orders --------------------------
-		while True:
-			# check if the user enter number
-			number_of_guests=input("Enter the number of guests: ") #------------------------
-			try:
-				number_of_guests=int(number_of_guests)
-				if number_of_guests < 1:
-					raise ValueError
-				break
-			except:
-				print("Enter a number!! (more then 0)")
-		arrivel="1/1/1000"  # input("Enter arrivel date(format- day/month/year): ")  -------------------------------
-		leaving="1/2/1000"  # input("Enter leaving date(format- day/month/year): ")  --------------------------------
-		date_range=Dates_Range(arrivel, leaving)  # create date range for the order
-		while True:
-			# check for yes/no answer
-			# food = input("The customer want food? ")
-			food="y"#----------------------
-			if food in ["yes", "YES", "Yes", "y", "Y"]:
-				food=True
-				break
-			elif food in ["no", "NO", "No", "n", "N"]:
-				food=False
-				break
-			else:
-				print("Not an answer!!")
-
-		room=search_available_room(number_of_guests, date_range)  # look for available room
+		order_id = str(len(ORDERS) + 1).zfill(7)  # order number
+		
+		if guests < 1:  # check if the guests number is ok
+			return "Can be 0 guests"
+		dates_range = Dates_Range(arrival, leaving)  # create date range for the order
+		if dates_range is None:  # check the dates range was created
+			return "Cannot create a date range"
+		if not dates_range.range_ok:  # check if there is a error in the date range
+			return dates_range.error_text
+		room = search_available_room(guests, dates_range)  # look for available room
 		if room == None:
-			print("--------------No room available--------------")
-			return
-		room_num=room.get_room_number()  # get room number
-		ROOMS[ROOMS.index(room)].add_date_catch(arrivel,
-		                                        leaving,
-		                                        order_id)  # add date_range to the room -> range when the room is caught
-
-		new_order=Order(order_id, customer_name, number_of_guests,
-		                arrivel, leaving, food, room_num)  # create the order
-
+			return "-------No room available--------"
+		room_num = room.get_room_number()  # get room number
+		
+		new_order = Order(order_id, customer_name, guests,
+		                  dates_range, meal_options, electric_car, pet, room_num)  # create the order
+		
+		ROOMS [ ROOMS.index(room) ].add_date_catch(arrival,
+		                                           leaving,
+		                                           order_id)  # add date_range to the room -> range when the room is caught
+		
 		ORDERS.append(new_order)  # add order to the orders list
 		# create_log("NEW ORDER", "New order create, order ID: %s" % (order_id))
 		# print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
-		create_log_order_room(ORDERS_LOGGER_LEVELS["new-order"]["value"],
-		                      ORDERS_LOGGER_LEVELS["new-order"]["msg"] % order_id)
+		create_log_order_room(ORDERS_LOGGER_LEVELS [ "new-order" ] [ "value" ],
+		                      ORDERS_LOGGER_LEVELS [ "new-order" ] [ "msg" ] % order_id)
+		print(new_order)
+		return OK_CODE
 	except KeyboardInterrupt:
 		exit()
+		return "keyboard error"

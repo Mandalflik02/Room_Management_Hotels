@@ -626,7 +626,7 @@ color: rgb(0, 0, 0);</string>
     </property>
    </widget>
   </widget>
-  <widget class="QDateEdit" name="arrivel_date">
+  <widget class="QDateEdit" name="arrival_date">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -721,7 +721,7 @@ font: 16pt &quot;Calibri&quot;;</string>
     </date>
    </property>
   </widget>
-  <widget class="QLabel" name="arrivel_label">
+  <widget class="QLabel" name="arrival_label">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -735,7 +735,7 @@ font: 16pt &quot;Calibri&quot;;</string>
 </string>
    </property>
    <property name="text">
-    <string>Arrivel</string>
+    <string>Arrival</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
