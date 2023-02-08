@@ -20,31 +20,25 @@ def print_one_or_more_order(order):
 		print(order)
 
 
-def look_order_by_name(name):
+def search_order_in_database(name="", id="00000000"):
 	orders_filtered = [ ]
 	for o in ORDERS:
 		# if the customer in the order is the one I look for add to list
-		if name == o.get_customer_name(): orders_filtered.append(o)
-	if len(orders_filtered) == 1: return orders_filtered [ 0 ]
-	# if there is one order on the name the function get return the order as order object
-	return orders_filtered  # if there is more than one order on the name the function get return list with all the orders
+		if o.get_customer_name() == name or o.get_order_id() == id:
+			orders_filtered.append(o)
+	return orders_filtered  # return list with all the orders
 
 
-def search_order_by_name():
+def search_order(customer_name="", order_id="00000000"):
 	try:
-		customer_to_search = input("Enter customer name to search is order: ")
-		
-		orders_filtered = look_order_by_name(customer_to_search)  # search order by the name the user enter
+		print(customer_name, order_id)
+		orders_filtered = search_order_in_database(customer_name, order_id)  # search order by customer name or order ID
 		if type(orders_filtered) == type([ ]) and len(orders_filtered) == 0:
 			# if the is no orders with the customer name print a msg
-			print(f"\nNot found orders with the name you search: {customer_to_search}")
+			print(f"\nNot found orders with the name you search: {customer_name}")
 		elif type(orders_filtered) == type([ ]):
 			# if the is no orders with the customer name print a msg
-			print(f"\nWe found orders with the name you search: {customer_to_search}")
-			return orders_filtered
-		else:
-			# if the is orders with the customer name print a msg and return the order
-			print(f"\nWe found a order with the name you search: {customer_to_search}")
+			print(f"\nWe found orders with the name you search: {customer_name}")
 			return orders_filtered
 	except:
 		print("An Error")
@@ -232,7 +226,7 @@ def add_new_order(customer_name, guests, meal_options, electric_car, pet, arriva
 	print("------------------Add order------------------")
 	
 	try:
-		order_id = str(len(ORDERS) + 1).zfill(7)  # order number
+		order_id = str(len(ORDERS) + 1).zfill(8)  # order number
 		
 		if guests < 1:  # check if the guests number is ok
 			return "Can be 0 guests"

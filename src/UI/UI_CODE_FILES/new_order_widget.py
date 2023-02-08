@@ -30,6 +30,7 @@ class New_Order_Widget(QWidget):
 		self.breakfast_btn.clicked.connect(self.breakfast)
 		self.lunch_btn.clicked.connect(self.lunch)
 		self.dinner_btn.clicked.connect(self.dinner)
+		self.cencel_btn.clicked.connect(self.cencel)
 		######################################################################
 		
 		self.arrival_date.calendarWidget().clicked.connect(self.set_leaving_date_min)  # when select date for arrival
@@ -41,7 +42,8 @@ class New_Order_Widget(QWidget):
 		day_after_arrival_date = self.arrival_date.date().addDays(2)  # the day after the date that select to arrival
 		self.leaving_date.setMinimumDate(
 			day_after_arrival_date)  # set minimum date fo leaving to be day after the day that select for arrival
-	
+	def cencel(self):
+		self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
 	def create_order(self):
 		"""
 		Send all data from the front to the function that create order and add to database
@@ -58,7 +60,9 @@ class New_Order_Widget(QWidget):
 		orders_create_status = add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving)
 		if orders_create_status == OK_CODE:
 			self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
-		# print(f"created: {current_time}\n"
+		else:
+			print(orders_create_status)
+  		# print(f"created: {current_time}\n"
 		#       f"name: {customer_name}\n"
 		#       f"guests: {guests}\n"
 		#       f"meals: {meal_options}\n"

@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
+import string
 
 from models import *
 
@@ -30,5 +31,14 @@ class Home_Menu_Widget(QWidget):
 
 	def search_order_function(self):
 		# start when click on the search-order button
-		print("search-order",self.search_order_line_edit.text())
+		text_to_search = self.search_order_line_edit.text()
+		finds_orders =[]
+		if text_to_search.isnumeric():
+			finds_orders= search_order("",text_to_search.zfill(8))
+		elif text_to_search.isalpha():
+			finds_orders=search_order( text_to_search,"")
+		else:
+			return ""
+		for i in finds_orders:
+			print(i)
 
