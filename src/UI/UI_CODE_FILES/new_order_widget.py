@@ -38,12 +38,44 @@ class New_Order_Widget(QWidget):
 		self.leaving_date.setMinimumDate(
 			QDate.currentDate().addDays(2))  # set the leaving minimum date to the day after tomorrow
 	
+	def set_dates_for_new_order(self):
+		self.arrival_date.setDate(QDate.currentDate().addDays(1))  # set the arrival  date to tomorrow
+		self.leaving_date.setMinimumDate(QDate.currentDate().addDays(1))  # set the leaving minimum date to the day after tomorrow
+		self.leaving_date.setDate(QDate.currentDate().addDays(2))  # set the leaving  date to the day after tomorrow
 	def set_leaving_date_min(self):
 		day_after_arrival_date = self.arrival_date.date().addDays(2)  # the day after the date that select to arrival
 		self.leaving_date.setMinimumDate(
 			day_after_arrival_date)  # set minimum date fo leaving to be day after the day that select for arrival
 	def cencel(self):
+		self.clear_ui()
 		self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
+	def clear_ui(self):
+		self.customer_name_input.setText("")
+		self.adults_input.setValue(0)
+		self.kids_input.setValue(0)
+		self.check_electric_car_btn.setChecked(False)
+		self.check_pet_btn.setChecked(False)
+		self.breakfast_btn.setChecked(False)
+		self.lunch_btn.setChecked(False)
+		self.dinner_btn.setChecked(False)
+		self.set_dates_for_new_order()
+		self.error_label.setText("")
+  
+		self.electric_car_status = True
+		self.pet_status = True  
+		self.breakfast_status = True
+		self.lunch_status = True  
+		self.dinner_status = True  
+  
+		self.electric_car()
+		self.pet()
+		self.breakfast()
+		self.lunch()
+		self.dinner()
+  
+  
+  
+  
 	def create_order(self):
 		"""
 		Send all data from the front to the function that create order and add to database
@@ -59,8 +91,10 @@ class New_Order_Widget(QWidget):
 		leaving = str(self.leaving_date.date().toPyDate().strftime("%d/%m/%Y"))
 		orders_create_status = add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving)
 		if orders_create_status == OK_CODE:
+			self.clear_ui()
 			self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
 		else:
+			self.error_label.setText(orders_create_status)
 			print(orders_create_status)
   		# print(f"created: {current_time}\n"
 		#       f"name: {customer_name}\n"

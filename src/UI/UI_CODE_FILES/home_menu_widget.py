@@ -34,9 +34,9 @@ class Home_Menu_Widget(QWidget):
 		text_to_search = self.search_order_line_edit.text()
 		finds_orders =[]
 		if text_to_search.isnumeric():
-			finds_orders= search_order("",text_to_search.zfill(8))
+			finds_orders= search_order(order_id=text_to_search.zfill(8))
 		elif text_to_search.isalpha():
-			finds_orders=search_order( text_to_search,"")
+			finds_orders=search_order( customer_name=text_to_search)
 		else:
 			return ""
 		for i in finds_orders:

@@ -674,53 +674,6 @@ font: 16pt &quot;Calibri&quot;;</string>
     </date>
    </property>
   </widget>
-  <widget class="QDateEdit" name="leaving_date">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>330</y>
-     <width>131</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 0, 0);
-border-color:rgb(0,0,0);
-font: 16pt &quot;Calibri&quot;;</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-   <property name="buttonSymbols">
-    <enum>QAbstractSpinBox::NoButtons</enum>
-   </property>
-   <property name="keyboardTracking">
-    <bool>true</bool>
-   </property>
-   <property name="minimumDateTime">
-    <datetime>
-     <hour>0</hour>
-     <minute>0</minute>
-     <second>0</second>
-     <year>2023</year>
-     <month>1</month>
-     <day>1</day>
-    </datetime>
-   </property>
-   <property name="displayFormat">
-    <string notr="true">dd/MM/yyyy</string>
-   </property>
-   <property name="calendarPopup">
-    <bool>true</bool>
-   </property>
-   <property name="date">
-    <date>
-     <year>2023</year>
-     <month>1</month>
-     <day>1</day>
-    </date>
-   </property>
-  </widget>
   <widget class="QLabel" name="arrival_label">
    <property name="geometry">
     <rect>
@@ -759,6 +712,74 @@ font: 16pt &quot;Calibri&quot;;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="error_label">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>540</y>
+     <width>221</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 85, 0);
+font: 16pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="leaving_date">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>330</y>
+     <width>131</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+color: rgb(255, 0, 0);
+border-color:rgb(0,0,0);
+font: 16pt &quot;Calibri&quot;;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="buttonSymbols">
+    <enum>QAbstractSpinBox::NoButtons</enum>
+   </property>
+   <property name="keyboardTracking">
+    <bool>true</bool>
+   </property>
+   <property name="minimumDateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2023</year>
+     <month>1</month>
+     <day>1</day>
+    </datetime>
+   </property>
+   <property name="displayFormat">
+    <string>dd/MM/yyyy</string>
+   </property>
+   <property name="calendarPopup">
+    <bool>true</bool>
+   </property>
+   <property name="date">
+    <date>
+     <year>2023</year>
+     <month>1</month>
+     <day>1</day>
+    </date>
    </property>
   </widget>
  </widget>
