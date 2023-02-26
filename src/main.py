@@ -61,7 +61,7 @@ def menu():
 
 
 def main():
-	for r in range(1):
+	for r in range(5):
 		room = Room(r + 1, random.choice(
 			[ 2, 4, 6, 8 ]))  # create room with random capacity and room number between 1 and 10
 		ROOMS.append(room)  # add the room to the rooms list

@@ -5,7 +5,8 @@ class Order():
 	def __init__(self, order_num=-1, customer_name="", num_of_guests=0, dates_range=None,
 	             meal_options="000", electric_car=False, pet=False, room_num=-1):
 		self.order_ID = str(order_num).zfill(7)  # set order id format as 8 digit, the space fill with 0
-		self.current_time = datetime.now().strftime("%H:%M:%S , %d/%m/%Y")
+		self.create_time = datetime.now().strftime("%H:%M:%S , %d/%m/%Y")
+		self.created_by = "Admin"
 		self.customer_name = customer_name
 		self.number_of_guests = num_of_guests
 		self.dates_range = dates_range
@@ -28,6 +29,43 @@ class Order():
 	def get_leaving_date(self):
 		return self.dates_range.get_leaving_date()
 	
+	def get_meal_options(self):
+		return self.meal_options
+	
+	def get_breakfast(self):
+		try:
+			return bool(int(self.meal_options [ 0 ]))
+		except Exception as e:
+			print(e)
+	
+	def get_lunch(self):
+		try:
+			return bool(int(self.meal_options [ 1 ]))
+		except Exception as e:
+			print(e)
+	
+	def get_dinner(self):
+		try:
+			return bool(int(self.meal_options [ 2 ]))
+		except Exception as e:
+			print(e)
+	
+	def set_meal_options(self, meal_options="000"):
+		self.meal_options = meal_options
+	
+	def get_electric_car(self):
+		return self.electric_car
+	
+	def set_electric_car(self, electric_car):
+		self.electric_car = electric_car
+	
+	def get_pet(self):
+		return self.pet
+	
+	def set_pet(self, pet):
+		self.pet = pet
+	def get_guests_num(self):
+		return self.number_of_guests
 	def check_in_customers(self):
 		self.check_in = True
 	
@@ -55,13 +93,18 @@ class Order():
 	def get_order_id(self):
 		return self.order_ID
 	
+	def get_crete_by(self):
+		return self.created_by
+	def get_creation_time(self):
+		return self.create_time
+	
 	def __str__(self):
 		len1 = len(str(str("Customer name: %s" % (self.customer_name))))
 		
 		order_num = str(str(str("Order number: %s" % (self.order_ID))).ljust(len1 + 10)) + "||"
 		customer_name = str(str(str("Customer name: %s" % (self.customer_name))).ljust(len1 + 10)) + "||"
 		number_of_guests = str(str(str("Number of guests: %s" % (self.number_of_guests))).ljust(len1 + 10)) + "||"
-		meal_options = str(str(str("With food: %s" % (self.meal_options))).ljust(len1 + 10)) + "||"
+		meal_options = str(str(str("Meals: %s" % (self.meal_options))).ljust(len1 + 10)) + "||"
 		room_num = str(str(str("Room: %s" % (self.room_number))).ljust(len1 + 10)) + "||"
 		check_in = str(str(str("Check-in: %s" % (self.check_in))).ljust(len1 + 10)) + "||"
 		check_out = str(str(str("Check-out: %s" % (self.check_out))).ljust(len1 + 10)) + "||"

@@ -11,6 +11,7 @@ from models import *
 from .title_bar import Title_Bar
 from .home_menu_widget import Home_Menu_Widget
 from .new_order_widget import New_Order_Widget
+from .view_order_widget import View_Order_Widget
 
 
 
@@ -33,11 +34,14 @@ class Main_Page(QMainWindow):
 
 
 		####################### add widgets section ######################
-		main_menu=Home_Menu_Widget(self.widget_section)#create a home menu widget
-		self.widget_section.insertWidget(windows_indexes["home-menu"], main_menu)#add home menu widget to the stack
+		main_menu_widget=Home_Menu_Widget(self.widget_section)#create a home menu widget
+		self.widget_section.insertWidget(windows_indexes["home-menu"], main_menu_widget)#add home menu widget to the stack
 		#--------------------------------------------------------------------------------------------------------------#
-		new_order=New_Order_Widget(self.widget_section)  # create a new order widget
-		self.widget_section.insertWidget(windows_indexes["new-order"], new_order)  # add new order widget to the stack
+		new_order_widget=New_Order_Widget(self.widget_section)  # create a new order widget
+		self.widget_section.insertWidget(windows_indexes["new-order"], new_order_widget)  # add new order widget to the stack
+		# -------------------------------------------------------------------------------------------------------------#
+		view_order_widget = View_Order_Widget(self.widget_section)  # create a new order widget
+		self.widget_section.insertWidget(windows_indexes [ "view-order" ],view_order_widget)  # add new order widget to the stack
 		# -------------------------------------------------------------------------------------------------------------#
 
 
