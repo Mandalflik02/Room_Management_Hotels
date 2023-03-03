@@ -83,98 +83,39 @@ def show_logs_by_date():
 
 
 # 7) check-out
-def check_out():
-	order = search_order()  # get the order the user is search
-	if type(order) == type([ ]):
-		# when there is more than one order on the customer name
-		try:
-			order_copy = order
-			order = [ ]
-			for i in order_copy:
-				if not i.get_check_out_status() and i.get_check_in_status(): order.append(i)
-			print_one_or_more_order(order)
-			
-			choose_order = int(
-				input("Enter the id of the order you want to check-out: "))  # ask the user which order to check out
-		except ValueError:
-			print("not a number")
-			return
-		for o in order:
-			# look for the order the user choose
-			if int(o.get_order_id()) == choose_order and o.get_check_in_status() and not o.get_check_out_status():
-				# when find the order, change check-out in the order and change room catch status
-				o.check_out_customers()
-				create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
-				                      ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "msg" ] % o.get_order_id())
-				search_room_by_number(o.get_room_number()).set_room_status(False)
-				return
-			else:
-				if order.get_check_out_status():
-					print("The customer is already check out!!")
-				elif not order.get_check_in_status():
-					print("The customer not check-in yet!!")
-		print("The customer not check-in yet!!")
-	elif type(order) == "<class 'models.order.Order'>":
-		# when there is one order on the customer name
-		if order.get_check_out_status() == False and order.get_check_in_status() == True:
-			# change check-out in the order and change room catch status
+def check_out(order):
+	try:
+		if order.get_check_in_status() and not order.get_check_out_status():
+			#  change check-out in the order and change room catch status
 			order.check_out_customers()
 			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
 			                      ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "msg" ] % order.get_order_id())
 			search_room_by_number(order.get_room_number()).set_room_status(False)
-			return
-		else:
-			if order.get_check_out_status():
-				print("The customer is already check out!!")
-			elif not order.get_check_in_status():
-				print("The customer not check-in yet!!")
-	else:
-		print("Error !!!!!!!!!!!!!!!!!!!!!!!!!!")
+			return True,""
+		elif order.get_check_out_status():
+			return False, "The customer is already check out!!"
+		elif not order.get_check_in_status():
+			return False, "The customer not check-in yet!!"
+	except Exception as e:
+		print("check out in menu",e)
 
 
 # 6) check-in
-def check_in():
-	order = search_order()
-	if type(order) == type([ ]):
-		choose_order = None
-		# when there is more than one order on the customer name
-		try:
-			order_copy = order
-			order = [ ]
-			for i in order_copy:
-				if not i.get_check_in_status():
-					order.append(i)
-			print_one_or_more_order(order)
-			# ask the user which order to check in
-			choose_order = int(input("Enter the id of the order you want to check-in: "))
-		except:
-			print("not a number")
-		for o in order:
-			# look for the order the user choose
-			if int(o.get_order_id()) == choose_order and not o.get_check_in_status() and not o.get_check_out_status():
-				# when find the order it is not check in or out, change check-in in the order and change room catch status
-				o.check_in_customers()
-				create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
-				                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % o.get_order_id())
-				search_room_by_number(o.get_room_number()).set_room_status(True)
-				return
-			elif order.get_check_out_status():
-				print("The customer is already check out!!")
-	
-	elif type(order) == "<class 'models.order.Order'>":
-		# when there is one order on the customer name.
-		# change check-in status in the order and change room catch status.
-		if not order.get_check_in_status():
-			print("You already check in")
-			return
-		order.check_in_customers()
-		create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
-		                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % order.get_order_id())
-		search_room_by_number(order.get_room_number()).set_room_status(True)
-		return
-	else:
-		print("Error !!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print(type(order))
+def check_in(order):
+	try:
+		if not order.get_check_in_status() and not order.get_check_out_status():
+			# when  the order it is not check in or out, change check-in in the order and change room catch status
+			order.check_in_customers()
+			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
+			                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % order.get_order_id())
+			search_room_by_number(order.get_room_number()).set_room_status(True)
+			return True, ""
+		elif order.get_check_in_status():
+			return False, "The customer is already check in!!"
+		elif order.get_check_out_status():
+			return False, "The customer is already check out!!"
+	except Exception as e:
+		print("check-in in menu",e)
 
 
 # 5) room status

@@ -13,14 +13,91 @@ class View_Order_Widget(QDialog):
 		self.widget = widget  # the widget-stack that has all widgets --> so I can move to any other widget
 		self.order_to_display = None
 		
-		self.home_btn.clicked.connect(self.home)
 		
+		self.check_in_status=False
+		self.check_out_status=False
+		
+		
+		self.check_in_btn.clicked.connect(self.check_in_order)
+		self.check_out_btn.clicked.connect(self.check_out_order)
+		self.delete_btn.clicked.connect(self.delete_order)
+		self.update_btn.clicked.connect(self.update_order)
+		self.home_btn.clicked.connect(self.home)
+	
+	def check_in_order(self):
+		self.check_in_status = not self.check_in_status
+		try:
+			if self.check_in_status:
+				error = check_in(self.order_to_display)
+				if error[0]:
+					self.change_btn_color(self.check_in_btn,self.check_in_status)
+				else:
+					self.check_in_status = not self.check_in_status
+					print(error[1])
+			else:
+				if not self.order_to_display.get_check_out_status():
+					self.order_to_display.cancel_check_in_customers()
+					search_room_by_number(self.order_to_display.get_room_number()).set_room_status(False)
+					self.change_btn_color(self.check_in_btn, self.check_in_status)
+				else:
+					print("The customer is already check out!!")
+			
+		except Exception as e:
+			print("check-in in widget",e)
+		finally:
+			print(self.order_to_display)
+	def check_out_order(self):
+		self.check_out_status = not self.check_out_status
+		try:
+			if self.check_out_status:
+				error= check_out(self.order_to_display)
+				if error[0]:
+					self.change_btn_color(self.check_out_btn,self.check_out_status)
+				else:
+					self.check_out_status = not self.check_out_status
+					print(error[1])
+			else:
+				self.order_to_display.cancel_check_out_customers()
+				search_room_by_number(self.order_to_display.get_room_number()).set_room_status(True)
+				self.change_btn_color(self.check_out_btn, self.check_out_status)
+		
+		except Exception as e:
+			print("check-out in widget",e)
+		finally:
+			print(self.order_to_display)
+	
+	def change_btn_color(self,btn,status):
+		style = """
+					QPushButton:hover {
+						background-color: rgb(10, 123, 204);
+					}
+					QPushButton{
+						font: 18pt "Calibri";
+						border-radius:15px;
+						border-radius:10px;
+						color: rgb(255, 255, 255);
+						border:2px solid  rgb(255, 255, 255);
+				"""  # the basic style for the button
+		if status:
+			style += """	background: rgb(10, 123, 204);	"""  # add background color when the status is true
+		style += """	}	"""  # close style
+		btn.setStyleSheet(style)  # set the style sheet for the button
+	
+	
+	
+	def delete_order(self):
+		pass
+	
+	def update_order(self):
+		pass
+	
 	def home(self):
 		self.clear_ui
-		self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
+		self.widget.setCurrentIndex(windows_indexes [ "home-menu" ])  # return to home menu
 	
 	def clear_ui(self):
 		pass
+	
 	def display_order(self):
 		
 		self.order_id_label.setText(f"View order: {self.order_to_display.get_order_id()}")
@@ -41,8 +118,9 @@ class View_Order_Widget(QDialog):
 				t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png'))
 			else:
 				t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png'))
-		# results = [t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png')) if  t [ 0 ] == True else t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png')) for t in order_vars_and_widget_labels]
 	
-	def set_order_to_display(self, order_to_display):
+	# results = [t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png')) if  t [ 0 ] == True else t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png')) for t in order_vars_and_widget_labels]
+	
+	def set_order_to_display(self, order_to_display=None | Order):
 		self.order_to_display = order_to_display
 		print(self.order_to_display)
