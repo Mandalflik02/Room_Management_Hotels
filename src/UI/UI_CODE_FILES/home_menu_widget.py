@@ -1,13 +1,11 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
-import string
-
+from .msg_dialog import MSG_Dialog
 from models import *
 
 
 class Home_Menu_Widget(QWidget):
 	def __init__(self, widget):
-		print(bool("0"))
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(Home_Menu_Widget, self).__init__()
 		loadUi("UI/UI_Files/home_menu_widget.ui", self)  # load the UI of the page
@@ -28,6 +26,7 @@ class Home_Menu_Widget(QWidget):
 	
 	def rooms_function(self):
 		# start when click on the rooms button
+		
 		print("rooms")
 	
 	def search_order_function(self):

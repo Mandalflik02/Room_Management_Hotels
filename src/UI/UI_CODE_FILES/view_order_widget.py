@@ -25,6 +25,7 @@ class View_Order_Widget(QDialog):
 		self.home_btn.clicked.connect(self.home)
 	
 	def check_in_order(self):
+		
 		self.check_in_status = not self.check_in_status
 		try:
 			if self.check_in_status:

@@ -1,3 +1,5 @@
+
+
 OK_CODE = 357
 
 
@@ -20,5 +22,13 @@ windows_indexes = {
 	"login-create":7,
 	"msg-box": 33,
 }  # A list of all the indexes of each page
+
+
+
+def create_msg_dialog(msg,btn1_text,btn2_text):
+	dialog = MSG_Dialog("go to rooms", "bobo1", "gogo2")
+	dialog.exec_()
+	status = dialog.status
+	print(status)
 
 
