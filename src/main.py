@@ -61,10 +61,13 @@ def menu():
 
 
 def main():
-	for r in range(5):
-		room = Room(r + 1, random.choice(
-			[ 2, 4, 6, 8 ]))  # create room with random capacity and room number between 1 and 10
-		ROOMS.append(room)  # add the room to the rooms list
+	# for r in range(5):
+	# 	room = Room(r + 1, random.choice(
+	# 		[ 2, 4, 6, 8 ]))  # create room with random capacity and room number between 1 and 10
+	# 	ROOMS.append(room)  # add the room to the rooms list
+	d=Dates_Range("01/01/2025","09/01/2025",1)
+	ROOMS.append(Room(1,5))
+	ORDERS.append(Order(customer_name="naor",num_of_guests=2,dates_range=d,order_num=1,room_num=1))
 	create_app()
 
 

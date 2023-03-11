@@ -182,3 +182,83 @@
 [2023-03-03 11:27:44,409] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
 [2023-03-03 11:30:33,250] || NEW-ORDER || New order created, order-id: 00000001
 [2023-03-03 11:30:43,220] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:37:00,164] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:37:14,150] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:37:15,417] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:37:18,214] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:37:33,789] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:37:38,052] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:37:41,050] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:38:57,129] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:39:06,750] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:39:07,449] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:39:13,453] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:39:14,082] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:40:18,588] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:40:34,888] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:40:36,274] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:46:02,959] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:46:08,283] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:46:08,968] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:48:29,221] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:50:08,003] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:50:37,679] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:53:02,412] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:53:08,588] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:53:10,287] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 19:53:45,879] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 19:53:53,745] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 19:53:53,755] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 20:43:46,092] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 20:43:54,497] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 20:43:56,507] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 20:44:33,062] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 20:44:40,137] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 20:44:40,146] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 20:47:33,732] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 20:47:43,862] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 20:47:45,505] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 20:48:02,411] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 20:48:03,869] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 20:48:46,865] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 20:48:50,005] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 20:48:50,602] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 20:55:31,249] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 20:55:58,840] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 20:56:27,789] || NEW-ORDER || New order created, order-id: 00000001
+[2023-03-11 21:02:48,719] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:04:10,564] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:05:18,367] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:07:13,016] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:07:14,583] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 21:59:30,213] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:59:46,349] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:59:50,564] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 21:59:51,338] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:01:47,557] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:01:52,023] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:02:13,125] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:02:15,064] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:07:39,657] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:07:41,805] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:08:18,360] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:08:50,975] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:08:53,509] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:11:32,901] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:11:34,259] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:12:08,596] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:12:10,208] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:12:25,809] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:12:31,727] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 22:15:58,811] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 22:15:59,952] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 23:04:31,076] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 23:04:32,523] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 23:05:22,006] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 23:05:23,321] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 23:06:12,841] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 23:06:13,917] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 23:06:40,102] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 23:06:42,619] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
+[2023-03-11 23:07:57,870] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-11 23:07:59,210] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out

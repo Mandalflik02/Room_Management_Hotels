@@ -78,6 +78,9 @@ background-color: rgba(13, 153, 255,0.4);</string>
     <property name="inputMask">
      <string/>
     </property>
+    <property name="text">
+     <string>1</string>
+    </property>
     <property name="maxLength">
      <number>8</number>
     </property>

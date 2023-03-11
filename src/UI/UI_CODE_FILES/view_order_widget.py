@@ -13,10 +13,8 @@ class View_Order_Widget(QDialog):
 		self.widget = widget  # the widget-stack that has all widgets --> so I can move to any other widget
 		self.order_to_display = None
 		
-		
-		self.check_in_status=False
-		self.check_out_status=False
-		
+		self.check_in_status = False
+		self.check_out_status = False
 		
 		self.check_in_btn.clicked.connect(self.check_in_order)
 		self.check_out_btn.clicked.connect(self.check_out_order)
@@ -25,49 +23,64 @@ class View_Order_Widget(QDialog):
 		self.home_btn.clicked.connect(self.home)
 	
 	def check_in_order(self):
-		
+		msg_label = "Check-in customer??" if not self.check_in_status else "Cancel check-in customer??"
+		q = MSG_Dialog(msg_label, "Yes", "No")
+		q.exec_()
+		if q.status == "No":
+			return
 		self.check_in_status = not self.check_in_status
 		try:
 			if self.check_in_status:
 				error = check_in(self.order_to_display)
-				if error[0]:
-					self.change_btn_color(self.check_in_btn,self.check_in_status)
+				if error [ 0 ]:
+					self.change_btn_color(self.check_in_btn, self.check_in_status)
 				else:
 					self.check_in_status = not self.check_in_status
-					print(error[1])
+					MSG_Popup(error [ 1 ]).exec_()
+			# print(error[1])
 			else:
 				if not self.order_to_display.get_check_out_status():
 					self.order_to_display.cancel_check_in_customers()
 					search_room_by_number(self.order_to_display.get_room_number()).set_room_status(False)
 					self.change_btn_color(self.check_in_btn, self.check_in_status)
 				else:
-					print("The customer is already check out!!")
-			
+					self.check_in_status = not self.check_in_status
+					MSG_Popup("The customer is already check out!!").exec_()
+		# print("The customer is already check out!!")
+		
 		except Exception as e:
-			print("check-in in widget",e)
-		finally:
-			print(self.order_to_display)
+			print("check-in in widget", e)
+	
+	# finally:
+	# 	print(self.order_to_display)
 	def check_out_order(self):
+		msg_label = "Check-out customer??" if not self.check_out_status else "Cancel check-out customer??"
+		q = MSG_Dialog(msg_label, "Yes", "No")
+		q.exec_()
+		if q.status == "No":
+			return
 		self.check_out_status = not self.check_out_status
 		try:
 			if self.check_out_status:
-				error= check_out(self.order_to_display)
-				if error[0]:
-					self.change_btn_color(self.check_out_btn,self.check_out_status)
+				error = check_out(self.order_to_display)
+				if error [ 0 ]:
+					self.change_btn_color(self.check_out_btn, self.check_out_status)
 				else:
 					self.check_out_status = not self.check_out_status
-					print(error[1])
+					MSG_Popup(error [ 1 ]).exec_()
+			# print(error[1])
 			else:
 				self.order_to_display.cancel_check_out_customers()
 				search_room_by_number(self.order_to_display.get_room_number()).set_room_status(True)
 				self.change_btn_color(self.check_out_btn, self.check_out_status)
 		
 		except Exception as e:
-			print("check-out in widget",e)
-		finally:
-			print(self.order_to_display)
+			print("check-out in widget", e)
 	
-	def change_btn_color(self,btn,status):
+	# finally:
+	# 	print(self.order_to_display)
+	
+	def change_btn_color(self, btn, status):
 		style = """
 					QPushButton:hover {
 						background-color: rgb(10, 123, 204);
@@ -84,8 +97,6 @@ class View_Order_Widget(QDialog):
 		style += """	}	"""  # close style
 		btn.setStyleSheet(style)  # set the style sheet for the button
 	
-	
-	
 	def delete_order(self):
 		pass
 	
@@ -93,11 +104,25 @@ class View_Order_Widget(QDialog):
 		pass
 	
 	def home(self):
-		self.clear_ui
+		self.clear_ui()
 		self.widget.setCurrentIndex(windows_indexes [ "home-menu" ])  # return to home menu
 	
 	def clear_ui(self):
-		pass
+		self.order_id_label.setText("View order: ")
+		self.created_by_label.setText("Order created by:")
+		self.creation_date_label.setText("Order creation date: ")
+		self.customer_name_label.setText("Customer name: ")
+		self.adults_label.setValue(0)
+		self.kids_label.setValue(0)
+		self.arrivel_label.setText("")
+		self.leaving_label.setText("")
+		order_widget_labels = [ self.electric_car_label,
+		                        self.pet_label,
+		                        self.breakfast_label,
+		                        self.lunch_label,
+		                        self.dinner_label ]
+		for label in order_widget_labels:
+			label.setPixmap(QPixmap('UI/ICONS/unchecked.png'))
 	
 	def display_order(self):
 		
@@ -114,14 +139,15 @@ class View_Order_Widget(QDialog):
 		                                 (self.order_to_display.get_breakfast(), self.breakfast_label),
 		                                 (self.order_to_display.get_lunch(), self.lunch_label),
 		                                 (self.order_to_display.get_dinner(), self.dinner_label) ]
-		for t in order_vars_and_widget_labels:
-			if t [ 0 ] == True:
-				t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png'))
+		for order_stat in order_vars_and_widget_labels:
+			if order_stat [ 0 ] == True:
+				order_stat [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png'))
 			else:
-				t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png'))
-	
+				order_stat [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png'))
+
+
 	# results = [t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png')) if  t [ 0 ] == True else t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png')) for t in order_vars_and_widget_labels]
-	
+
 	def set_order_to_display(self, order_to_display=None | Order):
 		self.order_to_display = order_to_display
 		print(self.order_to_display)

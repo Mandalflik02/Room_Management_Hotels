@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
-from .msg_dialog import MSG_Dialog
 from models import *
 
 
@@ -43,7 +42,7 @@ class Home_Menu_Widget(QWidget):
 		if len(finds_orders) == 1:
 			self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(finds_orders [ 0 ])
 			self.widget.widget(windows_indexes [ "view-order" ]).display_order()
-
+			self.search_order_line_edit.setText("")
 			self.widget.setCurrentIndex(windows_indexes [ "view-order" ])
 		elif len(finds_orders) > 1:
 			for i in finds_orders:
