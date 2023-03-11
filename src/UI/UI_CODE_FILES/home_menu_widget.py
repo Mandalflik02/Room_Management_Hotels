@@ -32,20 +32,19 @@ class Home_Menu_Widget(QWidget):
 		# start when click on the search-order button
 		
 		text_to_search = self.search_order_line_edit.text()
-		finds_orders = [ ]
+		finds_orders = ()
 		if text_to_search.isnumeric():
 			finds_orders = search_order(order_id=text_to_search.zfill(8))
 		elif text_to_search.isalpha():
 			finds_orders = search_order(customer_name=text_to_search)
 		else:
 			return ""
-		if len(finds_orders) == 1:
+		if len(finds_orders[0]) == 1:
 			self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(finds_orders [ 0 ])
 			self.widget.widget(windows_indexes [ "view-order" ]).display_order()
 			self.search_order_line_edit.setText("")
 			self.widget.setCurrentIndex(windows_indexes [ "view-order" ])
 		elif len(finds_orders) > 1:
-			for i in finds_orders:
-				print(i)
+			print("more then one order for this customer!!!!!")
 		else:
 			print("can't find orders with the data that given")

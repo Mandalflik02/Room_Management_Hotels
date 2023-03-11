@@ -36,6 +36,7 @@ def search_order(customer_name="", order_id="00000000"):
 		if type(orders_filtered) == type([ ]) and len(orders_filtered) == 0:
 			# if the is no orders with the customer name print a msg
 			print(f"\nNot found orders with the name you search: {customer_name}")
+			return orders_filtered
 		elif type(orders_filtered) == type([ ]):
 			# if the is no orders with the customer name print a msg
 			print(f"\nWe found orders with the name you search: {customer_name}")
