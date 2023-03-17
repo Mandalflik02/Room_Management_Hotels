@@ -12,6 +12,7 @@ from .title_bar import Title_Bar
 from .home_menu_widget import Home_Menu_Widget
 from .new_order_widget import New_Order_Widget
 from .view_order_widget import View_Order_Widget
+from .rooms_view import Rooms_View
 
 
 
@@ -42,6 +43,9 @@ class Main_Page(QMainWindow):
 		# -------------------------------------------------------------------------------------------------------------#
 		view_order_widget = View_Order_Widget(self.widget_section)  # create a new order widget
 		self.widget_section.insertWidget(windows_indexes [ "view-order" ],view_order_widget)  # add new order widget to the stack
+		# -------------------------------------------------------------------------------------------------------------#
+		rooms_view_widget = Rooms_View(self.widget_section)  # create a new order widget
+		self.widget_section.insertWidget(windows_indexes [ "rooms-view" ],rooms_view_widget)  # add new order widget to the stack
 		# -------------------------------------------------------------------------------------------------------------#
 
 

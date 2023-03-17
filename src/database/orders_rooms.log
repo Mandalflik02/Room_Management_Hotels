@@ -263,3 +263,7 @@
 [2023-03-11 23:07:57,870] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
 [2023-03-11 23:07:59,210] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
 [2023-03-11 23:25:38,468] || NEW-ORDER || New order created, order-id: 00000002
+[2023-03-16 21:48:11,716] || NEW-ORDER || New order created, order-id: 00000002
+[2023-03-16 21:48:28,751] || NEW-ORDER || New order created, order-id: 00000003
+[2023-03-17 12:26:11,527] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-03-17 12:26:13,447] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out

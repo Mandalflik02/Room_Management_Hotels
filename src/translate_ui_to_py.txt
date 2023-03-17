@@ -1,0 +1,1 @@
+pyuic5.exe -x "path to ui file(.ui)" -o "path to the new file(.py)"

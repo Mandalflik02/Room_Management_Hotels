@@ -14,8 +14,8 @@ stop_time_thread=False
 windows_indexes = {
 	"home-menu": 0,
 	"new-order": 1,
-	"rooms-view": 3,
-	"view-order": 2,
+	"rooms-view": 2,
+	"view-order": 3,
 	"view-room": 4,
 	"settings": 5,
 	"manager-page": 6,

@@ -36,7 +36,7 @@ def search_order(customer_name="", order_id="00000000"):
 		if type(orders_filtered) == type([ ]) and len(orders_filtered) == 0:
 			# if the is no orders with the customer name print a msg
 			print(f"\nNot found orders with the name you search: {customer_name}")
-			return orders_filtered
+			# return orders_filtered
 		elif type(orders_filtered) == type([ ]):
 			# if the is no orders with the customer name print a msg
 			print(f"\nWe found orders with the name you search: {customer_name}")
@@ -179,9 +179,10 @@ def add_new_order(customer_name, guests, meal_options, electric_car, pet, arriva
 			return dates_range.error_text
 		room = search_available_room(guests, dates_range)  # look for available room
 		if room == None:
-			return "-------No room available--------"
+			return "No room available"
 		room_num = room.get_room_number()  # get room number
-		
+		if len(search_order(customer_name=customer_name)) > 3:
+			return "The customer have 3 order and can have more"
 		new_order = Order(order_id, customer_name, guests,
 		                  dates_range, meal_options, electric_car, pet, room_num)  # create the order
 		

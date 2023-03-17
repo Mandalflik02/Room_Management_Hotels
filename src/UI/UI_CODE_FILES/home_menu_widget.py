@@ -1,5 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.uic import loadUi
+
+from .list_dialog import List_Dialog
 from models import *
 
 
@@ -25,7 +27,7 @@ class Home_Menu_Widget(QWidget):
 	
 	def rooms_function(self):
 		# start when click on the rooms button
-		
+		self.widget.setCurrentIndex(windows_indexes [ "rooms-view" ])
 		print("rooms")
 	
 	def search_order_function(self):
@@ -39,12 +41,15 @@ class Home_Menu_Widget(QWidget):
 			finds_orders = search_order(customer_name=text_to_search)
 		else:
 			return ""
-		if len(finds_orders[0]) == 1:
+		if len(finds_orders) == 1:
 			self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(finds_orders [ 0 ])
 			self.widget.widget(windows_indexes [ "view-order" ]).display_order()
 			self.search_order_line_edit.setText("")
 			self.widget.setCurrentIndex(windows_indexes [ "view-order" ])
 		elif len(finds_orders) > 1:
+			#show popup list with all orders
+			dialog_list=List_Dialog(self.widget,finds_orders,"naor")
+			dialog_list.exec_()
 			print("more then one order for this customer!!!!!")
 		else:
 			print("can't find orders with the data that given")

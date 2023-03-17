@@ -29,6 +29,8 @@ class Order():
 	def get_leaving_date(self):
 		return self.dates_range.get_leaving_date()
 	
+	def get_date_range(self):
+		return f"{self.dates_range.get_arrival_date()} - {self.dates_range.get_leaving_date()}"
 	def get_meal_options(self):
 		return self.meal_options
 	
