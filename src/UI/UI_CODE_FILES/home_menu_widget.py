@@ -32,24 +32,28 @@ class Home_Menu_Widget(QWidget):
 	
 	def search_order_function(self):
 		# start when click on the search-order button
-		
+		#search_type=""
 		text_to_search = self.search_order_line_edit.text()
 		finds_orders = ()
 		if text_to_search.isnumeric():
-			finds_orders = search_order(order_id=text_to_search.zfill(8))
+			finds_orders = search_order(order_id=text_to_search.zfill(8))# if the user enter a number send if to the search function
+			search_type="NUMBER"		
 		elif text_to_search.isalpha():
-			finds_orders = search_order(customer_name=text_to_search)
+			finds_orders = search_order(customer_name=text_to_search)#if the user enter a plain text send if to the search function
+			search_type="TEXT"
 		else:
-			return ""
+			MSG_Popup("You need to enter name or order number to search").exec_()# else, show popup msg telling the user that he need to enter text/number
 		if len(finds_orders) == 1:
-			self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(finds_orders [ 0 ])
-			self.widget.widget(windows_indexes [ "view-order" ]).display_order()
-			self.search_order_line_edit.setText("")
-			self.widget.setCurrentIndex(windows_indexes [ "view-order" ])
+			self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(finds_orders [ 0 ])#set order in view widget
+			self.widget.widget(windows_indexes [ "view-order" ]).display_order()#run the function that put the data in the ui in view_order_widget
+			self.search_order_line_edit.setText("")#clear search line
+			self.widget.setCurrentIndex(windows_indexes [ "view-order" ])#go to view order widget that display the order
 		elif len(finds_orders) > 1:
 			#show popup list with all orders
-			dialog_list=List_Dialog(self.widget,finds_orders,"naor")
-			dialog_list.exec_()
+			dialog_list=List_Dialog(self.widget,finds_orders,"naor")#create list dialog with the customer orders 
+			dialog_list.exec_()#show the dialog
 			print("more then one order for this customer!!!!!")
 		else:
-			print("can't find orders with the data that given")
+			text_to_msg =f"Can't find orders with the name:{text_to_search}" if search_type == "TEXT" else f"Can't find order number:{text_to_search}"
+			MSG_Popup(text_to_msg).exec_()# show poopup msg
+			print(text_to_msg)
