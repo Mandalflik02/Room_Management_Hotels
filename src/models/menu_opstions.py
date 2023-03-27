@@ -35,29 +35,30 @@ def search_order(customer_name="", order_id="00000000"):
 		orders_filtered = search_order_in_database(customer_name, order_id)  # search order by customer name or order ID
 		if type(orders_filtered) == type([ ]) and len(orders_filtered) == 0:
 			# if the is no orders with the customer name print a msg
-			print(f"\nNot found orders with the name you search: {customer_name}")
+			print(f"\nNot found orders you search for ->  name:{customer_name}, ID:{order_id}")
 			# return orders_filtered
 		elif type(orders_filtered) == type([ ]):
 			# if the is no orders with the customer name print a msg
-			print(f"\nWe found orders with the name you search: {customer_name}")
+			print(f"\nWe found orders you search for ->  name:{customer_name}, ID:{order_id}")
 			return orders_filtered
 	except:
 		print("An Error")
 
 
-def move_order_to_history(order=None | Order):
+def move_order_to_history(order=None):
 	ORDERS_HISTORY.append(order)
 
 # ---------------------- menu options ----------------------
 
 #10) delete order
 
-def delete_order_by_id(order_id="00000000" | int, delete_code=0 | int):
+def delete_order_by_id( delete_code=0 ,order_id="00000000" ):
 	if delete_code != DELETE_CODE:#Must have a delete code to confirm the delete
 		return ERROR_CODE,f"Error -> Delete code not mach : {delete_code}"
-	order = search_order(order_id=order_id)[0]# Search the order
-	order_index_to_delete = ORDERS.index(order)#Find the index of the order
-	print(order_index_to_delete)
+	order = search_order("",order_id)# Search the order
+	# print(order)
+	order_index_to_delete = ORDERS.index(order[0])#Find the index of the order
+	# print(order_index_to_delete)
 	ORDERS.pop(order_index_to_delete)#Delete the order from the orders list
 	move_order_to_history(order)#Add the order to history
 	return OK_CODE,f"Order number {order_id} deleted (siil live in history)"
