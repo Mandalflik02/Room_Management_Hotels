@@ -38,16 +38,14 @@ text-decoration:underline;
    <property name="geometry">
     <rect>
      <x>5</x>
-     <y>100</y>
+     <y>89</y>
      <width>1290</width>
-     <height>500</height>
+     <height>511</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QScrollBar:horizontal{
-	border:none;
-	background:rgb(0, 200, 50);
-}</string>
+    <string notr="true">border:none;
+</string>
    </property>
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -91,6 +89,9 @@ text-decoration:underline;
       <height>16777215</height>
      </size>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;</string>
+    </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
       <number>0</number>
@@ -119,6 +120,35 @@ text-decoration:underline;
      </item>
     </layout>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="home_btn">
+   <property name="geometry">
+    <rect>
+     <x>1230</x>
+     <y>29</y>
+     <width>51</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> background:   rgb(48, 120, 200);
+border-radius:15px;
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../ICONS/home .png</normaloff>../ICONS/home .png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
   </widget>
  </widget>
  <resources/>

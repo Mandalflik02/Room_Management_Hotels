@@ -11,7 +11,7 @@ LOGS=[]  # list of logs
 
 
 stop_time_thread=False
-
+LOGIN_USER="TEST-USER"
 
 windows_indexes = {
 	"home-menu": 0,

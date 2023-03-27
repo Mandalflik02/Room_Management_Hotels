@@ -92,8 +92,8 @@ def logs_starting_on_date(logger, date):
 
 def setup_logging_system():
 	global orders_rooms_logger, errors_logger
-	orders_rooms_logger=create_logger("orders_rooms", "database/orders_rooms.log")
-	errors_logger=create_logger("errors", "database/errors.log")
+	orders_rooms_logger=create_logger("orders_rooms", ".\database\orders_rooms.log")
+	errors_logger=create_logger("errors", ".\database\errors.log")
 	add_new_levels()
 
 # log.order_or_room_log(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ]%"0000055555")

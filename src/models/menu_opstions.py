@@ -13,14 +13,14 @@ def search_room_by_number(room_number):
 		if r.get_room_number() == room_number: return r
 
 
-def print_one_or_more_order(order):
+def print_one_or_more_order(order: Order=None):
 	try:
 		for o in order: print(o)
 	except:
 		print(order)
 
 
-def search_order_in_database(name="", id="00000000"):
+def search_order_in_database(name: str="", id: str="00000000"):
 	orders_filtered = [ ]
 	for o in ORDERS:
 		# if the customer in the order is the one I look for add to list
@@ -45,14 +45,14 @@ def search_order(customer_name="", order_id="00000000"):
 		print("An Error")
 
 
-def move_order_to_history(order=None):
+def move_order_to_history(order: Order=None):
 	ORDERS_HISTORY.append(order)
 
 # ---------------------- menu options ----------------------
 
 #10) delete order
 
-def delete_order_by_id( delete_code=0 ,order_id="00000000" ):
+def delete_order_by_id( delete_code: int=0 ,order_id: str="00000000" ):
 	if delete_code != DELETE_CODE:#Must have a delete code to confirm the delete
 		return ERROR_CODE,f"Error -> Delete code not mach : {delete_code}"
 	order = search_order("",order_id)# Search the order
@@ -61,6 +61,8 @@ def delete_order_by_id( delete_code=0 ,order_id="00000000" ):
 	# print(order_index_to_delete)
 	ORDERS.pop(order_index_to_delete)#Delete the order from the orders list
 	move_order_to_history(order)#Add the order to history
+	create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-deleted" ] [ "value" ],
+		                      ORDERS_LOGGER_LEVELS [ "order-deleted" ] [ "msg" ] % (order_id,LOGIN_USER))#log the delete of the order
 	return OK_CODE,f"Order number {order_id} deleted (siil live in history)"
 
 
@@ -101,7 +103,7 @@ def show_logs_by_date():
 
 
 # 7) check-out
-def check_out(order):
+def check_out(order: Order=None):
 	try:
 		if order.get_check_in_status() and not order.get_check_out_status():
 			#  change check-out in the order and change room catch status
@@ -119,7 +121,7 @@ def check_out(order):
 
 
 # 6) check-in
-def check_in(order):
+def check_in(order: Order=None):
 	try:
 		if not order.get_check_in_status() and not order.get_check_out_status():
 			# when  the order it is not check in or out, change check-in in the order and change room catch status

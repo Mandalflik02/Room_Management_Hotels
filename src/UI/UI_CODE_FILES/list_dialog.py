@@ -52,7 +52,7 @@ class List_Dialog(QDialog):
 		except Exception as e:
 			print(e)
 	
-	def go_to_order(self, order):
+	def go_to_order(self, order: Order=None):
 		print(order)
 		self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(order)
 		self.widget.widget(windows_indexes [ "view-order" ]).display_order()

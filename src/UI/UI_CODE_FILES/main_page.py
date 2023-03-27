@@ -12,7 +12,7 @@ from .title_bar import Title_Bar
 from .home_menu_widget import Home_Menu_Widget
 from .new_order_widget import New_Order_Widget
 from .view_order_widget import View_Order_Widget
-from .rooms_view import Rooms_View
+from .rooms_view import Room_View_Widget
 
 
 
@@ -21,7 +21,7 @@ class Main_Page(QMainWindow):
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(Main_Page, self).__init__()
 		loadUi("UI/UI_Files/main_page.ui", self)  # load the UI of the page
-		self.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
+		# self.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
 
 		######################## add title widget ########################
 		title_Bar=Title_Bar(self)
@@ -41,11 +41,11 @@ class Main_Page(QMainWindow):
 		new_order_widget=New_Order_Widget(self.widget_section)  # create a new order widget
 		self.widget_section.insertWidget(windows_indexes["new-order"], new_order_widget)  # add new order widget to the stack
 		# -------------------------------------------------------------------------------------------------------------#
+		rooms_view_widget = Room_View_Widget(self.widget_section)  # create a new order widget
+		self.widget_section.insertWidget(windows_indexes [ "rooms-view" ],rooms_view_widget)  # add new order widget to the stack
+		# -------------------------------------------------------------------------------------------------------------#
 		view_order_widget = View_Order_Widget(self.widget_section)  # create a new order widget
 		self.widget_section.insertWidget(windows_indexes [ "view-order" ],view_order_widget)  # add new order widget to the stack
-		# -------------------------------------------------------------------------------------------------------------#
-		rooms_view_widget = Rooms_View(self.widget_section)  # create a new order widget
-		self.widget_section.insertWidget(windows_indexes [ "rooms-view" ],rooms_view_widget)  # add new order widget to the stack
 		# -------------------------------------------------------------------------------------------------------------#
 
 

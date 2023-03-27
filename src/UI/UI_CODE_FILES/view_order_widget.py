@@ -5,7 +5,7 @@ from PyQt5.uic import loadUi
 from models import *
 
 
-class View_Order_Widget(QDialog):
+class View_Order_Widget(QWidget):
 	def __init__(self, widget):
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(View_Order_Widget, self).__init__()
@@ -56,7 +56,6 @@ class View_Order_Widget(QDialog):
 					self.check_in_status = not self.check_in_status#return the value to what was before the function
 					MSG_Popup("The customer is already check out!!").exec_()
 		# print("The customer is already check out!!")
-		
 		except Exception as e:
 			print("check-in in widget", e)
 	
@@ -170,10 +169,6 @@ class View_Order_Widget(QDialog):
 				order_stat [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png'))
 			else:
 				order_stat [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png'))
-
-
-	# results = [t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png')) if  t [ 0 ] == True else t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png')) for t in order_vars_and_widget_labels]
-
 	def set_order_to_display(self, order_to_display=None | Order):
 		"""
 		Function that set the order variable for the widget
@@ -183,3 +178,7 @@ class View_Order_Widget(QDialog):
 		"""
 		self.order_to_display = order_to_display
 		print(self.order_to_display)
+
+	# results = [t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png')) if  t [ 0 ] == True else t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png')) for t in order_vars_and_widget_labels]
+
+	
