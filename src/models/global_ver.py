@@ -1,9 +1,11 @@
 
 
 OK_CODE = 357
-
+ERROR_CODE = 999
+DELETE_CODE = 633
 
 ORDERS=[]  # list of orders
+ORDERS_HISTORY=[]# list of old orders
 ROOMS=[]  # list of room
 LOGS=[]  # list of logs
 

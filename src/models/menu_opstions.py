@@ -45,7 +45,23 @@ def search_order(customer_name="", order_id="00000000"):
 		print("An Error")
 
 
+def move_order_to_history(order=None | Order):
+	ORDERS_HISTORY.append(order)
+
 # ---------------------- menu options ----------------------
+
+#10) delete order
+
+def delete_order_by_id(order_id="00000000" | int, delete_code=0 | int):
+	if delete_code != DELETE_CODE:#Must have a delete code to confirm the delete
+		return ERROR_CODE,f"Error -> Delete code not mach : {delete_code}"
+	order = search_order(order_id=order_id)[0]# Search the order
+	order_index_to_delete = ORDERS.index(order)#Find the index of the order
+	print(order_index_to_delete)
+	ORDERS.pop(order_index_to_delete)#Delete the order from the orders list
+	move_order_to_history(order)#Add the order to history
+	return OK_CODE,f"Order number {order_id} deleted (siil live in history)"
+
 
 # 9) LOGS
 
