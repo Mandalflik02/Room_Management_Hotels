@@ -1,12 +1,12 @@
 from models import *
 
-def menu():
+def menu(order):
 	choose = -1
 	while choose != 11:
 		print("\n-------------------Menu-------------------\n"
 		      "1) add order\n"
-		      "2) view order\n"
-		      "3) update order\n"
+		      "2) update order\n"
+		    #   "3) update order\n"
 		      "4) orders list\n"
 		      "5) rooms status\n"
 		      "6) check-in\n"
@@ -21,9 +21,12 @@ def menu():
 				case 1:
 					print(add_new_order())
 				case 2:
-					view_order()
+					up=update_order(order=order,guests=7,arrival_date="10/01/2025",leaving_date="01/01/2025")
+					order=up[1]
+					print(up[0])
+					print(up[1])
 				case 3:
-					update_order()
+					print("Not avilable!!!")
 				case 4:
 					show_orders()
 				case 5:
@@ -48,12 +51,9 @@ def menu():
 
 
 d1=Dates_Range("01/01/2025","09/01/2025",1)
-d2=Dates_Range("01/02/2025","09/02/2025",2)
-d3=Dates_Range("01/03/2025","09/03/2025",3)
-ROOMS.append(Room(1,5))
-ROOMS.append(Room(2,5))
-ROOMS.append(Room(3,5))
-ORDERS.append(Order(customer_name="naor",num_of_guests=5,dates_range=d1,order_num=1,room_num=1))
-ORDERS.append(Order(customer_name="naor",num_of_guests=2,dates_range=d2,order_num=2,room_num=2))
-ORDERS.append(Order(customer_name="naor",num_of_guests=3,dates_range=d3,order_num=3,room_num=3))
-menu()
+ROOMS.append(Room(1,4))
+ROOMS.append(Room(2,8))
+order1=Order(customer_name="naor",num_of_guests=2,dates_range=d1,order_num=1,room_num=1)
+ROOMS[0].add_date_catch(d1.get_arrival_date(),d1.get_leaving_date(),order1.get_order_id())
+ORDERS.append(order1)
+menu(order1)
