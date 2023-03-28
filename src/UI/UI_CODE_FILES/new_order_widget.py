@@ -80,7 +80,6 @@ class New_Order_Widget(QWidget):
 		"""
 		Send all data from the front to the function that create order and add to database
 		"""
-		# print("-------------start create-----------")
 		current_time = datetime.now().strftime("%H:%M:%S , %d/%m/%Y")
 		customer_name = self.customer_name_input.text()
 		guests = int(self.adults_input.text()) + int(self.kids_input.text())
@@ -90,21 +89,13 @@ class New_Order_Widget(QWidget):
 		arrival = str(self.arrival_date.date().toPyDate().strftime("%d/%m/%Y"))
 		leaving = str(self.leaving_date.date().toPyDate().strftime("%d/%m/%Y"))
 		orders_create_status = add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving)
-		if orders_create_status == OK_CODE:
+		if orders_create_status[0] == OK_CODE:
 			self.clear_ui()
 			self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
 		else:
-			self.error_label.setText(orders_create_status)
-			print(orders_create_status)
-  		# print(f"created: {current_time}\n"
-		#       f"name: {customer_name}\n"
-		#       f"guests: {guests}\n"
-		#       f"meals: {meal_options}\n"
-		#       f"car: {electric_car}\n"
-		#       f"pet: {pet}\n"
-		#       f"arrival: {arrival}\n"
-		#       f"leaving: {leaving}\n")
-		# print("-------------end create------------")
+			self.error_label.setText(orders_create_status[1])
+			print(orders_create_status[1])
+		
 		
 	
 	def breakfast(self):

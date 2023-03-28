@@ -1,4 +1,3 @@
-
 from models import *
 
 def menu():
@@ -14,12 +13,13 @@ def menu():
 		      "7) check-out\n"
 		      "9) LOGS\n"
 		      "10)Delete order\n"
-			  "11)Exit")
+			  "11)Exit\n"
+			  "------------------------------------------")
 		try:
-			choose = int(input("Choose option: "))
+			choose = int(input("\nChoose option: "))
 			match choose:
 				case 1:
-					add_new_order()
+					print(add_new_order())
 				case 2:
 					view_order()
 				case 3:

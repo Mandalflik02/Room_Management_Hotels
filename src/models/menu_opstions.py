@@ -159,10 +159,7 @@ def update_order():
 	return None
 
 
-# 2) view order
-def view_order():
-	order = search_order()  # search order/s by name
-	print_one_or_more_order(order)  # print order/s
+# 2) Empty
 
 
 # 1) add new order
@@ -178,30 +175,31 @@ def search_available_room(number_of_guests, date_range):
 			return r
 
 
-def add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving):
+def add_new_order(customer_name: str="", guests: int=0, meal_options: str="000", electric_car: bool=False, pet: bool=False, arrival: str="01/01/2023", leaving: str="01/01/2023"):
 	"""
 	Get data of the order and create new one and add to the ORDERS list
 
 	:return: Error if there is one
 	"""
-	print("------------------Add order------------------")
-	
+	if customer_name == "" or guests == 0 or meal_options == "000" or electric_car == False or pet == False or arrival == "01/01/2023" or leaving == "01/01/2023":
+		return VERABLE_ERROR_CODE ,"Please fill all the fields"
 	try:
+		print("------------------Start create order------------------")
 		order_id = str(len(ORDERS) + 1).zfill(8)  # order number
 		
 		if guests < 1:  # check if the guests number is ok
-			return "Can be 0 guests"
+			return VERABLE_ERROR_CODE ,"Can be 0 guests"
 		dates_range = Dates_Range(arrival, leaving)  # create date range for the order
 		if dates_range is None:  # check the dates range was created
-			return "Cannot create a date range"
+			return VERABLE_ERROR_CODE ,"Cannot create a date range"
 		if not dates_range.range_ok:  # check if there is a error in the date range
 			return dates_range.error_text
 		room = search_available_room(guests, dates_range)  # look for available room
 		if room == None:
-			return "No room available"
+			return ROOM_ERROR_CODE,"No room available"
 		room_num = room.get_room_number()  # get room number
 		if len(search_order(customer_name=customer_name)) > 3:
-			return "The customer have 3 order and can have more"
+			return MAX_ORDERS_CODE,"The customer have 3 order and can have more"
 		new_order = Order(order_id, customer_name, guests,
 		                  dates_range, meal_options, electric_car, pet, room_num)  # create the order
 		
@@ -215,7 +213,8 @@ def add_new_order(customer_name, guests, meal_options, electric_car, pet, arriva
 		create_log_order_room(ORDERS_LOGGER_LEVELS [ "new-order" ] [ "value" ],
 		                      ORDERS_LOGGER_LEVELS [ "new-order" ] [ "msg" ] % order_id)
 		print(new_order)
-		return OK_CODE
+		print("-------------END create order------------")
+		return OK_CODE,"Order created successfully"
 	except KeyboardInterrupt:
 		exit()
-		return "keyboard error"
+		return ERROR_CODE,"keyboard error"
