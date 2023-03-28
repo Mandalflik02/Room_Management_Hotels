@@ -3,7 +3,7 @@ import re
 from .Logs import *
 from .global_ver import *
 from .order import Order
-from .range_of_dates import Dates_Range
+from .range_of_dates import Dates_Range,create_range
 
 
 # ---------------------- help functions ----------------------
@@ -159,20 +159,20 @@ def show_orders():
 # 3) Empty
 
 # 2) update order
-def new_date_range(order:Order=None ,arrival_date: str=None, leaving_date: str=None):
+def new_date_range(order:Order=None ,arrival_date: str=None, leaving_date: str=None): 
 	new_dates=None
 	if arrival_date == order.get_arrival_date() and leaving_date == order.get_leaving_date():
 		#if the dates is the same as the current dates
-		return ERROR_CODE
+		return None
 	elif arrival_date!= None and leaving_date== None:
 		#if the arrival date is diffrent
-		new_dates=Dates_Range(arrival_date,order.get_leaving_date())
+		new_dates=create_range(arrival_date,order.get_leaving_date(),order.get_order_id())
 	elif arrival_date== None and leaving_date!= None:
 		#if the leaving date is diffrent
-		new_dates=Dates_Range(order.get_arrival_date(),leaving_date)
+		new_dates=create_range(order.get_arrival_date(),leaving_date,order.get_order_id())
 	else:
 		#if both dates are diffrent
-		new_dates = Dates_Range(arrival_date,leaving_date)
+		new_dates = create_range(arrival_date,leaving_date,order.get_order_id())
 	return new_dates
 
 def update_order(order: Order=None,customer_name: str=None, guests: int=None, meal_options: str=None, electric_car: bool=None, pet: bool=None, arrival_date: str=None, leaving_date: str=None):
@@ -198,7 +198,7 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 		if  order_room.get_room_capacity() >= guests:
 			#the same room can by use 
 			new_dates=new_date_range(order,arrival_date,leaving_date)#creat new dates
-			if new_dates == ERROR_CODE:
+			if new_dates == None:
 				#the datas are the same as the current dates
 				new_dates=order.get_date_range()
 			order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id())# add the new dates to the room
@@ -208,15 +208,18 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 		else:
 			#the same room can not be used and need to find a new one
 			new_dates=new_date_range(order,arrival_date,leaving_date)# creat new dates
-			print(new_dates.__str__(10))
-			if new_dates == ERROR_CODE:
+			if new_dates == None:
 				#the datas are the same as the current dates
-				new_dates=order.get_date_range()
+				new_dates=order.get_date_range_obj()
+			elif new_dates == ERROR_CODE:
+				return ERROR_CODE,f"Error -> Can't create a new date range for the order"
 			new_order_room=search_available_room(guests,new_dates)# find the new room
 			if new_order_room== None:
 				# if there is no available room
 				return ERROR_CODE,f"Error -> No available room"
 			order_room.remove_date_catch(order.get_date_range_obj())# remove the old dates from the room
+			# print(new_dates)
+			print("test:",new_dates.get_arrival_date())
 			new_order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id()) # add the new dates to the room
 			order.set_guests_num(guests)#set the new number of guest in the order
 			order.set_room_number(new_order_room.get_room_number())# set the new room number in the order
@@ -242,7 +245,7 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 	elif arrival_date!= None or leaving_date!= None:
 		print("arrival_date!= None or leaving_date!= None")
 		new_dates=new_date_range(order,arrival_date,leaving_date)
-		if new_dates == ERROR_CODE:
+		if new_dates == None:
 				new_dates=order.get_date_range()
 				return ERROR_CODE,f"Error -> Dates are the same"
 		new_order_room=search_available_room(order.get_guests_num(),new_dates)
