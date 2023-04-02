@@ -1,6 +1,11 @@
 import re
-
-
+from .global_ver import*
+def create_range(start, end, order_id):
+	print(start, end, order_id)
+	date_range=Dates_Range(start, end, order_id)
+	if not date_range.range_ok:
+		return ERROR_CODE
+	return date_range
 class Dates_Range():
 	def __init__(self, start, end, order_id=-1):
 		self.start=self.is_date(start)
@@ -14,8 +19,6 @@ class Dates_Range():
 			self.error_text="One of the dates is not good"
 			return
 		self.range_ok, self.error_text=self.check_range(start, end)
-		if not self.range_ok:
-			return
 	def is_date(self, string):
 		date=string
 		regex=r'[\d]{1,2}/[\d]{1,2}/[\d]{4}'  # date format

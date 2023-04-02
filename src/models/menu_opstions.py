@@ -3,7 +3,7 @@ import re
 from .Logs import *
 from .global_ver import *
 from .order import Order
-from .range_of_dates import Dates_Range
+from .range_of_dates import Dates_Range,create_range
 
 
 # ---------------------- help functions ----------------------
@@ -43,6 +43,8 @@ def search_order(customer_name="", order_id="00000000"):
 			return orders_filtered
 	except:
 		print("An Error")
+
+
 
 
 def move_order_to_history(order: Order=None):
@@ -154,15 +156,112 @@ def show_orders():
 		print(o)
 
 
-# 3) update order
-def update_order():
-	return None
+# 3) Empty
+
+# 2) update order
+def new_date_range(order:Order=None ,arrival_date: str=None, leaving_date: str=None): 
+	new_dates=None
+	if arrival_date == order.get_arrival_date() and leaving_date == order.get_leaving_date():
+		#if the dates is the same as the current dates
+		return None
+	elif arrival_date!= None and leaving_date== None:
+		#if the arrival date is diffrent
+		new_dates=create_range(arrival_date,order.get_leaving_date(),order.get_order_id())
+	elif arrival_date== None and leaving_date!= None:
+		#if the leaving date is diffrent
+		new_dates=create_range(order.get_arrival_date(),leaving_date,order.get_order_id())
+	else:
+		#if both dates are diffrent
+		new_dates = create_range(arrival_date,leaving_date,order.get_order_id())
+	return new_dates
+
+def update_order(order: Order=None,customer_name: str=None, guests: int=None, meal_options: str=None, electric_car: bool=None, pet: bool=None, arrival_date: str=None, leaving_date: str=None):
+	if order == None:
+		#must have an order to update
+		return ERROR_CODE,f"Error -> Order not found"
+	order_room=search_room_by_number(order.get_room_number())#find the current room number
+	if customer_name != None:
+		#update the customer name
+		order.set_customer_name(customer_name)
+	if meal_options!= None:
+		#update the meal options
+		order.set_meal_options(meal_options)
+	if electric_car!= None:
+		#update the electric car
+		order.set_electric_car(electric_car)
+	if pet!= None:
+		#update the pet
+		order.set_pet(pet)
+	if guests!= None and (arrival_date != None or leaving_date!= None):
+		#if the guests is different and one of the dates is different
+		print("guests!= None and (arrival_date != None or leaving_date!= None)")
+		if  order_room.get_room_capacity() >= guests:
+			#the same room can by use 
+			new_dates=new_date_range(order,arrival_date,leaving_date)#creat new dates
+			if new_dates == None:
+				#the datas are the same as the current dates
+				new_dates=order.get_date_range()
+			order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id())# add the new dates to the room
+			order_room.remove_date_catch(order.get_date_range_obj())#remove the old dates from the room
+			order.set_guests_num(guests)# set the new number of guest in the order
+			order.set_date_range(new_dates)#set the new date range in the order
+		else:
+			#the same room can not be used and need to find a new one
+			new_dates=new_date_range(order,arrival_date,leaving_date)# creat new dates
+			if new_dates == None:
+				#the datas are the same as the current dates
+				new_dates=order.get_date_range_obj()
+			elif new_dates == ERROR_CODE:
+				return ERROR_CODE,f"Error -> Can't create a new date range for the order"
+			new_order_room=search_available_room(guests,new_dates)# find the new room
+			if new_order_room== None:
+				# if there is no available room
+				return ERROR_CODE,f"Error -> No available room"
+			order_room.remove_date_catch(order.get_date_range_obj())# remove the old dates from the room
+			# print(new_dates)
+			print("test:",new_dates.get_arrival_date())
+			new_order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id()) # add the new dates to the room
+			order.set_guests_num(guests)#set the new number of guest in the order
+			order.set_room_number(new_order_room.get_room_number())# set the new room number in the order
+			order.set_date_range(new_dates)#set the new date range in the order
+		create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-update" ] [ "value" ],
+                                  ORDERS_LOGGER_LEVELS [ "order-update" ] [ "msg" ] % order.get_order_id())# create log for update the order
+	elif guests!= None and arrival_date == None and leaving_date== None:
+		#if the guests is different and no one of the dates is different
+		print("guests!= None and arrival_date == None and leaving_date== None")
+		if order_room.get_room_capacity() >= guests:
+			# the same room can by use 
+			order.set_guests_num(guests)
+		else:
+			#the same room can not be used and need to find a new one
+			dates=order.get_date_range_obj()
+			new_order_room=search_available_room(guests,dates)
+			if new_order_room== None:
+				return ERROR_CODE,f"Error -> No available room"
+			order_room.remove_date_catch(order.get_date_range_obj())
+			new_order_room.add_date_catch(dates.get_arrival_date(),dates.get_leaving_date(),order.get_order_id())
+			order.set_guests_num(guests)
+			order.set_room_number(new_order_room.get_room_number())
+	elif arrival_date!= None or leaving_date!= None:
+		print("arrival_date!= None or leaving_date!= None")
+		new_dates=new_date_range(order,arrival_date,leaving_date)
+		if new_dates == None:
+				new_dates=order.get_date_range()
+				return ERROR_CODE,f"Error -> Dates are the same"
+		new_order_room=search_available_room(order.get_guests_num(),new_dates)
+		if new_order_room!= None:
+			return ERROR_CODE,f"Error -> No available room"
+		order_room.remove_date_catch(order.get_date_range_obj())
+		new_order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id())
+		order.set_date_range(new_dates)
+		order.set_room_number(new_order_room.get_room_number())
+		order.set_date_range(new_dates)#set the new date range in the order
+	return OK_CODE,order
+	
+	
 
 
-# 2) view order
-def view_order():
-	order = search_order()  # search order/s by name
-	print_one_or_more_order(order)  # print order/s
+
 
 
 # 1) add new order
@@ -176,37 +275,39 @@ def search_available_room(number_of_guests, date_range):
 			# and the room is available in the range of date the customer want,
 			# the room is available return the room.
 			return r
+	return None
 
 
-def add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving):
+def add_new_order(customer_name: str="", guests: int=0, meal_options: str="000", electric_car: bool=False, pet: bool=False, arrival_date: str="01/01/2023", leaving_date: str="01/01/2023"):
 	"""
 	Get data of the order and create new one and add to the ORDERS list
 
 	:return: Error if there is one
 	"""
-	print("------------------Add order------------------")
-	
+	if customer_name == "" or guests == 0 or meal_options == "000" or electric_car == False or pet == False or arrival_date == "01/01/2023" or leaving_date == "01/01/2023":
+		return VERABLE_ERROR_CODE ,"Please fill all the fields"
 	try:
+		print("------------------Start create order------------------")
 		order_id = str(len(ORDERS) + 1).zfill(8)  # order number
 		
 		if guests < 1:  # check if the guests number is ok
-			return "Can be 0 guests"
-		dates_range = Dates_Range(arrival, leaving)  # create date range for the order
+			return VERABLE_ERROR_CODE ,"Can be 0 guests"
+		dates_range = Dates_Range(arrival_date, leaving_date)  # create date range for the order
 		if dates_range is None:  # check the dates range was created
-			return "Cannot create a date range"
+			return VERABLE_ERROR_CODE ,"Cannot create a date range"
 		if not dates_range.range_ok:  # check if there is a error in the date range
 			return dates_range.error_text
 		room = search_available_room(guests, dates_range)  # look for available room
 		if room == None:
-			return "No room available"
+			return ROOM_ERROR_CODE,"No room available"
 		room_num = room.get_room_number()  # get room number
 		if len(search_order(customer_name=customer_name)) > 3:
-			return "The customer have 3 order and can have more"
+			return MAX_ORDERS_CODE,"The customer have 3 order and can have more"
 		new_order = Order(order_id, customer_name, guests,
 		                  dates_range, meal_options, electric_car, pet, room_num)  # create the order
 		
-		ROOMS [ ROOMS.index(room) ].add_date_catch(arrival,
-		                                           leaving,
+		ROOMS [ ROOMS.index(room) ].add_date_catch(arrival_date,
+		                                           leaving_date,
 		                                           order_id)  # add date_range to the room -> range when the room is caught
 		
 		ORDERS.append(new_order)  # add order to the orders list
@@ -215,7 +316,8 @@ def add_new_order(customer_name, guests, meal_options, electric_car, pet, arriva
 		create_log_order_room(ORDERS_LOGGER_LEVELS [ "new-order" ] [ "value" ],
 		                      ORDERS_LOGGER_LEVELS [ "new-order" ] [ "msg" ] % order_id)
 		print(new_order)
-		return OK_CODE
+		print("-------------END create order------------")
+		return OK_CODE,"Order created successfully"
 	except KeyboardInterrupt:
 		exit()
-		return "keyboard error"
+		return ERROR_CODE,"keyboard error"

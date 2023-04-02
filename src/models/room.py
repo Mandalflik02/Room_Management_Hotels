@@ -32,6 +32,13 @@ class Room():
 
 	def get_dates_catch(self):
 		return self.dates_catch
+	
+	def remove_date_catch(self, date_range):
+		for r in self.dates_catch:
+			if r.get_arrival_date() == date_range.get_arrival_date() and r.get_leaving_date() == date_range.get_leaving_date():
+				self.dates_catch.remove(r)
+				return True
+		return False
 
 	def set_room_status(self, room_status):
 		self.room_is_catch=room_status

@@ -19,78 +19,80 @@ class Order():
 	
 	def set_arrival_date(self, arrival_date):
 		return self.dates_range.set_arrival_date(arrival_date)
-	
 	def get_arrival_date(self):
 		return self.dates_range.get_arrival_date()
-	
 	def set_leaving_date(self, leaving_date):
 		return self.dates_range.set_leaving_date(leaving_date)
-	
 	def get_leaving_date(self):
 		return self.dates_range.get_leaving_date()
-	
 	def get_date_range(self):
 		return f"{self.dates_range.get_arrival_date()} - {self.dates_range.get_leaving_date()}"
+	def get_date_range_obj(self):
+		return self.dates_range
+	def set_date_range(self, new_date_range):
+		if new_date_range == None:
+			return VERABLE_ERROR_CODE
+		self.dates_range=new_date_range
+
 	def get_meal_options(self):
 		return self.meal_options
-	
 	def get_breakfast(self):
 		try:
 			return bool(int(self.meal_options [ 0 ]))
 		except Exception as e:
 			print(e)
-	
 	def get_lunch(self):
 		try:
 			return bool(int(self.meal_options [ 1 ]))
 		except Exception as e:
 			print(e)
-	
 	def get_dinner(self):
 		try:
 			return bool(int(self.meal_options [ 2 ]))
 		except Exception as e:
 			print(e)
-	
 	def set_meal_options(self, meal_options="000"):
 		self.meal_options = meal_options
 	
 	def get_electric_car(self):
 		return self.electric_car
-	
 	def set_electric_car(self, electric_car):
 		self.electric_car = electric_car
 	
 	def get_pet(self):
 		return self.pet
-	
 	def set_pet(self, pet):
 		self.pet = pet
+
+
 	def get_guests_num(self):
 		return self.number_of_guests
+	def set_guests_num(self,new_guests_num):
+		self.number_of_guests = new_guests_num
+
 	def check_in_customers(self):
 		self.check_in = True
-	
 	def cancel_check_in_customers(self):
 		self.check_in = False
-	
 	def get_check_in_status(self):
 		return self.check_in
 	
 	def check_out_customers(self):
 		self.check_out = True
-	
 	def cancel_check_out_customers(self):
 		self.check_out = False
-	
 	def get_check_out_status(self):
 		return self.check_out
 	
 	def get_customer_name(self):
 		return self.customer_name
+	def set_customer_name(self,customer_name):
+		self.customer_name=customer_name
 	
 	def get_room_number(self):
 		return self.room_number
+	def set_room_number(self,new_room_number):
+		self.room_number=new_room_number
 	
 	def get_order_id(self):
 		return self.order_ID
