@@ -12,7 +12,7 @@ from .title_bar import Title_Bar
 from .home_menu_widget import Home_Menu_Widget
 from .new_order_widget import New_Order_Widget
 from .view_order_widget import View_Order_Widget
-from .rooms_view import Room_View_Widget
+from .rooms_view_widget import Room_View_Widget
 
 
 

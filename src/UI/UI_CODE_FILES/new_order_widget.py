@@ -88,7 +88,7 @@ class New_Order_Widget(QWidget):
 		pet = self.pet_status
 		arrival = str(self.arrival_date.date().toPyDate().strftime("%d/%m/%Y"))
 		leaving = str(self.leaving_date.date().toPyDate().strftime("%d/%m/%Y"))
-		orders_create_status = add_new_order(customer_name, guests, meal_options, electric_car, pet, arrival, leaving)
+		orders_create_status = add_new_order(customer_name= customer_name,guests= guests,meal_options= meal_options,electric_car= electric_car,pet= pet,arrival_date= arrival,leaving_date= leaving)
 		if orders_create_status[0] == OK_CODE:
 			self.clear_ui()
 			self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu

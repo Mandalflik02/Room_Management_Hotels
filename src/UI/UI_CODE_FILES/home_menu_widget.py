@@ -33,7 +33,6 @@ class Home_Menu_Widget(QWidget):
 	
 	def search_order_function(self):
 		# start when click on the search-order button
-		#search_type=""
 		text_to_search = self.search_order_line_edit.text()
 		finds_orders = ()
 		if text_to_search.isnumeric():
@@ -45,6 +44,7 @@ class Home_Menu_Widget(QWidget):
 		else:
 			MSG_Popup("You need to enter name or order number to search").exec_()# else, show popup msg telling the user that he need to enter text/number
 			return "You need to enter name or order number to search"
+
 		if len(finds_orders) == 1:
 			self.widget.widget(windows_indexes [ "view-order" ]).set_order_to_display(finds_orders [ 0 ])#set order in view widget
 			self.widget.widget(windows_indexes [ "view-order" ]).display_order()#run the function that put the data in the ui in view_order_widget

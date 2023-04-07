@@ -150,6 +150,35 @@ border-radius:15px;
     </size>
    </property>
   </widget>
+  <widget class="QPushButton" name="new_room_btn">
+   <property name="geometry">
+    <rect>
+     <x>1170</x>
+     <y>30</y>
+     <width>51</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> background:   rgb(48, 120, 200);
+border-radius:15px;
+
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../ICONS/plus.png</normaloff>../ICONS/plus.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

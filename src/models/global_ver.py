@@ -17,11 +17,8 @@ ERROR_CODE = 999
 
 
 ORDERS=[]  # list of orders
-
 ORDERS_HISTORY=[]# list of old orders
-
 ROOMS=[]  # list of room
-
 LOGS=[]  # list of logs
 
 
@@ -56,13 +53,9 @@ windows_indexes = {
 
 
 def create_msg_dialog(msg,btn1_text,btn2_text):
-
 	dialog = MSG_Dialog("go to rooms", "bobo1", "gogo2")
-
 	dialog.exec_()
-
 	status = dialog.status
-
 	print(status)
 
 

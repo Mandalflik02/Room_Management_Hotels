@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QDialog, QDesktopWidget, QWidget
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.uic import loadUi
 
 from models import *
@@ -115,7 +115,16 @@ class View_Order_Widget(QWidget):
 		"""
 		Remove the order from the ORDERS list and go back to home page
 		"""
-		pass
+		delete_status=MSG_Dialog("Delete the order", "Yes", "No")
+		delete_status.exec_()
+		if delete_status.status == "No":
+			return
+		delete_status = delete_order_by_id(delete_code=DELETE_CODE, order_id= self.order_to_display.get_order_id())
+		if delete_status[0] == ERROR_CODE:
+			MSG_Popup(delete_status[1]).exec_()
+			return
+		MSG_Popup("Order deleted successfully!!").exec_()
+		self.home()
 	
 	def update_order(self):
 		pass
@@ -180,5 +189,3 @@ class View_Order_Widget(QWidget):
 		print(self.order_to_display)
 
 	# results = [t [ 1 ].setPixmap(QPixmap('UI/ICONS/checked.png')) if  t [ 0 ] == True else t [ 1 ].setPixmap(QPixmap('UI/ICONS/unchecked.png')) for t in order_vars_and_widget_labels]
-
-	

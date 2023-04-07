@@ -2,7 +2,7 @@ ORDERS_LOGGER_LEVELS={
 	"new-order":{
 		"name":"NEW-ORDER",
 		"value":70,
-		"msg":"New order created, order-id: %s"
+		"msg":"New order created, order-id:|%s|"
 	},
 	"order-update":{
 		"name":"ORDER-UPDATE",
@@ -33,7 +33,7 @@ ROOMS_LOGGER_LEVELS={
 	"new-room":{
 		"name":"NEW-ROOM",
 		"value":80,
-		"msg":""
+		"msg":"Room |%s| has been created by |%s|"
 
 	},
 	"new-fault":{
@@ -57,7 +57,7 @@ ROOMS_LOGGER_LEVELS={
 	"room-deleted":{
 		"name":"ROOM-DELETED",
 		"value":84,
-		"msg":"Room %s deleted by %s"
+		"msg":"Room |%s| deleted by |%s|"
 
 	}
 

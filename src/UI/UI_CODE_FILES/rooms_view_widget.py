@@ -8,24 +8,22 @@ from PyQt5.QtWidgets import QWidget, QFrame, QLabel
 
 from PyQt5.uic import loadUi
 
+from .new_room_dialog import New_Room_Dialog
 from models import *
 
 
 class Room_View_Widget(QWidget):
 	
 	def __init__(self, widget):
-		
 		"""init function that set al the main stuff of th page like UI and clicked event"""
-		
 		super(Room_View_Widget, self).__init__()
-		
 		loadUi("UI/UI_Files/rooms_view_widget.ui", self)  # load the UI of the page
-		
 		self.widget = widget  # the widget-stack that has all widgets --> so I can move to any other widget
-		
+
+
 		self.rooms_widget.addWidget(self.create_titles_frame())
-		
 		self.home_btn.clicked.connect(self.home)
+		self.new_room_btn.clicked.connect(self.new_room)
 	
 	def home(self):
 		"""
@@ -36,6 +34,15 @@ class Room_View_Widget(QWidget):
 		
 		self.widget.setCurrentIndex(windows_indexes [ "home-menu" ])  # return to home menu
 	
+	def new_room(self):
+		"""Create a new room and add it to the table"""
+
+		new_room_dialog = New_Room_Dialog()
+		new_room_dialog.exec_()
+		print(new_room_dialog.capacity)
+		add_new_room(new_room_dialog.capacity)
+		self.refresh_rooms_status()
+
 	def clear_rooms_table(self):
 		
 		for i in reversed(range(1, self.rooms_widget.count())):
@@ -284,8 +291,7 @@ class Room_View_Widget(QWidget):
 		return room_frame
 	
 	def delete_room(self, room_to_delete):
-		delete_status = MSG_Dialog(f"Delete room number {room_to_delete.get_room_number()}", "Yes",
-		                           "No")  # Check if the user really wants to delete the room
+		delete_status = MSG_Dialog(f"Delete room number {room_to_delete.get_room_number()}", "Yes","No")  # Check if the user really wants to delete the room
 		delete_status.exec()
 		if delete_status.status == "Yes":  # If the user really wants to delete the room
 			if len(room_to_delete.get_dates_catch()) > 0:  # Check if the the room is not booked	

@@ -293,3 +293,109 @@
 [2023-04-07 10:44:04,556] || NEW-ORDER || New order created, order-id: 00000001
 [2023-04-07 10:44:04,595] || NEW-ORDER || New order created, order-id: 00000002
 [2023-04-07 10:44:04,621] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 12:00:09,264] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 12:00:09,270] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 12:00:09,313] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 12:01:58,987] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 12:01:59,010] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 12:01:59,012] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 12:02:06,427] || ORDER-DELETED || Order |00000001| has been deleted, by |TEST-USER|
+[2023-04-07 12:02:30,561] || ORDER-DELETED || Order |00000002| has been deleted, by |TEST-USER|
+[2023-04-07 12:03:16,897] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 12:03:16,908] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 12:03:16,944] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 12:03:23,895] || ORDER-DELETED || Order |00000001| has been deleted, by |TEST-USER|
+[2023-04-07 12:03:33,396] || ORDER-DELETED || Order |00000002| has been deleted, by |TEST-USER|
+[2023-04-07 12:13:59,809] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 12:13:59,867] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 12:13:59,892] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 12:15:04,475] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 12:15:04,477] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 12:15:04,489] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 12:15:12,721] || ROOM-DELETED || Room 4 deleted by TEST-USER
+[2023-04-07 12:16:21,759] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 12:16:21,770] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 12:16:21,776] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:20:19,199] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:20:19,227] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:20:19,229] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:21:01,136] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:21:01,149] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:21:01,152] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:21:35,482] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:21:35,525] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:21:35,536] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:22:11,806] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:22:11,817] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:22:11,820] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:23:46,380] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:23:46,382] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:23:46,395] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:23:52,652] || ORDER-DELETED || Order |00000001| has been deleted, by |TEST-USER|
+[2023-04-07 15:24:02,989] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:24:02,993] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:24:03,007] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:24:12,641] || ORDER-DELETED || Order |00000001| has been deleted, by |TEST-USER|
+[2023-04-07 15:24:17,556] || ROOM-DELETED || Room 1 deleted by TEST-USER
+[2023-04-07 15:25:59,908] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:25:59,931] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:25:59,933] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:31:57,643] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:31:57,660] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:31:57,661] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:32:04,000] || ORDER-DELETED || Order |00000002| has been deleted, by |TEST-USER|
+[2023-04-07 15:34:34,484] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:34:34,495] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:34:34,495] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:34:45,728] || NEW-ORDER || New order created, order-id: 00000004
+[2023-04-07 15:39:15,854] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:39:15,857] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:39:15,871] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:39:26,192] || NEW-ORDER || New order created, order-id: 00000004
+[2023-04-07 15:39:52,756] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:39:52,757] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:39:52,766] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:41:04,929] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 15:41:04,931] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 15:41:04,941] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 15:41:19,363] || NEW-ORDER || New order created, order-id: 00000004
+[2023-04-07 16:03:19,642] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 16:03:19,645] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 16:03:19,645] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 16:03:41,587] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 16:03:41,588] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 16:03:41,615] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 16:03:51,779] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 16:03:51,798] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 16:03:51,799] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 16:04:06,245] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 16:04:06,246] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 16:04:06,258] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 16:04:21,142] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 16:04:21,143] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 16:04:21,156] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 16:04:46,694] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 16:04:46,709] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 16:04:46,710] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 16:12:24,114] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-07 16:12:24,136] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-07 16:12:45,533] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-07 16:12:45,544] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-07 16:12:45,544] || NEW-ORDER || New order created, order-id:|00000003|
+[2023-04-07 16:13:20,761] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-07 16:13:20,777] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-07 16:13:20,778] || NEW-ORDER || New order created, order-id:|00000003|
+[2023-04-07 16:13:42,313] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-07 16:13:42,314] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-07 16:13:42,322] || NEW-ORDER || New order created, order-id:|00000003|
+[2023-04-07 16:13:46,419] || NEW-ROOM || Room |5| has been created by |TEST-USER|
+[2023-04-07 16:13:57,119] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-07 16:13:57,128] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-07 16:13:57,128] || NEW-ORDER || New order created, order-id:|00000003|
+[2023-04-07 16:14:04,083] || NEW-ROOM || Room |5| has been created by |TEST-USER|
+[2023-04-07 16:14:21,575] || NEW-ROOM || Room |6| has been created by |TEST-USER|
+[2023-04-07 16:14:29,548] || NEW-ROOM || Room |7| has been created by |TEST-USER|
+[2023-04-07 16:14:34,947] || NEW-ROOM || Room |8| has been created by |TEST-USER|
+[2023-04-07 16:15:19,174] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-07 16:15:19,175] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-07 16:15:38,981] || NEW-ROOM || Room |5| has been created by |TEST-USER|
