@@ -57,7 +57,7 @@ ROOMS_LOGGER_LEVELS={
 	"room-deleted":{
 		"name":"ROOM-DELETED",
 		"value":84,
-		"msg":""
+		"msg":"Room %s deleted by %s"
 
 	}
 

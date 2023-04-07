@@ -269,3 +269,27 @@
 [2023-03-17 12:26:13,447] || ORDER-CHECK-OUT || The customer of Order |00000001| has checked-out
 [2023-03-23 22:51:57,714] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
 [2023-03-27 20:50:42,230] || ORDER-DELETED || Order |00000002| has been deleted, by |TEST-USER|
+[2023-04-02 15:39:37,948] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-02 15:39:37,994] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-02 15:39:38,017] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:31:50,643] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:31:50,674] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:31:50,690] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:37:05,714] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:37:05,746] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:37:05,811] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:38:06,488] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:38:06,517] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:38:06,573] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:41:52,642] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:41:52,703] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:41:52,779] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:42:38,587] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:42:38,657] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:42:38,703] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:43:02,904] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:43:02,939] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:43:02,962] || NEW-ORDER || New order created, order-id: 00000003
+[2023-04-07 10:44:04,556] || NEW-ORDER || New order created, order-id: 00000001
+[2023-04-07 10:44:04,595] || NEW-ORDER || New order created, order-id: 00000002
+[2023-04-07 10:44:04,621] || NEW-ORDER || New order created, order-id: 00000003

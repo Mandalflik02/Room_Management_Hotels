@@ -12,6 +12,7 @@ class MSG_Popup(QDialog):
 		self.msg_label.setText(label_text)
 		self.setWindowTitle(label_text)
 		
+		self.msg_btn_1.setText("OK")
 		self.msg_btn_1.clicked.connect(self.btn1_click)
 
 		
