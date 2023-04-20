@@ -99,7 +99,7 @@ class Dates_Range():
 	def get_leaving_date(self):
 		return self.end
 
-	def __str__(self, len1):
+	def __str__(self, len1=10):
 		title=str(str(str("---Range of dates---")).ljust(len1+10))+"||"
 		start=str(str(str("Start: %s" % (self.start))).ljust(len1+10))+"||"
 		end=str(str(str("End: %s" % (self.end))).ljust(len1+10))+"||"
