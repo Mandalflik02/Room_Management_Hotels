@@ -63,7 +63,7 @@ class View_Order_Widget(QWidget):
 		"""
 		Change the status of check-out for the order after ask the user in dialog
 		"""
-		msg_label = "Check-out customer??" if not self.check_out_status else "Cancel check-out customer??"
+		msg_label = "Check-out customer and close order??" if not self.check_out_status else "Cancel check-out customer??"
 		q = MSG_Dialog(msg_label, "Yes", "No")# ask the user if he want to check-out/undo check-out for this order
 		q.exec_()
 		if q.status == "No":
@@ -76,6 +76,7 @@ class View_Order_Widget(QWidget):
 				if error [ 0 ]:
 					#if no error check-in the customer
 					self.change_btn_color(self.check_out_btn, self.check_out_status)#add color to button
+					self.home()
 				else:
 					#if there is a error when try to check-out
 					self.check_out_status = not self.check_out_status#return the value to what was before the function
@@ -127,7 +128,9 @@ class View_Order_Widget(QWidget):
 		self.home()
 	
 	def update_order(self):
-		pass
+		self.clear_ui()
+		self.widget.widget(windows_indexes [ "update-order" ]).set_order(self.order_to_display)
+		self.widget.setCurrentIndex(windows_indexes [ "update-order" ])  # return to home menu
 	
 	def home(self):
 		"""

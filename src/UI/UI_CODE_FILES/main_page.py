@@ -13,6 +13,7 @@ from .home_menu_widget import Home_Menu_Widget
 from .new_order_widget import New_Order_Widget
 from .view_order_widget import View_Order_Widget
 from .rooms_view_widget import Room_View_Widget
+from .update_order_widget import Update_Order_Widget
 
 
 
@@ -47,7 +48,9 @@ class Main_Page(QMainWindow):
 		view_order_widget = View_Order_Widget(self.widget_section)  # create a new order widget
 		self.widget_section.insertWidget(windows_indexes [ "view-order" ],view_order_widget)  # add new order widget to the stack
 		# -------------------------------------------------------------------------------------------------------------#
-
+		update_order_widget = Update_Order_Widget(self.widget_section,ORDERS[0])  # create a new order widget
+		self.widget_section.insertWidget(windows_indexes [ "update-order" ],update_order_widget)  # add new order widget to the stack
+		# -------------------------------------------------------------------------------------------------------------#
 
 		##################################################################
 		self.widget_section.setCurrentIndex(windows_indexes["home-menu"])##start the program with the home menu widget##

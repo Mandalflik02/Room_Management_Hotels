@@ -37,7 +37,7 @@ windows_indexes = {
 
 	"view-order": 3,
 
-	"view-room": 4,
+	"update-order": 4,
 
 	"settings": 5,
 
@@ -56,7 +56,7 @@ def create_msg_dialog(msg,btn1_text,btn2_text):
 	dialog = MSG_Dialog("go to rooms", "bobo1", "gogo2")
 	dialog.exec_()
 	status = dialog.status
-	print(status)
+	return status
 
 
 

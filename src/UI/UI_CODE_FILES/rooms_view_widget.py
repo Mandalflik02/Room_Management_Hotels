@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtWidgets import QWidget, QFrame, QLabel,QPushButton
 from PyQt5.uic import loadUi
 
-from .dates_catch_dialog import Dates_Catch_Dialog
+from .room_dates_catch_dialog import Dates_Catch_Dialog
 from .new_room_dialog import New_Room_Dialog
 from models import *
 
@@ -155,8 +155,9 @@ class Room_View_Widget(QWidget):
 		
 		return frame_titles
 	
-	def create_room_frame(self, room=None | Room):
-		
+	def create_room_frame(self, room:Room=None):
+		if room is None:
+			return None
 		feild_style = ("border-radius:15px;\n"
 		               "font-size:21px;\n"
 		               "background-color:rgb(48, 120, 200);\n"
@@ -232,21 +233,28 @@ class Room_View_Widget(QWidget):
 		
 		return room_frame
 	
-	def delete_room(self, room_to_delete):
-		delete_status = MSG_Dialog(f"Delete room number {room_to_delete.get_room_number()}", "Yes","No")  # Check if the user really wants to delete the room
+	#-------------------------clicked event functions-------------------------
+
+	def delete_room(self, room):
+		delete_status = MSG_Dialog(f"Delete room number {room.get_room_number()}", "Yes","No")  # Check if the user really wants to delete the room
 		delete_status.exec()
 		if delete_status.status == "Yes":  # If the user really wants to delete the room
-			if len(room_to_delete.get_dates_catch()) > 0:  # Check if the the room is not booked	
+			if len(room.get_dates_catch()) > 0:  # Check if the the room is not booked	
 				MSG_Popup("The room is reserved for future bookings, you can't delete it").exec()
 				return
-			ROOMS.remove(room_to_delete)
+			ROOMS.remove(room)
 			create_log_order_room(ROOMS_LOGGER_LEVELS [ "room-deleted" ] [ "value" ],
 			
 			                      ROOMS_LOGGER_LEVELS [ "room-deleted" ] [ "msg" ] % (
-				                      room_to_delete.get_room_number(), CURRENT_USER))
+				                      room.get_room_number(), CURRENT_USER))
 			self.refresh_rooms_status()
 
 	def show_dates_catch(self, room):
 		if len(room.get_dates_catch()) > 0:
 			date_dialog=Dates_Catch_Dialog(room)
 			date_dialog.exec()
+		else:
+			MSG_Popup("The  room does not catch").exec_()
+
+	def show_faults(self,room):
+		MSG_Popup("Not available yet").exec_()

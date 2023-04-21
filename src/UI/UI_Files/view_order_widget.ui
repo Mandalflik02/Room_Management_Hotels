@@ -59,22 +59,23 @@ background-color: rgb(255, 0, 0);</string>
   <widget class="QLabel" name="order_id_label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>30</y>
-     <width>261</width>
-     <height>51</height>
+     <width>311</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: transparent;
-font-size:25px;
+font-size:30px;
+text-decoration: underline;
 color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>View order: 0000001</string>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QPushButton" name="check_in_btn">
@@ -133,7 +134,7 @@ border-radius:10px;</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>99</y>
+     <y>69</y>
      <width>341</width>
      <height>21</height>
     </rect>
@@ -155,7 +156,7 @@ color: rgb(0, 0, 0);</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>120</y>
+     <y>90</y>
      <width>341</width>
      <height>21</height>
     </rect>

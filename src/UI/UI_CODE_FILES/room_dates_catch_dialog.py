@@ -19,7 +19,6 @@ class Dates_Catch_Dialog(QDialog):
 		self.room_number_label.setText(str(room_number))
 
 		for d in room_dates_catch_list:
-			print(d)
 			self.dates_catch_widget.addWidget(self.create_date_frame(d))
 
 

@@ -115,7 +115,7 @@ def check_out(order: Order=None):
 # 6) check-in
 def check_in(order: Order=None):
 	try:
-		if not order.get_check_in_status() and not order.get_check_out_status():
+		if not order.get_check_in_status() and not order.get_check_out_status() :
 			# when  the order it is not check in or out, change check-in in the order and change room catch status
 			order.check_in_customers()
 			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
@@ -199,10 +199,11 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 			#the same room can by use 
 			new_dates=new_date_range(order,arrival_date,leaving_date)#creat new dates
 			if new_dates == None:
+				print("the same dates")
 				#the datas are the same as the current dates
-				new_dates=order.get_date_range()
-			order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id())# add the new dates to the room
+				new_dates=order.get_date_range_obj()
 			order_room.remove_date_catch(order.get_date_range_obj())#remove the old dates from the room
+			order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id())# add the new dates to the room
 			order.set_guests_num(guests)# set the new number of guest in the order
 			order.set_date_range(new_dates)#set the new date range in the order
 		else:

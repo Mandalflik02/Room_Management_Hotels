@@ -52,7 +52,7 @@ class Room():
 	def get_clean_status(self):
 		return self.room_is_clean
 
-	def add_fault(self, fault):
+	def add_fault(self, fault:str=None):
 		if fault == "" or type(fault) is not type(""):  # if the variable is not string or is empty string don't add it
 			return False
 		self.room_faults.append(fault)

@@ -27,13 +27,13 @@ def main():
 
 	arrivel3="01/03/2025"
 	leaving3="09/03/2025"
-	for r in range(1):
+	for r in range(7):
 		room = Room(r + 1, random.choice(
 			[ 2, 4, 6, 8 ]))  # create room with random capacity and room number between 1 and 10
 		ROOMS.append(room)  # add the room to the rooms list
-	add_new_order(customer_name="naor",guests=2,arrival_date=arrivel1,leaving_date=leaving1,meal_options="000",electric_car=False,pet=True)
-	add_new_order(customer_name="naor",guests=5,arrival_date=arrivel2,leaving_date=leaving2,meal_options="000",electric_car=False,pet=True)
-	add_new_order(customer_name="naor",guests=3,arrival_date=arrivel3,leaving_date=leaving3,meal_options="000",electric_car=False,pet=True)
+	add_new_order(customer_name="naor",guests=2,arrival_date=arrivel1,leaving_date=leaving1,meal_options="010",electric_car=False,pet=True)
+	# add_new_order(customer_name="naor",guests=2,arrival_date=arrivel2,leaving_date=leaving2,meal_options="000",electric_car=False,pet=True)
+	# add_new_order(customer_name="naor",guests=2,arrival_date=arrivel3,leaving_date=leaving3,meal_options="000",electric_car=False,pet=True)
 	
 	create_app()
 
