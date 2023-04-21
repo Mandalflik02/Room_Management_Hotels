@@ -575,3 +575,23 @@
 [2023-04-21 18:13:21,027] || ORDER-UPDATE || Order |00000001| has been updated
 [2023-04-21 18:13:39,507] || NEW-ORDER || New order created, order-id:|00000001|
 [2023-04-21 18:14:04,242] || ORDER-UPDATE || Order |00000001| has been updated
+[2023-04-21 18:26:44,375] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:27:22,548] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:28:17,884] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:30:35,340] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:30:44,745] || ORDER-CHECK-IN || The customer of Order |00000001| has checked-in
+[2023-04-21 18:33:48,376] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:34:14,435] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:34:38,835] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:35:23,135] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:37:06,887] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:37:06,914] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-21 18:37:30,493] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:37:30,504] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-21 18:37:38,559] || ORDER-CHECK-IN || The customer of Order |00000002| has checked-in
+[2023-04-21 18:37:52,559] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-21 18:37:52,568] || NEW-ORDER || New order created, order-id:|00000002|
+[2023-04-21 18:37:52,569] || NEW-ORDER || New order created, order-id:|00000003|
+[2023-04-21 18:38:06,581] || ORDER-CHECK-IN || The customer of Order |00000002| has checked-in
+[2023-04-21 18:38:18,407] || ORDER-CHECK-IN || The customer of Order |00000002| has checked-in
+[2023-04-21 18:38:24,521] || ORDER-DELETED || Order |00000002| has been deleted, by |TEST-USER|
