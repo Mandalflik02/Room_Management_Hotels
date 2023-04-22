@@ -5,7 +5,6 @@ from PyQt5.QtCore import QDate
 from PyQt5.uic import loadUi
 
 from models import *
-from models.range_of_dates import Dates_Range
 
 
 class New_Order_Widget(QWidget):
@@ -94,7 +93,7 @@ class New_Order_Widget(QWidget):
 			self.widget.setCurrentIndex(windows_indexes [ "home-menu" ]) #return to home menu
 		else:
 			self.error_label.setText(orders_create_status[1])
-			print(orders_create_status[1])
+			# print(orders_create_status[1])
 		
 		
 	

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from .range_of_dates import Dates_Range
+from .range_of_dates import Dates_Range,create_range
 
 
 class Room():
@@ -27,7 +27,7 @@ class Room():
 		return True
 
 	def add_date_catch(self, start, end, order_id):
-		date_catch=Dates_Range(start, end, order_id)  # create new range
+		date_catch=create_range(start, end, order_id)  # create new range
 		self.dates_catch.append(date_catch)  # add the new range to the ranges list
 
 	def get_dates_catch(self):

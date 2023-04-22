@@ -5,18 +5,15 @@ from PyQt5.QtCore import QDate
 from PyQt5.uic import loadUi
 
 from models import *
-from models.range_of_dates import Dates_Range
+
 
 
 class Update_Order_Widget(QWidget):
-	def __init__(self, widget,order:Order=None):
+	def __init__(self, widget):
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(Update_Order_Widget, self).__init__()
 		loadUi("UI/UI_Files/update_order_widget.ui", self)  # load the UI of the page
 		self.widget = widget  # the widget-stack that has all widgets --> so I can move to any other widget
-		self.order=order # the order to update
-		if order == None:
-			return
 
 		##########################clicked events ##############################
 		self.update_btn.clicked.connect(self.update_order)  # click event to the update order button

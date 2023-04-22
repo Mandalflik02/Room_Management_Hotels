@@ -1,0 +1,4 @@
+[2023-04-22 22:32:18,925] || NEW-ROOM || Room |1| has been created by |TEST-USER|
+[2023-04-22 22:32:29,809] || NEW-ORDER || New order created, order-id:|00000001|
+[2023-04-22 22:32:41,807] || ORDER-DELETED || Order |00000001| has been deleted, by |TEST-USER|
+[2023-04-22 22:32:47,920] || ROOM-DELETED || Room |1| deleted by |TEST-USER|

@@ -56,9 +56,9 @@ font-size:15px;
    <widget class="QLineEdit" name="search_order_line_edit">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>70</x>
       <y>240</y>
-      <width>371</width>
+      <width>451</width>
       <height>41</height>
      </rect>
     </property>
@@ -79,7 +79,7 @@ background-color: rgba(13, 153, 255,0.4);</string>
      <string/>
     </property>
     <property name="text">
-     <string>naor</string>
+     <string/>
     </property>
     <property name="maxLength">
      <number>8</number>
@@ -91,7 +91,7 @@ background-color: rgba(13, 153, 255,0.4);</string>
      <bool>false</bool>
     </property>
     <property name="placeholderText">
-     <string>Enter Order ID</string>
+     <string>Enter order ID/customer name</string>
     </property>
     <property name="clearButtonEnabled">
      <bool>true</bool>

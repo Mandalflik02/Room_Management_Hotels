@@ -139,23 +139,11 @@ def check_in(order: Order=None):
 	except Exception as e:
 		print("check-in in menu",e)
 
-# 5) room status
-def show_rooms_status():
-	print("------------------Rooms status------------------")
-	# print all the rooms
-	for r in ROOMS:
-		print(r)
+# 5) get rooms from DB
 
-# 4) show orders
-def show_orders():
-	print("------------------Orders status------------------")
-	# print all the orders
-	for o in ORDERS:
-		print(o)
-
+# 4) get orders from DB 
 
 # 3) add room
-
 def add_new_room(room_capacity: int=0):
 	if room_capacity < 2 or room_capacity > 12:
 		#must have a room capacity to add
@@ -166,7 +154,6 @@ def add_new_room(room_capacity: int=0):
 		create_log_order_room(ROOMS_LOGGER_LEVELS [ "new-room" ] [ "value" ],
                       ROOMS_LOGGER_LEVELS [ "new-room" ] [ "msg" ] % (room.get_room_number(), CURRENT_USER))
 		return OK_CODE,f"Room {room.get_room_number()} added"
-
 
 # 2) update order
 def new_date_range(order:Order=None ,arrival_date: str=None, leaving_date: str=None): 
@@ -204,12 +191,10 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 		order.set_pet(pet)
 	if guests!= None and (arrival_date != None or leaving_date!= None):
 		#if the guests is different and one of the dates is different
-		print("guests!= None and (arrival_date != None or leaving_date!= None)")
 		if  order_room.get_room_capacity() >= guests:
 			#the same room can by use 
 			new_dates=new_date_range(order,arrival_date,leaving_date)#creat new dates
 			if new_dates == None:
-				print("the same dates")
 				#the datas are the same as the current dates
 				new_dates=order.get_date_range_obj()
 			order_room.remove_date_catch(order.get_date_range_obj())#remove the old dates from the room
@@ -229,8 +214,6 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 				# if there is no available room
 				return ERROR_CODE,f"Error -> No available room"
 			order_room.remove_date_catch(order.get_date_range_obj())# remove the old dates from the room
-			# print(new_dates)
-			print("test:",new_dates.get_arrival_date())
 			new_order_room.add_date_catch(new_dates.get_arrival_date(),new_dates.get_leaving_date(),order.get_order_id()) # add the new dates to the room
 			order.set_guests_num(guests)#set the new number of guest in the order
 			order.set_room_number(new_order_room.get_room_number())# set the new room number in the order
@@ -239,7 +222,6 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
                                   ORDERS_LOGGER_LEVELS [ "order-update" ] [ "msg" ] % order.get_order_id())# create log for update the order
 	elif guests!= None and arrival_date == None and leaving_date== None:
 		#if the guests is different and no one of the dates is different
-		print("guests!= None and arrival_date == None and leaving_date== None")
 		if order_room.get_room_capacity() >= guests:
 			# the same room can by use 
 			order.set_guests_num(guests)
@@ -254,7 +236,6 @@ def update_order(order: Order=None,customer_name: str=None, guests: int=None, me
 			order.set_guests_num(guests)
 			order.set_room_number(new_order_room.get_room_number())
 	elif arrival_date!= None or leaving_date!= None:
-		print("arrival_date!= None or leaving_date!= None")
 		new_dates=new_date_range(order,arrival_date,leaving_date)
 		if new_dates == None:
 				new_dates=order.get_date_range()
@@ -297,7 +278,7 @@ def add_new_order(customer_name: str=None, guests: int=None, meal_options: str=N
 		order_id = str(len(ORDERS) + 1).zfill(8)  # order number
 		if guests < 1:  # check if the guests number is ok
 			return VERABLE_ERROR_CODE ,"Can be 0 guests"
-		dates_range = Dates_Range(arrival_date, leaving_date)  # create date range for the order
+		dates_range = create_range(arrival_date, leaving_date,order_id)  # create date range for the order
 		if dates_range is None:  # check the dates range was created
 			return VERABLE_ERROR_CODE ,"Cannot create a date range"
 		if not dates_range.range_ok:  # check if there is a error in the date range
@@ -317,7 +298,6 @@ def add_new_order(customer_name: str=None, guests: int=None, meal_options: str=N
 		# print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
 		create_log_order_room(ORDERS_LOGGER_LEVELS [ "new-order" ] [ "value" ],
 		                      ORDERS_LOGGER_LEVELS [ "new-order" ] [ "msg" ] % order_id)
-		# print(new_order)
 		# print("-------------END create order------------")
 		return OK_CODE,"Order created successfully"
 	except KeyboardInterrupt:

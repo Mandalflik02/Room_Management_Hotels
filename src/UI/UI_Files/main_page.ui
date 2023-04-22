@@ -23,7 +23,7 @@ background-color: rgb(141, 193, 231)
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="time_label">
+   <widget class="QLabel" name="time_and_date_label">
     <property name="geometry">
      <rect>
       <x>1140</x>

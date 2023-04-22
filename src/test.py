@@ -26,11 +26,15 @@ def menu(order):
 					print(up[0])
 					print(up[1])
 				case 3:
-					print("Not avilable!!!")
+					try:
+						room_capacity = int(input("Enter room capacity: "))
+						add_new_room()
+					except:
+						print("Not valid room capacity")
 				case 4:
-					show_orders()
+					pass
 				case 5:
-					show_rooms_status()
+					pass
 				case 6:
 					check_in()
 				case 7:
@@ -50,7 +54,7 @@ def menu(order):
 			break
 
 
-d1=Dates_Range("01/01/2025","09/01/2025",1)
+d1=create_range("01/01/2025","09/01/2025",1)
 ROOMS.append(Room(1,4))
 ROOMS.append(Room(2,8))
 order1=Order(customer_name="naor",num_of_guests=2,dates_range=d1,order_num=1,room_num=1)
