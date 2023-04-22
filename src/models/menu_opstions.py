@@ -100,8 +100,10 @@ def check_out(order: Order=None):
 	try:
 		if order.get_check_in_status() and not order.get_check_out_status():
 			today =date.today().strftime("%d/%m/%Y")
-			if today != order.get_leaving_date():
-				return False,"Can be checked-in beffor arrivel date"
+			if today > order.get_arrival_date() and today <= order.get_leaving_date():
+				pass
+			else:
+				return False,"Can't be checked-in not between arrival and leaving dates"
 			#  change check-out in the order and change room catch status
 			order.check_out_customers()
 			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-out" ] [ "value" ],
@@ -120,10 +122,10 @@ def check_in(order: Order=None):
 	try:
 		if not order.get_check_in_status() and not order.get_check_out_status():
 			today =date.today().strftime("%d/%m/%Y")
-			if today != order.get_arrival_date():
-				print(today == order.get_arrival_date())
-				print(today ,order.get_arrival_date())
-				return False,"Can be checked-in beffor arrivel date"
+			if today >= order.get_arrival_date() and today < order.get_leaving_date():
+				pass
+			else:
+				return False,"Can't be checked-in not between arrival and leaving dates"
 			# when  the order it is not check in or out, change check-in in the order and change room catch status
 			order.check_in_customers()
 			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
