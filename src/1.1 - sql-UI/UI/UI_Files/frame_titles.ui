@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1413</width>
+    <height>226</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="frame_titles">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>70</y>
+     <width>1290</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:rgb(0, 0, 0);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="number_title">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>150</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+font-size:21px;
+background-color:rgba(13, 153, 255,0.4);
+color: rgb(255, 255, 255);
+
+border:2px solid  rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>Room number</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="capacity_title">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>10</y>
+      <width>150</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+font-size:21px;
+background-color:rgba(13, 153, 255,0.4);
+color: rgb(255, 255, 255);
+
+border:2px solid  rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>Room capacity</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="now_status_title">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>10</y>
+      <width>200</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+font-size:21px;
+background-color:rgba(13, 153, 255,0.4);
+color: rgb(255, 255, 255);
+
+border:2px solid  rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>Room status (NOW)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cleanning_status_title">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>230</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+font-size:21px;
+background-color:rgba(13, 153, 255,0.4);
+color: rgb(255, 255, 255);
+
+border:2px solid  rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>Room cleanning status</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="faults_title">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>10</y>
+      <width>130</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+font-size:21px;
+background-color:rgba(13, 153, 255,0.4);
+color: rgb(255, 255, 255);
+
+border:2px solid  rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>Room faults</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dates_catch_title">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>10</y>
+      <width>240</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+font-size:21px;
+background-color:rgba(13, 153, 255,0.4);
+color: rgb(255, 255, 255);
+
+border:2px solid  rgb(255, 255, 255);
+border-radius:10px;</string>
+    </property>
+    <property name="text">
+     <string>Dates the room is catch</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="delete_room_btn">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>25</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../ICONS/close.png</normaloff>../ICONS/close.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
