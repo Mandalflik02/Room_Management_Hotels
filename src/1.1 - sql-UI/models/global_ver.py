@@ -1,4 +1,4 @@
-
+import sqlite3
 
 
 OK_CODE = 111
@@ -20,8 +20,8 @@ ORDERS=[]  # list of orders
 ORDERS_HISTORY=[]# list of old orders
 ROOMS=[]  # list of room
 LOGS=[]  # list of logs
-
-
+con = sqlite3.connect("database/hotel_manegmant.db")
+DB_CURSER = con.cursor()
 
 stop_time_thread=False
 CURRENT_USER="TEST-USER"
@@ -52,11 +52,11 @@ windows_indexes = {
 
 
 
-def create_msg_dialog(msg,btn1_text,btn2_text):
-	dialog = MSG_Dialog("go to rooms", "bobo1", "gogo2")
-	dialog.exec_()
-	status = dialog.status
-	return status
+# def create_msg_dialog(msg,btn1_text,btn2_text):
+# 	dialog = MSG_Dialog("go to rooms", "bobo1", "gogo2")
+# 	dialog.exec_()
+# 	status = dialog.status
+# 	return status
 
 
 

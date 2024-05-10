@@ -2,7 +2,7 @@ from datetime import *
 
 
 class Order():
-	def __init__(self, order_num=-1, customer_name="", num_of_guests=0, dates_range=None,
+	def __init__(self, order_num=0, customer_name="", num_of_guests=0, dates_range=None,
 	             meal_options="000", electric_car=False, pet=False, room_num=-1):
 		self.order_ID = str(order_num).zfill(8)  # set order id format as 8 digit, the space fill with 0
 		self.create_time = datetime.now().strftime("%H:%M:%S , %d/%m/%Y")

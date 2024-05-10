@@ -30,8 +30,8 @@ class Main_Page(QMainWindow):
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(Main_Page, self).__init__()
 		loadUi("UI/UI_Files/main_page.ui", self)  # load the UI of the page
-		self.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
-
+		# self.setWindowFlag(Qt.FramelessWindowHint)# this will hide the title bar
+		self.setWindowTitle("Hotel Manegmant")
 		######################## add title widget ########################
 		title_Bar=Title_Bar(self)
 		self.top_widget.addWidget(title_Bar)
