@@ -1,12 +1,11 @@
 import sqlite3
-
+import psycopg2
 
 OK_CODE = 111
 
 DELETE_CODE = 633
 
-
-MAX_ORDERS_CODE =996
+MAX_ORDERS_CODE = 996
 
 ROOM_ERROR_CODE = 997
 
@@ -14,49 +13,41 @@ VERABLE_ERROR_CODE = 998
 
 ERROR_CODE = 999
 
+ORDERS = []  # list of orders
+ORDERS_HISTORY = []  # list of old orders
+ROOMS = []  # list of room
+LOGS = []  # list of logs
+DB_CON = psycopg2.connect(host='localhost', dbname="hotel_manegmant", user='postgres', password="159633",
+                          port=55555)
+DB_CURSER = DB_CON.cursor()
 
-
-ORDERS=[]  # list of orders
-ORDERS_HISTORY=[]# list of old orders
-ROOMS=[]  # list of room
-LOGS=[]  # list of logs
-con = sqlite3.connect("database/hotel_manegmant.db")
-DB_CURSER = con.cursor()
-
-stop_time_thread=False
-CURRENT_USER="TEST-USER"
-
+stop_time_thread = False
+CURRENT_USER = "TEST-USER"
 
 windows_indexes = {
 
-	"home-menu": 0,
+    "home-menu": 0,
 
-	"new-order": 1,
+    "new-order": 1,
 
-	"rooms-view": 2,
+    "rooms-view": 2,
 
-	"view-order": 3,
+    "view-order": 3,
 
-	"update-order": 4,
+    "update-order": 4,
 
-	"settings": 5,
+    "settings": 5,
 
-	"manager-page": 6,
+    "manager-page": 6,
 
-	"login-create":7,
+    "login-create": 7,
 
-	"msg-box": 33,
+    "msg-box": 33,
 
 }  # A list of all the indexes of each page
-
-
-
 
 # def create_msg_dialog(msg,btn1_text,btn2_text):
 # 	dialog = MSG_Dialog("go to rooms", "bobo1", "gogo2")
 # 	dialog.exec_()
 # 	status = dialog.status
 # 	return status
-
-
-
