@@ -1,6 +1,6 @@
 import re
-import sqlite3
-from datetime import date
+import random
+
 
 from Logs import *
 from global_ver import *
@@ -49,22 +49,57 @@ def create_DB():
     DB_CON.commit()
 
 #################################### Get data from DB ####################################
+def get_order_from_db(order_id: int = -1):
+    if order_id == -1:
+        return ERROR_CODE, "ORDER_ID can't be -1"
+    sql = DB_CURSER.mogrify("""
+        SELECT * FROM orders WHERE id = %s
+    """ % str(order_id))
+    DB_CURSER.execute(sql)
+    order = DB_CURSER.fetchone()
+    if order == None:
+        return [ERROR_CODE, f"ORDER_ID --{order_id}-- not exsist"]
+    return order
+
+def get_order_from_db_by_customer_name(customer_name: str = ""):
+    if customer_name == "":
+        return ERROR_CODE, "customer_name can't be empty"
+    sql = DB_CURSER.mogrify("""
+        SELECT * FROM orders WHERE customer_name = %s
+    """, customer_name)
+    DB_CURSER.execute(sql)
+    order = DB_CURSER.fetchall()
+    if order == []:
+        return [ERROR_CODE, f"CUSTOMER_NAME {customer_name} not exsist"]
+    return order
+
+def get_room_from_db(room_number: int = -1):
+    if room_number == -1:
+        return ERROR_CODE, "ROOM_NUMBER can't be -1"
+    sql = DB_CURSER.mogrify("SELECT * FROM rooms WHERE room_number = %s" % str(room_number))
+    DB_CURSER.execute(sql)
+    room = DB_CURSER.fetchone()
+    if room == None:
+        return [ERROR_CODE, f"room --{room_number}-- dosn't exsist"]
+    return room
 
 #################################### Insert data to DB ####################################
 def create_date_range_in_db(order_id, room_number, date_range):
     """create a date range in the date_range table for the room and order"""
-    check_order = DB_CURSER.mogrify(""" select * from dates_range where order_id = %s""", str(order_id))
-    DB_CURSER.execute(check_order)
-    DB_date_range = [
+    check_date_range_for_order = DB_CURSER.mogrify(""" select * from dates_range where order_id = %s""" % str(order_id))
+    DB_CURSER.execute(check_date_range_for_order)
+    check_date_range_for_order = DB_CURSER.fetchone()
+    if check_date_range_for_order != None:
+        return [ERROR_CODE, f"date_range from order:{order_id} exsis --> {check_date_range_for_order}"]
+    date_range_to_db = [
         order_id,
         room_number,
         date_range.get_arrival_date(),
         date_range.get_leaving_date(),
     ]
-    sql = DB_CURSER.mogrify("INSERT INTO dates_range VALUES(%s,%s,%s,%s)", DB_date_range)
+    sql = DB_CURSER.mogrify("INSERT INTO dates_range VALUES(%s,%s,%s,%s)", date_range_to_db)
     DB_CURSER.execute(sql)
-    # return DB_CURSER.fetchall()
-
+    return OK_CODE,f"Date range for order {order_id} created: {date_range.get_arrival_date()} - {date_range.get_leaving_date()}"
 def create_order_in_db(order_info):
     sql = DB_CURSER.mogrify(
         """INSERT INTO orders (customer_name,number_of_guests,room_number, breackfast ,lunch ,diner ,electric_car ,pet ,create_time ,create_by ) 
@@ -82,33 +117,6 @@ def create_room_in_db(room_capacity):
 
 #################################### Side functions ####################################
 
-def search_room_by_number(room_number):
-    sql = DB_CURSER.mogrify("SELECT * FROM rooms WHERE id = %s", room_number)
-    DB_CURSER.execute(sql)
-    return DB_CURSER.fetchall()
-
-def print_one_or_more_order(order: Order = None):
-    try:
-        for o in order: print(o)
-    except:
-        print(order)
-
-def search_order_in_database(name: str = "", id: str = "00000000"):
-    orders_filtered = []
-    for o in ORDERS:
-        # if the customer in the order is the one I look for add to list
-        if o.get_customer_name() == name or o.get_order_id() == id:
-            orders_filtered.append(o)
-    return orders_filtered  # return list with all the orders
-
-def search_order(customer_name="", order_id="00000000"):
-    try:
-        orders_filtered = search_order_in_database(customer_name, order_id)  # search order by customer name or order ID
-        if len(orders_filtered) != 0:
-            return orders_filtered
-    except Exception as e:
-        print("An Error search order in database", e)
-
 def move_order_to_history(order: Order = None):
     ORDERS_HISTORY.append(order)
 
@@ -120,19 +128,77 @@ def add_new_room_fault(room_number, fault):
     DB_CURSER.execute(sql)
 
 # ========================================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 10 - delete order====================================================
-# ==================================================================================================================================
+def delete_date_range_from_db_by_order(order_id: int = -1):
+    if order_id == -1:
+        return ERROR_CODE, "ORDER_ID can't be -1"
+    sql = DB_CURSER.mogrify("""
+        DELETE FROM dates_range WHERE order_id = %s
+    """ % str(order_id))
+    DB_CURSER.execute(sql)
 
+def delete_order_from_db_by_id(delete_code: int = 0, order_id: int = -1):
+    # try:
+    if delete_code != DELETE_CODE:  # Must have a delete code to confirm the delete
+        return ERROR_CODE, f"Error -> Delete code not mach : {delete_code}"
+    if order_id == -1:
+        return ERROR_CODE, "ORDER_ID can't be -1"
+    order = get_order_from_db(order_id)  # Search the order
+    if type(order) == type([]):
+        return order
+    delete_date_range_from_db_by_order(order_id=order_id)
+    sql = DB_CURSER.mogrify("""
+            DELETE FROM orders WHERE id = %s
+        """ % str(order_id))
+    DB_CURSER.execute(sql)
+
+    move_order_to_history(order)  # Add the order to history
+    create_log_order_room(ORDERS_LOGGER_LEVELS["order-deleted"]["value"],
+                          ORDERS_LOGGER_LEVELS["order-deleted"]["msg"] % (
+                              order_id, CURRENT_USER))  # log the delete of the order
+    return OK_CODE, f"Order number {order_id} deleted (siil live in history)"
+    # except Exception as e:
+    #     return ERROR_CODE, f"Error -> {e}"
+
+# ==================================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 9 - LOGS====================================================
 # =========================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 7 - check-out====================================================
 # ==============================================================================================================================
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# ====================================================section 6 - check-in=====================================================
 
-# ====================================================section 6 - check-in====================================================
+
+def check_in(order_id: int=-1):
+	try:
+        check_in_q = DB_CURSER.mogrify("""select check_in from orders where id = %s"""% order_id)
+        DB_CURSER.execute(check_in_q)
+        order_check_in_status = DB_CURSER.fetchone()
+		if not order_check_in_status and not order.get_check_out_status():
+			today =date.today().strftime("%d/%m/%Y")
+			if today >= order.get_arrival_date() and today < order.get_leaving_date():
+				pass
+			else:
+				return False,"Can't be checked-in not between arrival and leaving dates"
+			# when  the order it is not check in or out, change check-in in the order and change room catch status
+			order.check_in_customers()
+			create_log_order_room(ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "value" ],
+			                      ORDERS_LOGGER_LEVELS [ "order-check-in" ] [ "msg" ] % order.get_order_id())
+			search_room_by_number(order.get_room_number()).set_room_status(True)
+			return True, ""
+		elif order.get_check_in_status():
+			return False, "The customer is already check in!!"
+		elif order.get_check_out_status():
+			return False, "The customer is already check out!!"
+	except Exception as e:
+		print("check-in in menu",e)
+
+
 # =============================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 5 - get rooms====================================================
 def get_room_faults_from_db(room_number):
     res = DB_CURSER.execute(
@@ -141,10 +207,11 @@ def get_room_faults_from_db(room_number):
     return res.fetchall()
 
 # =============================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 4 - get orders====================================================
+# add view in the app to view all orders
 # ==============================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 3 - add new room====================================================
 def create_room_in_db(room_capacity: int):
     res = DB_CURSER.execute("INSERT INTO rooms (room_capacity) VALUES(%s)" % room_capacity)
@@ -153,10 +220,10 @@ def create_room_in_db(room_capacity: int):
     return True
 
 # =================================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 2 - update order====================================================
 # =================================================================================================================================
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 1 - add new order====================================================
 def search_available_room(guests_num, date_range):
     sql = DB_CURSER.mogrify("""SELECT r.room_number,r.room_capacity
@@ -175,7 +242,7 @@ def search_available_room(guests_num, date_range):
         return smallest_room[0]
     return 0
 
-def create_new_order(customer_name: str = None, guests: int = None, breackfast: bool = False, lanch: bool = False,
+def create_new_order_in_db(customer_name: str = None, guests: int = None, breackfast: bool = False, lanch: bool = False,
                      diner: bool = False, electric_car: bool = False,
                      pet: bool = False, arrival_date: str = None, leaving_date: str = None):
     """
@@ -224,9 +291,9 @@ def create_new_order(customer_name: str = None, guests: int = None, breackfast: 
         ]
         order_id = create_order_in_db(order_info)
         # customer_name,number_of_guests,room_number, breackfast ,lunch ,diner ,electric_car ,pet ,create_time ,create_by
-        create_date_range_in_db(
+        print(create_date_range_in_db(
             order_id, room, order_dates_range
-        )  # create date-range for room and order
+        ))  # create date-range for room and order
 
         # create_log("NEW ORDER", "New order create, order ID: %s" % (order_id))
         # print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
@@ -251,13 +318,14 @@ def Test():
     # create_room_in_db(500)
     # create_room_in_db(100)
     # create_room_in_db(3)
-    # add_new_room_fault(3, "dooooooo")
-    # dr1 = Dates_Range("01/02/2024", "01/03/2024", 1)
-    # dr2 = Dates_Range("01/02/2024", "01/03/2024", 2)
+    add_new_room_fault(random.randint(0,144), "fix it")
+    dr1 = Dates_Range("01/02/2024", "01/03/2024", 1)
+    dr2 = Dates_Range("01/02/2024", "01/03/2024", 2)
 
-    # print(create_new_order(customer_name="naor", guests=490, arrival_date="01/02/2024", leaving_date="01/03/2024"))
-    # print(create_new_order(customer_name="naor", guests=100, arrival_date="01/02/2024", leaving_date="01/03/2024"))
-
+    # print(create_new_order_in_db(customer_name="naor", guests=2, arrival_date="01/02/2024", leaving_date="01/03/2024"))
+    # print(create_new_order_in_db(customer_name="naor", guests=50, arrival_date="01/02/2024", leaving_date="01/03/2024"))
+    # print(delete_order_from_db_by_id(delete_code=DELETE_CODE, order_id=12))
+    # print(get_room_from_db(300))
     DB_CON.commit()
     DB_CURSER.close()
     DB_CON.close()
