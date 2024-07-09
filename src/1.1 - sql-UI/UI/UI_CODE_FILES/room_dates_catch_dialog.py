@@ -8,13 +8,12 @@ from models import *
 
 
 class Dates_Catch_Dialog(QDialog):
-	def __init__(self, room):
+	def __init__(self, room_number,room_dates_catch_list):
 		"""init function that set al the main stuff of th page like UI and clicked event"""
 		super(Dates_Catch_Dialog, self).__init__()
 		loadUi("UI/UI_Files/room_dates_catch_dialog.ui", self)  # load the UI of the page	
 
-		room_dates_catch_list = room.get_dates_catch()
-		room_number = room.get_room_number()
+
 
 		self.room_number_label.setText(str(room_number))
 
@@ -35,13 +34,13 @@ class Dates_Catch_Dialog(QDialog):
 		start_date_label = QLabel(dates_frame)
 		start_date_label.setObjectName(u"start_date_label")
 		start_date_label.setGeometry(10, 10, 130, 20)
-		start_date_label.setText(date.get_arrival_date())
+		start_date_label.setText(date[0])
 		start_date_label.setStyleSheet(u"font: 19pt \"Calibri\";")
 
 		end_date_label = QLabel(dates_frame)
 		end_date_label.setObjectName(u"end_date_label")
 		end_date_label.setGeometry(190, 10, 130, 20)
-		end_date_label.setText(date.get_leaving_date())
+		end_date_label.setText(date[1])
 		end_date_label.setStyleSheet(u"font: 19pt \"Calibri\";")
 
 		to_label = QLabel(dates_frame)

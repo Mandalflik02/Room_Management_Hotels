@@ -3,7 +3,7 @@ import time
 
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.uic import loadUi
-from PyQt5.QtCore import Qt,QDateTime,QThread,pyqtSignal
+from PyQt5.QtCore import QDateTime,QThread,pyqtSignal
 
 from models import *
 from .title_bar import Title_Bar

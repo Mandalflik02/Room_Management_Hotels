@@ -15,15 +15,27 @@ ORDERS_LOGGER_LEVELS={
 		"msg":"The customer of Order |%s| has checked-in"
 
 	},
+	"order-check-in-cancel":{
+		"name":"ORDER-CHECK-IN-CANCEL",
+		"value":73,
+		"msg":"The customer of Order |%s| checked-in CANCELED"
+
+	},
 	"order-check-out":{
 		"name":"ORDER-CHECK-OUT",
-		"value":73,
+		"value":74,
 		"msg":"The customer of Order |%s| has checked-out"
+
+	},
+	"order-check-out-cancel":{
+		"name":"ORDER-CHECK-OUT-CANCEL",
+		"value":75,
+		"msg":"The customer of Order |%s| checked-out CANCELED"
 
 	},
 	"order-deleted":{
 		"name":"ORDER-DELETED",
-		"value":74,
+		"value":76,
 		"msg":"Order |%s| has been deleted, by |%s|"
 
 	}

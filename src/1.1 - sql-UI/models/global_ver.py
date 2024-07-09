@@ -7,19 +7,18 @@ DELETE_CODE = 633
 
 MAX_ORDERS_CODE = 996
 
+UPDATE_ORDER_CODE = 112
+
 ROOM_ERROR_CODE = 501
 
 VERABLE_ERROR_CODE = 502
 
 ERROR_CODE = 500
 
-ORDERS = []  # list of orders
-ORDERS_HISTORY = []  # list of old orders
-ROOMS = []  # list of room
-LOGS = []  # list of logs
 DB_CON = psycopg2.connect(host='localhost', dbname="hotel_manegmant", user='postgres', password="159633",
                           port=55555)
 DB_CURSER = DB_CON.cursor()
+
 
 stop_time_thread = False
 CURRENT_USER = "TEST-USER"

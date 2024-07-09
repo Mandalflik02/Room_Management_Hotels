@@ -1,5 +1,5 @@
 import re
-from global_ver import*
+from .global_ver import *
 def create_range(start, end, order_id=0):
 	# print(start, end, order_id)
 	date_range=Dates_Range(start, end, order_id)

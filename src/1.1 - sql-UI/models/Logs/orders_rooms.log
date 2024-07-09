@@ -161,3 +161,12 @@
 [2024-06-03 10:06:51,276] || NEW-ORDER || New order created, order-id:|18|
 [2024-06-03 10:06:51,278] || NEW-ORDER || New order created, order-id:|19|
 [2024-06-03 10:06:51,280] || ORDER-DELETED || Order |12| has been deleted, by |TEST-USER|
+[2024-07-08 12:50:10,440] || ORDER-CHECK-IN || The customer of Order |3| has checked-in
+[2024-07-08 12:50:44,915] || ORDER-CHECK-IN || The customer of Order |10| has checked-in
+[2024-07-08 12:59:34,681] || ORDER-CHECK-IN-CANCEL || The customer of Order |10| checked-in CANCELED
+[2024-07-08 12:59:53,506] || ORDER-CHECK-IN-CANCEL || The customer of Order |3| checked-in CANCELED
+[2024-07-08 13:10:12,303] || ORDER-CHECK-IN || The customer of Order |1| has checked-in
+[2024-07-08 13:10:12,304] || ORDER-CHECK-OUT || The customer of Order |1| has checked-out
+[2024-07-08 13:10:58,921] || ORDER-CHECK-OUT-CANCEL || The customer of Order |1| checked-out CANCELED
+[2024-07-08 13:11:26,945] || ORDER-CHECK-IN-CANCEL || The customer of Order |1| checked-in CANCELED
+[2024-07-08 18:49:41,581] || ORDER-UPDATE || Order |11| has been updated

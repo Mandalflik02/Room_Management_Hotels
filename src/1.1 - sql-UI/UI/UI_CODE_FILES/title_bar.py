@@ -17,9 +17,9 @@ class Title_Bar(QFrame):
 
 
 	def close_app(self):
-		print("close")
-		stop_time_thread=True
+		DB_CON.commit()
+		DB_CURSER.close()
+		DB_CON.close()
 		self.widget.close()
 	def minimize_app(self):
-		print("minimize")
 		self.widget.showMinimized()

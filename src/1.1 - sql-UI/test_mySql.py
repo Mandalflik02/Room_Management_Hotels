@@ -197,10 +197,10 @@ def create_new_order(
         # ORDERS.append(new_order)  # add order to the orders list
         # create_log("NEW ORDER", "New order create, order ID: %s" % (order_id))
         # print("----------------Order create---------------", new_order)  # , ROOMS [ ROOMS.index(room) ])
-        create_log_order_room(
-            ORDERS_LOGGER_LEVELS["new-order"]["value"],
-            ORDERS_LOGGER_LEVELS["new-order"]["msg"] % order_id,
-        )
+        # create_log_order_room(
+        #     ORDERS_LOGGER_LEVELS["new-order"]["value"],
+        #     ORDERS_LOGGER_LEVELS["new-order"]["msg"] % order_id,
+        # )
         # print("-------------END create order------------")
         return OK_CODE, f"Order created successfully - {order_id}"
     except KeyboardInterrupt:

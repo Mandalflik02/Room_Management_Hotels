@@ -14,3 +14,11 @@
 [2024-03-28 18:50:34,165] || NEW-ROOM || Room |2| has been created by |TEST-USER|
 [2024-03-28 18:50:58,167] || NEW-ORDER || New order created, order-id:|00000001|
 [2024-03-28 18:51:26,156] || NEW-ORDER || New order created, order-id:|00000002|
+[2024-07-08 13:28:22,576] || NEW-ROOM || Room |1| has been created by |TEST-USER|
+[2024-07-08 13:28:30,209] || NEW-ORDER || New order created, order-id:|00000001|
+[2024-07-08 13:28:48,053] || ORDER-UPDATE || Order |00000001| has been updated
+[2024-07-08 13:29:41,223] || NEW-ROOM || Room |1| has been created by |TEST-USER|
+[2024-07-08 13:29:49,088] || NEW-ORDER || New order created, order-id:|00000001|
+[2024-07-08 13:31:07,024] || ORDER-UPDATE || Order |00000001| has been updated
+[2024-07-08 13:31:24,151] || ORDER-UPDATE || Order |00000001| has been updated
+[2024-07-08 13:31:37,603] || ORDER-UPDATE || Order |00000001| has been updated

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>610</width>
-    <height>420</height>
+    <width>778</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>20</y>
      <width>581</width>
-     <height>81</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -33,86 +33,100 @@ padding-left:20px;</string>
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QFrame" name="order_frame_1">
+  <widget class="QScrollArea" name="user_orders_scrollArea">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
-     <width>580</width>
-     <height>80</height>
+     <y>170</y>
+     <width>741</width>
+     <height>280</height>
     </rect>
    </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <widget class="QLabel" name="order_dates_1">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>251</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;Calibri&quot;;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="order_guests_1">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>10</y>
-      <width>121</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;Calibri&quot;;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="order_view_btn_1">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>20</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(13, 153, 255);
-border-radius:20px;
-font-size:20px;
+   <property name="styleSheet">
+    <string notr="true">border:none;
 </string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <property name="widgetResizable">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <widget class="QWidget" name="user_orders_widget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
     </property>
-    <property name="text">
-     <string>View order</string>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <layout class="QVBoxLayout" name="user_orders_widget">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
-  <widget class="QFrame" name="order_frame_2">
+  <widget class="QFrame" name="titels_fream">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>220</y>
-     <width>580</width>
-     <height>80</height>
+     <y>90</y>
+     <width>750</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -121,12 +135,12 @@ font-size:20px;
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="order_dates_2">
+   <widget class="QLabel" name="order_dates_titel">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>330</x>
       <y>10</y>
-      <width>251</width>
+      <width>281</width>
       <height>51</height>
      </rect>
     </property>
@@ -134,18 +148,18 @@ font-size:20px;
      <string notr="true">font: 16pt &quot;Calibri&quot;;</string>
     </property>
     <property name="text">
-     <string/>
+     <string>Dates</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="order_guests_2">
+   <widget class="QLabel" name="order_guests_titel">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>210</x>
       <y>10</y>
-      <width>121</width>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
@@ -153,53 +167,18 @@ font-size:20px;
      <string notr="true">font: 16pt &quot;Calibri&quot;;</string>
     </property>
     <property name="text">
-     <string/>
+     <string>Guests</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="order_view_btn_2">
+   <widget class="QLabel" name="order_id_titel">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>20</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(13, 153, 255);
-border-radius:20px;
-font-size:20px;
-</string>
-    </property>
-    <property name="text">
-     <string>View order</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QFrame" name="order_frame_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>320</y>
-     <width>580</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <widget class="QLabel" name="order_dates_3">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
-      <width>251</width>
+      <width>161</width>
       <height>51</height>
      </rect>
     </property>
@@ -207,48 +186,10 @@ font-size:20px;
      <string notr="true">font: 16pt &quot;Calibri&quot;;</string>
     </property>
     <property name="text">
-     <string/>
+     <string>order-ID</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="order_guests_3">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>10</y>
-      <width>121</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;Calibri&quot;;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="order_view_btn_3">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>20</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(13, 153, 255);
-border-radius:20px;
-font-size:20px;
-</string>
-    </property>
-    <property name="text">
-     <string>View order</string>
     </property>
    </widget>
   </widget>
