@@ -10,7 +10,7 @@ class List_Dialog(QDialog):
     def __init__(self, widget, orders_list, customer_name):
         """init function that set al the main stuff of th page like UI and clicked event"""
         super(List_Dialog, self).__init__()
-        loadUi("UI/UI_Files/list_dialog.ui", self)  # load the UI of the page
+        loadUi("UI/UI_Files/order_list_dialog.ui", self)  # load the UI of the page
         self.widget = widget  # the widget-stack that has all widgets --> so I can move to any other widget
 
         self.list_titel.setText(f"{customer_name.strip()}'s orders")

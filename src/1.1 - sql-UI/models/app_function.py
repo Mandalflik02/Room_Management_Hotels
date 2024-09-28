@@ -264,7 +264,7 @@ def cancel_check_in_db(order_id=-1):
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # ====================================================section 5 - get rooms====================================================
 def get_room_faults_from_db(room_number):
-    DB_CURSER.execute("SELECT * FROM rooms_faults WHERE room_number = %s " % room_number)
+    DB_CURSER.execute("SELECT fault FROM rooms_faults WHERE room_number = %s " % room_number)
     rooms_list = DB_CURSER.fetchall()
     return rooms_list
 

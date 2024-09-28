@@ -8,7 +8,9 @@ from models import *
 from models.dialogs.popup_msg import MSG_Popup
 from models.dialogs.dialog_msg import MSG_Dialog
 from .room_dates_catch_dialog import Dates_Catch_Dialog
+from .room_faults_dialog import Faults_Dialog
 from .new_room_dialog import New_Room_Dialog
+from .new_room_fault_dialog import New_Fault_Dialog
 
 class Room_View_Widget(QWidget):
 
@@ -21,6 +23,7 @@ class Room_View_Widget(QWidget):
         self.rooms_widget.addWidget(self.create_titles_frame())
         self.home_btn.clicked.connect(self.home)
         self.new_room_btn.clicked.connect(self.new_room)
+        self.new_fault_btn.clicked.connect(self.new_fault)
 
     def home(self):
         """
@@ -40,7 +43,13 @@ class Room_View_Widget(QWidget):
             return
         create_room_in_db(new_room_dialog.capacity)
         self.refresh_rooms_status()
+    def new_fault(self):
+        """Create a new room and add it to the table"""
 
+        new_fault_dialog = New_Fault_Dialog()
+        new_fault_dialog.exec_()
+        add_new_room_fault(new_fault_dialog.room_number,new_fault_dialog.fault)
+        self.refresh_rooms_status()
     def clear_rooms_table(self):
 
         for i in reversed(range(1, self.rooms_widget.count())):
@@ -262,6 +271,7 @@ class Room_View_Widget(QWidget):
     def show_faults(self, room_number):
         room_faults_list = get_room_faults_from_db(room_number=room_number)
         if len(room_faults_list) > 0:
-            MSG_Popup(room_faults_list[0][1]).exec_()
+            fault_dialog=Faults_Dialog(room_number,room_faults_list)
+            fault_dialog.exec_()
         else:
             MSG_Popup("The room have no faults").exec_()
