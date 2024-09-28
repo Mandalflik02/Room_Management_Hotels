@@ -46,18 +46,19 @@ class Home_Menu_Widget(QWidget):
             MSG_Popup(
                 "You need to enter name or order number to search").exec_()  # else, show popup msg telling the user that he need to enter text/number
             return "You need to enter name or order number to search"
-        if finds_orders[0] == ERROR_CODE:
+        status_code,orders=finds_orders[0],finds_orders[1]
+
+        if status_code == ERROR_CODE:
             text_to_msg = f"Can't find orders with the name:{text_to_search}" if search_type == "TEXT" else f"Can't find order number:{text_to_search}"
             MSG_Popup(text_to_msg).exec_()  # show poopup msg
             return text_to_msg
-        if len(finds_orders) == 1:
-            self.widget.widget(windows_indexes["view-order"]).set_order_to_display(finds_orders[0][0])
+        elif status_code == MULTI_ORDERS:
+            dialog_list = List_Dialog(self.widget, orders,
+                                      text_to_search)  # create list dialog with the customer orders
+            dialog_list.exec_()
+        elif status_code == OK_CODE:
+            self.widget.widget(windows_indexes["view-order"]).set_order_to_display(orders[0])
             self.widget.widget(windows_indexes[
                                    "view-order"]).display_order()  # run the function that put the data in the ui in view_order_widget
             self.search_order_line_edit.setText("")  # clear search line
             self.widget.setCurrentIndex(windows_indexes["view-order"])  # go to view order widget that display the order
-        elif len(finds_orders) > 1:
-            # show popup list with all orders
-            dialog_list = List_Dialog(self.widget, finds_orders,
-                                      text_to_search)  # create list dialog with the customer orders
-            dialog_list.exec_()  # show the dialog

@@ -157,7 +157,7 @@ class View_Order_Widget(QWidget):
         """
         Put the data from the order in the UI objects
         """
-        order = get_order_from_db_by_id(self.order_id)
+        order = get_order_from_db_by_id(self.order_id)[1]
         orders_dates = get_start_and_end_dates(self.order_id)
         print(order)
         print(orders_dates)

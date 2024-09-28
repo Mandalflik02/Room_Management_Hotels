@@ -57,7 +57,7 @@ def get_order_from_db_by_id(order_id: int = -1):
     order = DB_CURSER.fetchone()
     if order == None:
         return [ERROR_CODE, f"ORDER_ID --{order_id}-- not exsist"]
-    return list(order)
+    return [OK_CODE,order]
 
 def get_order_from_db_by_customer_name(customer_name: str = ""):
     if customer_name == "":
@@ -67,7 +67,9 @@ def get_order_from_db_by_customer_name(customer_name: str = ""):
     order = DB_CURSER.fetchall()
     if order == []:
         return [ERROR_CODE, f"CUSTOMER_NAME {customer_name} not exsist"]
-    return order
+    if len(order) > 1:
+        return [MULTI_ORDERS,order]
+    return [OK_CODE,order]
 
 def get_room_from_db(room_number: int = -1):
     if room_number == -1:

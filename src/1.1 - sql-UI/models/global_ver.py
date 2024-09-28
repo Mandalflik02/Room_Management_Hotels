@@ -3,6 +3,8 @@ import psycopg2
 
 OK_CODE = 111
 
+MULTI_ORDERS=112
+
 DELETE_CODE = 633
 
 MAX_ORDERS_CODE = 996

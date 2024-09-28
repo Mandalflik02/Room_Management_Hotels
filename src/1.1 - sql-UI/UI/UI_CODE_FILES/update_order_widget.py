@@ -31,7 +31,7 @@ class Update_Order_Widget(QWidget):
 
     def display_order_data(self):
         ###############################self values##############################
-        order = get_order_from_db_by_id(self.order_id)
+        order = get_order_from_db_by_id(self.order_id)[1]
         self.electric_car_status = not order[7]  # tell if the customer has electric car
         self.pet_status = not order[8]  # tell if the customer has a pet
         self.breakfast_status = not order[4]  # tell if the customer want breakfast
